@@ -8,8 +8,8 @@ export type Accent = 'primary' | 'secondary' | 'tertiary';
 
 export const SITE = {
   name: 'Benjamín López',
-  role: 'Full Stack Developer',
-  bio: 'Construyendo aplicaciones web con Java, Spring Boot y Angular, y automatizando procesos con Python, n8n y RPA.',
+  role: 'Ingeniero en Informática · Full Stack Developer',
+  bio: 'Construyo APIs y microservicios con Java (Spring Boot) y Python, interfaces con Angular y React, procesos ETL y automatizaciones de punta a punta, y los despliego con Docker en Linux.',
   logo: '/logo.svg', // monograma <B> del header
   logoFull: '/logo-full.svg', // logo completo del footer
   avatar: null as string | null, // ej: '/avatar.jpg' (ponlo en frontend/public)
@@ -17,7 +17,7 @@ export const SITE = {
   availability: {
     open: true,
     short: 'Disponible', // aparece en el header
-    long: 'Abierto a oportunidades remotas', // aparece en el inicio
+    long: 'Abierto a nuevas oportunidades', // aparece en el inicio
   },
 
   github: {
@@ -38,28 +38,34 @@ export const SITE = {
     email: 'tu@email.com',
     calendarUrl: null as string | null, // ej: 'https://cal.com/tu-usuario'
     discord: null as string | null, // ej: 'tu_usuario'
-    pitch: 'Disponible para proyectos freelance, prácticas o roles junior/semi-senior.',
+    pitch: 'Abierto a roles Full Stack o Backend y a proyectos de automatización y datos. Conversemos.',
   },
 
   stats: [
-    { label: 'Experiencia', value: '1+ año', detail: 'Full Stack', icon: 'verified', accent: 'primary' },
-    { label: 'Proyectos', value: '5+', detail: 'Publicados con demo', icon: 'rocket_launch', accent: 'secondary' },
-    { label: 'Stack', value: 'Java + Angular', detail: 'Spring Boot & Docker', icon: 'layers', accent: 'tertiary' },
-    { label: 'Infra', value: 'Self-hosted', detail: 'Servidor propio', icon: 'dns', accent: 'primary' },
+    { label: 'Experiencia', value: '1+ año', detail: 'Desarrollo Full Stack', icon: 'verified', accent: 'primary' },
+    { label: 'Formación', value: 'Ingeniería', detail: 'Informática · Ciencia de Datos', icon: 'school', accent: 'secondary' },
+    { label: 'Certificaciones', value: '4 GCP', detail: 'Google Cloud', icon: 'cloud_done', accent: 'tertiary' },
+    { label: 'Stack', value: 'Java + Angular', detail: 'Spring Boot · PostgreSQL', icon: 'layers', accent: 'primary' },
   ] satisfies { label: string; value: string; detail: string; icon: string; accent: Accent }[],
 
+  // primary = backend/datos · secondary = frontend/móvil · tertiary = DevOps/automatización
   skills: [
     { name: 'Java', accent: 'primary' },
     { name: 'Spring Boot', accent: 'primary' },
+    { name: 'Python', accent: 'primary' },
+    { name: 'FastAPI / Flask', accent: 'primary' },
+    { name: 'PostgreSQL', accent: 'primary' },
+    { name: 'MySQL', accent: 'primary' },
+    { name: 'TypeScript', accent: 'secondary' },
     { name: 'Angular', accent: 'secondary' },
-    { name: 'JavaScript', accent: 'secondary' },
-    { name: 'HTML', accent: 'secondary' },
-    { name: 'CSS', accent: 'secondary' },
-    { name: 'Python', accent: 'tertiary' },
-    { name: 'SQL', accent: 'primary' },
-    { name: 'n8n', accent: 'tertiary' },
-    { name: 'RPA', accent: 'tertiary' },
+    { name: 'React', accent: 'secondary' },
+    { name: 'Flutter', accent: 'secondary' },
     { name: 'Docker', accent: 'tertiary' },
+    { name: 'Linux', accent: 'tertiary' },
+    { name: 'Git Flow', accent: 'tertiary' },
+    { name: 'Jenkins / GitLab CI', accent: 'tertiary' },
+    { name: 'Playwright', accent: 'tertiary' },
+    { name: 'RPA', accent: 'tertiary' },
   ] satisfies { name: string; accent: Accent }[],
 };
 
