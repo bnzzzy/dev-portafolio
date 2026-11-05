@@ -16,3 +16,6 @@ id_*
 *.log
 .DS_Store
 Thumbs.db
+
+# Documentos personales (CV, LinkedIn): nunca se suben
+privado/
