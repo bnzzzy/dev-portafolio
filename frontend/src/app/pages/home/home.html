@@ -3,12 +3,12 @@
   <section class="hero">
     <div class="hero__intro">
       @if (site.availability.open) {
-        <span class="status-pill meta uppercase">
+        <span class="status-pill label">
           <span class="dot dot--pulse"></span>
           {{ site.availability.long }}
         </span>
       }
-      <span class="code uppercase text-secondary">{{ site.role }}</span>
+      <span class="eyebrow text-secondary">{{ site.role }}</span>
       <h1 class="display-hero">{{ site.name }}</h1>
       <p class="hero__bio muted">{{ site.bio }}</p>
     </div>
@@ -18,7 +18,7 @@
         <span class="link-card__icon"><span class="icon">code</span></span>
         <span class="link-card__text">
           <span class="title-sm">GitHub • &#64;{{ site.github.username }}</span>
-          <span class="meta muted">{{ site.github.caption }}</span>
+          <span class="label muted">{{ site.github.caption }}</span>
         </span>
         <span class="icon link-card__arrow">arrow_outward</span>
       </a>
@@ -27,7 +27,7 @@
         <span class="link-card__icon"><span class="icon">hub</span></span>
         <span class="link-card__text">
           <span class="title-sm">Conectemos en LinkedIn</span>
-          <span class="meta muted">{{ site.linkedin.caption }}</span>
+          <span class="label muted">{{ site.linkedin.caption }}</span>
         </span>
         <span class="icon link-card__arrow">arrow_outward</span>
       </a>
@@ -58,11 +58,11 @@
     @for (stat of site.stats; track stat.label) {
       <div class="stat">
         <div class="stat__head">
-          <span class="meta uppercase muted">{{ stat.label }}</span>
+          <span class="label muted">{{ stat.label }}</span>
           <span class="icon" [class]="'text-' + stat.accent">{{ stat.icon }}</span>
         </div>
         <span class="headline-lg">{{ stat.value }}</span>
-        <span class="meta muted">{{ stat.detail }}</span>
+        <span class="label muted">{{ stat.detail }}</span>
       </div>
     }
   </section>
@@ -74,7 +74,7 @@
         <span class="icon-box text-primary"><span class="icon">data_object</span></span>
         Repositorios en GitHub
       </h2>
-      <a class="see-all meta text-primary" routerLink="/repositorios">
+      <a class="see-all label text-primary" routerLink="/repositorios">
         Ver todos <span class="icon">chevron_right</span>
       </a>
     </div>
@@ -107,7 +107,7 @@
         <span class="icon-box text-secondary"><span class="icon">rocket_launch</span></span>
         Proyectos destacados
       </h2>
-      <a class="see-all meta text-secondary" routerLink="/proyectos">
+      <a class="see-all label text-secondary" routerLink="/proyectos">
         Ver todos <span class="icon">chevron_right</span>
       </a>
     </div>
@@ -139,7 +139,7 @@
     </div>
     <ul class="skills">
       @for (skill of site.skills; track skill.name) {
-        <li class="badge-label uppercase">
+        <li class="label">
           <span class="dot dot--sm" [class]="'text-' + skill.accent"></span>
           {{ skill.name }}
         </li>

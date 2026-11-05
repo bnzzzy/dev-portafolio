@@ -1,6 +1,6 @@
 <div class="page">
   <header class="stack">
-    <span class="code uppercase text-secondary">Casos de estudio</span>
+    <span class="eyebrow text-secondary">Casos de estudio</span>
     <h1 class="display-hero">Proyectos</h1>
     <p class="muted">Lo que he construido, con su código y demo en vivo.</p>
   </header>
@@ -19,11 +19,11 @@
     @default {
       @if (tags().length > 1) {
         <div class="filters" role="group" aria-label="Filtrar por tecnología">
-          <button type="button" class="filter badge-label" [class.active]="!selectedTag()" (click)="selectedTag.set(null)">
+          <button type="button" class="filter label" [class.active]="!selectedTag()" (click)="selectedTag.set(null)">
             Todos
           </button>
           @for (tag of tags(); track tag) {
-            <button type="button" class="filter badge-label" [class.active]="selectedTag() === tag" (click)="toggle(tag)">
+            <button type="button" class="filter label" [class.active]="selectedTag() === tag" (click)="toggle(tag)">
               {{ tag }}
             </button>
           }

@@ -16,7 +16,7 @@ import { NAV_ITEMS } from '../../core/config/site.config';
           ariaCurrentWhenActive="page"
         >
           <span class="icon">{{ item.icon }}</span>
-          <span class="meta">{{ item.label }}</span>
+          <span class="label">{{ item.label }}</span>
         </a>
       }
     </nav>

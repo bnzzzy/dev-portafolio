@@ -20,7 +20,7 @@
         <a [routerLink]="['/proyectos', p.slug]">{{ p.title }}</a>
       </h3>
       @if (p.highlight) {
-        <span class="project__highlight meta">{{ p.highlight }}</span>
+        <span class="project__highlight label">{{ p.highlight }}</span>
       }
     </div>
 
@@ -30,7 +30,7 @@
       <div class="project__metrics">
         @for (m of p.metrics; track m.label) {
           <div>
-            <span class="meta muted">{{ m.label }}</span>
+            <span class="label muted">{{ m.label }}</span>
             <span class="code">{{ m.value }}</span>
           </div>
         }

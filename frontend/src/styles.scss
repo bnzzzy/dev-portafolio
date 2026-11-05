@@ -187,6 +187,19 @@ textarea {
   letter-spacing: 0.02em;
 }
 
+// Texto de apoyo en tipografía normal (no monoespaciada, sin mayúsculas)
+.eyebrow {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.label {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
 .uppercase {
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -395,6 +408,15 @@ a.card:hover,
   background: rgba(76, 215, 246, 0.08);
   border: 1px solid rgba(76, 215, 246, 0.25);
   color: var(--secondary);
+
+  // Variante para texto normal (no técnico)
+  &--text {
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
 }
 
 .dot {

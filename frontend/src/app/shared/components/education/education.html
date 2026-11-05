@@ -9,18 +9,18 @@
   <div class="edu">
     <!-- Título -->
     <article class="card edu__degree">
-      <span class="meta uppercase muted">{{ edu.institution }} · {{ edu.period }}</span>
+      <span class="label muted">{{ edu.institution }} · {{ edu.period }}</span>
       <h3 class="title-sm">{{ edu.degree }}</h3>
       <p class="muted">{{ edu.detail }}</p>
 
-      <span class="meta uppercase text-secondary edu__label">Certificaciones académicas</span>
+      <span class="label text-secondary edu__label">Certificaciones académicas</span>
       <ul class="edu__chips">
         @for (cert of edu.certifications; track cert) {
-          <li class="chip">{{ cert }}</li>
+          <li class="chip chip--text">{{ cert }}</li>
         }
       </ul>
 
-      <span class="meta uppercase text-secondary edu__label">Idiomas</span>
+      <span class="label text-secondary edu__label">Idiomas</span>
       <ul class="edu__langs">
         @for (lang of edu.languages; track lang.name) {
           <li><b>{{ lang.name }}</b><span class="muted">&nbsp;— {{ lang.level }}</span></li>
@@ -30,7 +30,7 @@
 
     <!-- Google Cloud -->
     <article class="card">
-      <span class="meta uppercase muted">Google Cloud · {{ cloud.length }} certificaciones</span>
+      <span class="label muted">Google Cloud · {{ cloud.length }} certificaciones</span>
       <ul class="edu__cloud">
         @for (cert of cloud; track cert) {
           <li><span class="icon text-tertiary">verified</span> {{ cert }}</li>

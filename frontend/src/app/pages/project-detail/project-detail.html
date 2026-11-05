@@ -1,5 +1,5 @@
 <div class="page">
-  <a routerLink="/proyectos" class="back meta text-primary">
+  <a routerLink="/proyectos" class="back label text-primary">
     <span class="icon">arrow_back</span> Volver a proyectos
   </a>
 
@@ -24,7 +24,7 @@
           </div>
           <h1 class="display-hero">{{ p.title }}</h1>
           @if (p.highlight) {
-            <span class="meta text-tertiary uppercase">{{ p.highlight }}</span>
+            <span class="label text-tertiary">{{ p.highlight }}</span>
           }
         </div>
 
@@ -34,7 +34,7 @@
           <div class="detail__metrics">
             @for (m of p.metrics; track m.label) {
               <div>
-                <span class="meta muted">{{ m.label }}</span>
+                <span class="label muted">{{ m.label }}</span>
                 <span class="code">{{ m.value }}</span>
               </div>
             }

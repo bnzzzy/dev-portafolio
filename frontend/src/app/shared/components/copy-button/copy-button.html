@@ -4,7 +4,7 @@
     <span class="code">{{ copied() && !showHint() ? '¡Copiado!' : value() }}</span>
   </span>
   @if (showHint()) {
-    <span class="copy__hint meta">
+    <span class="copy__hint label">
       <span class="icon">{{ copied() ? 'check' : 'content_copy' }}</span>
       {{ copied() ? 'Copiado' : 'Copiar' }}
     </span>
