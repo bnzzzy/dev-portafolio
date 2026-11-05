@@ -30,9 +30,9 @@
   --linkedin: #0a66c2;
 
   // Tipografías
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --font-display: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
 
   // Espaciado
   --space-xs: 0.25rem;
@@ -127,12 +127,12 @@ textarea {
   font-size: 32px;
   line-height: 36px;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 
   @media (min-width: 768px) {
     font-size: 44px;
-    line-height: 48px;
-    letter-spacing: -0.04em;
+    line-height: 50px;
+    letter-spacing: -0.025em;
   }
 }
 

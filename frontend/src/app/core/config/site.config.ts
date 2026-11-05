@@ -45,7 +45,7 @@ export const SITE = {
     { label: 'Experiencia', value: '1+ año', detail: 'Desarrollo Full Stack', icon: 'verified', accent: 'primary' },
     { label: 'Formación', value: 'Ingeniería', detail: 'Informática · Ciencia de Datos', icon: 'school', accent: 'secondary' },
     { label: 'Certificaciones', value: '14', detail: '6 Google Cloud · 8 Duoc UC', icon: 'cloud_done', accent: 'tertiary' },
-    { label: 'Stack', value: 'Java + Angular', detail: 'Spring Boot · PostgreSQL', icon: 'layers', accent: 'primary' },
+    { label: 'Stack', value: 'Java + Angular', detail: 'Spring Boot · React · Flask', icon: 'layers', accent: 'primary' },
   ] satisfies { label: string; value: string; detail: string; icon: string; accent: Accent }[],
 
   // primary = backend/datos · secondary = frontend/móvil · tertiary = DevOps/automatización
