@@ -7,12 +7,13 @@ import { GithubService } from '../../core/services/github.service';
 import { ProjectsService } from '../../core/services/projects.service';
 import { ContactCta } from '../../shared/components/contact-cta/contact-cta';
 import { CopyButton } from '../../shared/components/copy-button/copy-button';
+import { Education } from '../../shared/components/education/education';
 import { ProjectCard } from '../../shared/components/project-card/project-card';
 import { RepoCard } from '../../shared/components/repo-card/repo-card';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ProjectCard, RepoCard, CopyButton, ContactCta],
+  imports: [RouterLink, ProjectCard, RepoCard, CopyButton, ContactCta, Education],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

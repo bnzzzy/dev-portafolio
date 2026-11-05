@@ -44,7 +44,7 @@ export const SITE = {
   stats: [
     { label: 'Experiencia', value: '1+ año', detail: 'Desarrollo Full Stack', icon: 'verified', accent: 'primary' },
     { label: 'Formación', value: 'Ingeniería', detail: 'Informática · Ciencia de Datos', icon: 'school', accent: 'secondary' },
-    { label: 'Certificaciones', value: '4 GCP', detail: 'Google Cloud', icon: 'cloud_done', accent: 'tertiary' },
+    { label: 'Certificaciones', value: '14', detail: '6 Google Cloud · 8 Duoc UC', icon: 'cloud_done', accent: 'tertiary' },
     { label: 'Stack', value: 'Java + Angular', detail: 'Spring Boot · PostgreSQL', icon: 'layers', accent: 'primary' },
   ] satisfies { label: string; value: string; detail: string; icon: string; accent: Accent }[],
 
@@ -67,6 +67,36 @@ export const SITE = {
     { name: 'Playwright', accent: 'tertiary' },
     { name: 'RPA', accent: 'tertiary' },
   ] satisfies { name: string; accent: Accent }[],
+
+  education: {
+    degree: 'Ingeniero en Informática',
+    institution: 'Duoc UC',
+    period: '2022 – 2025',
+    detail: 'Especialización en Ciencia de Datos · Titulado en dic. 2025',
+    // Certificaciones académicas de la carrera
+    certifications: [
+      'Arquitectura de Software',
+      'Calidad de Software',
+      'Programación de Software',
+      'Gestión de Proyectos Informáticos',
+      'Análisis y Planificación de Requerimientos',
+      'Análisis y Desarrollo de Modelos de Datos',
+      'Inteligencia de Negocios',
+    ],
+    languages: [
+      { name: 'Español', level: 'Nativo' },
+      { name: 'Inglés', level: 'Intermedio alto · certificado' },
+    ],
+  },
+
+  cloudCertifications: [
+    'Cloud Computing Fundamentals',
+    'Networking & Security in Google Cloud',
+    'Data, ML and AI in Google Cloud',
+    'Prepare Data for ML APIs on Google Cloud',
+    'Implement Load Balancing on Compute Engine',
+    'Build a Secure Google Cloud Network',
+  ],
 };
 
 /** Enlaces de navegación (header en escritorio, barra inferior en móvil). */

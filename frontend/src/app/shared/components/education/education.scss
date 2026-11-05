@@ -1,0 +1,50 @@
+// 1 columna en móvil, 2 en escritorio (título más ancho que Google Cloud)
+.edu {
+  display: grid;
+  gap: var(--space-md);
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+.edu__label {
+  margin-top: var(--space-sm);
+  font-weight: 600;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.edu__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.edu__langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+}
+
+.edu__cloud {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: var(--space-xs);
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+}
