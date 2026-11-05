@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      PORT: 3000
+      GITHUB_USERNAME: ${GITHUB_USERNAME:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      # Solo escucha en el propio servidor (127.0.0.1): al sitio se entra
+      # desde internet a través de Cloudflare Tunnel, no abriendo puertos.
+      - "127.0.0.1:${PORTFOLIO_PORT:-8080}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

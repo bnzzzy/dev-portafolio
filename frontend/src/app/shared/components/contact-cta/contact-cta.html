@@ -1,0 +1,26 @@
+<section class="cta">
+  <div class="stack cta__text">
+    <span class="meta uppercase text-tertiary">¿Tienes una propuesta?</span>
+    <h2 class="headline-md">Hablemos de tu próximo proyecto</h2>
+    <p class="muted">{{ contact.pitch }}</p>
+  </div>
+
+  <div class="stack">
+    @if (contact.calendarUrl) {
+      <a class="btn btn--primary btn--block btn--lg" [href]="contact.calendarUrl" target="_blank" rel="noopener">
+        <span class="icon">calendar_today</span> Agendar videollamada de 30m
+      </a>
+    }
+    <a
+      class="btn btn--block btn--lg"
+      [class.btn--primary]="!contact.calendarUrl"
+      [class.btn--ghost]="contact.calendarUrl"
+      [href]="'mailto:' + contact.email"
+    >
+      <span class="icon" [class.text-secondary]="contact.calendarUrl">mail</span> Enviar email directo
+    </a>
+    @if (contact.discord) {
+      <app-copy-button [value]="contact.discord" icon="chat" [showHint]="true" />
+    }
+  </div>
+</section>

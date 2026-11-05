@@ -1,0 +1,5 @@
+# Fines de línea estilo Linux en todo el repo (el sitio corre en Linux/Docker)
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

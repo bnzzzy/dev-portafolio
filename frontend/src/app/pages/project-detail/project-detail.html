@@ -1,0 +1,66 @@
+<div class="page">
+  <a routerLink="/proyectos" class="back meta text-primary">
+    <span class="icon">arrow_back</span> Volver a proyectos
+  </a>
+
+  @let p = project();
+
+  @if (p) {
+    <article class="detail">
+      <div class="detail__media">
+        @if (p.image) {
+          <img [src]="p.image" [alt]="p.title" />
+        } @else {
+          <div class="detail__placeholder"><span class="icon">deployed_code</span></div>
+        }
+      </div>
+
+      <div class="detail__info">
+        <div class="stack">
+          <div class="detail__tags">
+            @for (tag of p.tags; track tag) {
+              <span class="chip">{{ tag }}</span>
+            }
+          </div>
+          <h1 class="display-hero">{{ p.title }}</h1>
+          @if (p.highlight) {
+            <span class="meta text-tertiary uppercase">{{ p.highlight }}</span>
+          }
+        </div>
+
+        <p class="body-lg muted">{{ p.description }}</p>
+
+        @if (p.metrics?.length) {
+          <div class="detail__metrics">
+            @for (m of p.metrics; track m.label) {
+              <div>
+                <span class="meta muted">{{ m.label }}</span>
+                <span class="code">{{ m.value }}</span>
+              </div>
+            }
+          </div>
+        }
+
+        <div class="detail__actions">
+          @if (p.demoUrl) {
+            <a class="btn btn--primary" [href]="p.demoUrl" target="_blank" rel="noopener">
+              <span class="icon">visibility</span> Ver demo
+            </a>
+          }
+          @if (p.repoUrl) {
+            <a class="btn btn--ghost" [href]="p.repoUrl" target="_blank" rel="noopener">
+              <span class="icon">code</span> Ver código
+            </a>
+          }
+        </div>
+      </div>
+    </article>
+  } @else if (p === null) {
+    <div class="stack">
+      <h1 class="headline-lg">Proyecto no encontrado</h1>
+      <p class="muted">Puede que el enlace esté mal escrito o que el proyecto ya no exista.</p>
+    </div>
+  } @else {
+    <div class="skeleton" style="height: 24rem"></div>
+  }
+</div>

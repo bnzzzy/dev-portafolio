@@ -1,0 +1,32 @@
+<div class="page">
+  <header class="stack">
+    <span class="code uppercase text-secondary">Código abierto</span>
+    <h1 class="display-hero">Repositorios</h1>
+    <p class="muted">
+      Mis repositorios públicos, actualizados en vivo desde
+      <a class="text-primary" [href]="github.url" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+  </header>
+
+  @switch (repos()) {
+    @case (undefined) {
+      <div class="grid">
+        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+          <div class="skeleton" style="height: 8.5rem"></div>
+        }
+      </div>
+    }
+    @case (null) {
+      <p class="muted">No se pudo conectar con GitHub. Intenta de nuevo en unos minutos.</p>
+    }
+    @default {
+      <div class="grid">
+        @for (repo of repos(); track repo.name) {
+          <app-repo-card [repo]="repo" />
+        } @empty {
+          <p class="muted">Todavía no hay repositorios para mostrar.</p>
+        }
+      </div>
+    }
+  }
+</div>

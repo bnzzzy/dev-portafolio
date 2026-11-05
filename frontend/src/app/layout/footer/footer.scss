@@ -1,0 +1,46 @@
+.footer {
+  border-top: 1px solid var(--surface-highest);
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+
+  @media (min-width: 768px) {
+    padding-block: var(--space-xl);
+  }
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+// El logo completo trae texto chico: solo se muestra desde tablet
+.footer__logo {
+  display: none;
+  height: 4.5rem;
+  width: auto;
+  margin-left: -0.5rem; // compensa el margen interno del SVG
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--space-md);
+
+  a {
+    color: var(--on-surface-variant);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}

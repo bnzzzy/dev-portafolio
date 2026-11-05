@@ -1,0 +1,26 @@
+@let r = repo();
+
+<a class="card repo" [href]="r.url" target="_blank" rel="noopener">
+  <div class="repo__head">
+    <span class="repo__name badge-label">
+      <span class="icon">folder</span>
+      {{ r.name }}
+    </span>
+    <span class="repo__date meta">{{ r.updatedAt | timeAgo }}</span>
+  </div>
+
+  <p class="muted">{{ r.description || 'Sin descripción.' }}</p>
+
+  <div class="repo__foot meta muted">
+    <div class="repo__stats">
+      @if (r.language) {
+        <span><span class="dot" [style.color]="languageColor()"></span> {{ r.language }}</span>
+      }
+      <span><span class="icon">star</span> {{ r.stars | number }}</span>
+      <span><span class="icon">fork_right</span> {{ r.forks | number }}</span>
+    </div>
+    @if (r.license && r.license !== 'NOASSERTION') {
+      <span class="text-outline">{{ r.license }}</span>
+    }
+  </div>
+</a>

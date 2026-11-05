@@ -1,0 +1,152 @@
+<div class="page">
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__intro">
+      @if (site.availability.open) {
+        <span class="status-pill meta uppercase">
+          <span class="dot dot--pulse"></span>
+          {{ site.availability.long }}
+        </span>
+      }
+      <span class="code uppercase text-secondary">{{ site.role }}</span>
+      <h1 class="display-hero">{{ site.name }}</h1>
+      <p class="hero__bio muted">{{ site.bio }}</p>
+    </div>
+
+    <div class="hero__links">
+      <a class="link-card link-card--github" [href]="site.github.url" target="_blank" rel="noopener">
+        <span class="link-card__icon"><span class="icon">code</span></span>
+        <span class="link-card__text">
+          <span class="title-sm">GitHub • &#64;{{ site.github.username }}</span>
+          <span class="meta muted">{{ site.github.caption }}</span>
+        </span>
+        <span class="icon link-card__arrow">arrow_outward</span>
+      </a>
+
+      <a class="link-card link-card--linkedin" [href]="site.linkedin.url" target="_blank" rel="noopener">
+        <span class="link-card__icon"><span class="icon">hub</span></span>
+        <span class="link-card__text">
+          <span class="title-sm">Conectemos en LinkedIn</span>
+          <span class="meta muted">{{ site.linkedin.caption }}</span>
+        </span>
+        <span class="icon link-card__arrow">arrow_outward</span>
+      </a>
+
+      <div class="hero__actions">
+        @if (site.cvUrl) {
+          <a class="btn btn--primary" [href]="site.cvUrl" download>
+            <span class="icon">download</span> Descargar CV
+          </a>
+        } @else {
+          <a class="btn btn--primary" routerLink="/contacto">
+            <span class="icon">alternate_email</span> Contactar
+          </a>
+        }
+        @if (site.cliCommand) {
+          <app-copy-button [value]="site.cliCommand" icon="terminal" />
+        } @else {
+          <a class="btn btn--ghost" routerLink="/proyectos">
+            <span class="icon text-tertiary">layers</span> Ver proyectos
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESTADÍSTICAS ============ -->
+  <section class="stats" aria-label="Resumen">
+    @for (stat of site.stats; track stat.label) {
+      <div class="stat">
+        <div class="stat__head">
+          <span class="meta uppercase muted">{{ stat.label }}</span>
+          <span class="icon" [class]="'text-' + stat.accent">{{ stat.icon }}</span>
+        </div>
+        <span class="headline-lg">{{ stat.value }}</span>
+        <span class="meta muted">{{ stat.detail }}</span>
+      </div>
+    }
+  </section>
+
+  <!-- ============ REPOSITORIOS ============ -->
+  <section>
+    <div class="section-head">
+      <h2 class="section-title headline-md">
+        <span class="icon-box text-primary"><span class="icon">data_object</span></span>
+        Repositorios en GitHub
+      </h2>
+      <a class="see-all meta text-primary" routerLink="/repositorios">
+        Ver todos <span class="icon">chevron_right</span>
+      </a>
+    </div>
+
+    @if (repos(); as list) {
+      @if (list.length) {
+        <div class="grid">
+          @for (repo of list; track repo.name) {
+            <app-repo-card [repo]="repo" />
+          }
+        </div>
+      } @else {
+        <p class="empty muted">
+          Pronto habrá repositorios públicos aquí.
+        </p>
+      }
+    } @else {
+      <div class="grid">
+        @for (i of [1, 2, 3]; track i) {
+          <div class="skeleton" style="height: 8.5rem"></div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- ============ PROYECTOS ============ -->
+  <section>
+    <div class="section-head">
+      <h2 class="section-title headline-md">
+        <span class="icon-box text-secondary"><span class="icon">rocket_launch</span></span>
+        Proyectos destacados
+      </h2>
+      <a class="see-all meta text-secondary" routerLink="/proyectos">
+        Ver todos <span class="icon">chevron_right</span>
+      </a>
+    </div>
+
+    @if (featured(); as list) {
+      <div class="grid projects">
+        @for (project of list; track project.slug) {
+          <app-project-card [project]="project" />
+        } @empty {
+          <p class="empty muted">Pronto habrá proyectos aquí.</p>
+        }
+      </div>
+    } @else {
+      <div class="grid projects">
+        @for (i of [1, 2]; track i) {
+          <div class="skeleton" style="height: 24rem"></div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section>
+    <div class="section-head">
+      <h2 class="section-title headline-md">
+        <span class="icon-box text-primary"><span class="icon">memory</span></span>
+        Stack &amp; Competencias
+      </h2>
+    </div>
+    <ul class="skills">
+      @for (skill of site.skills; track skill.name) {
+        <li class="badge-label uppercase">
+          <span class="dot dot--sm" [class]="'text-' + skill.accent"></span>
+          {{ skill.name }}
+        </li>
+      }
+    </ul>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <app-contact-cta />
+</div>

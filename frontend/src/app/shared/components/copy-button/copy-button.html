@@ -1,0 +1,12 @@
+<button type="button" class="copy" [class.copy--row]="showHint()" (click)="copy()">
+  <span class="copy__main">
+    <span class="icon">{{ icon() }}</span>
+    <span class="code">{{ copied() && !showHint() ? '¡Copiado!' : value() }}</span>
+  </span>
+  @if (showHint()) {
+    <span class="copy__hint meta">
+      <span class="icon">{{ copied() ? 'check' : 'content_copy' }}</span>
+      {{ copied() ? 'Copiado' : 'Copiar' }}
+    </span>
+  }
+</button>

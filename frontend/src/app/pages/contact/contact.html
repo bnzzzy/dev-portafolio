@@ -1,0 +1,57 @@
+<div class="page">
+  <header class="stack">
+    <span class="code uppercase text-secondary">Contacto</span>
+    <h1 class="display-hero">Hablemos</h1>
+    <p class="muted">Escríbeme por el medio que prefieras o déjame un mensaje aquí.</p>
+  </header>
+
+  <div class="contact">
+    <app-contact-cta />
+
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <h2 class="title-sm">Enviar un mensaje</h2>
+
+      <label class="field">
+        <span class="meta uppercase muted">Nombre</span>
+        <input formControlName="name" autocomplete="name" placeholder="Tu nombre" />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <small class="field__error meta">El nombre es obligatorio.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span class="meta uppercase muted">Email</span>
+        <input type="email" formControlName="email" autocomplete="email" placeholder="tu@email.com" />
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <small class="field__error meta">Ingresa un email válido.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span class="meta uppercase muted">Mensaje</span>
+        <textarea rows="5" formControlName="message" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+        @if (form.controls.message.touched && form.controls.message.invalid) {
+          <small class="field__error meta">El mensaje debe tener al menos 10 caracteres.</small>
+        }
+      </label>
+
+      <button type="submit" class="btn btn--primary btn--block" [disabled]="status() === 'sending'">
+        <span class="icon">send</span>
+        {{ status() === 'sending' ? 'Enviando...' : 'Enviar mensaje' }}
+      </button>
+
+      @switch (status()) {
+        @case ('sent') {
+          <p class="form__feedback form__feedback--ok" role="status">
+            <span class="icon">check_circle</span> ¡Mensaje enviado! Te responderé pronto.
+          </p>
+        }
+        @case ('error') {
+          <p class="form__feedback form__feedback--error" role="alert">
+            <span class="icon">error</span> Hubo un error, intenta de nuevo.
+          </p>
+        }
+      }
+    </form>
+  </div>
+</div>

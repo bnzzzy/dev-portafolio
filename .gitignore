@@ -1,0 +1,18 @@
+# Dependencias y builds
+node_modules/
+dist/
+.angular/
+
+# Secretos y configuración local (NUNCA subir)
+.env
+.env.*
+!.env.example
+.deploy.env
+*.pem
+*.key
+id_*
+
+# Otros
+*.log
+.DS_Store
+Thumbs.db

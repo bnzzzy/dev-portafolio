@@ -1,0 +1,34 @@
+<header class="header">
+  <div class="header__inner container">
+    <a routerLink="/" class="brand">
+      <img class="brand__logo" [src]="site.logo" alt="" width="54" height="32" />
+      <span class="brand__text">
+        <span class="title-sm">{{ site.name }}</span>
+        @if (site.availability.open) {
+          <span class="brand__status meta uppercase">
+            <span class="dot dot--sm dot--pulse"></span>
+            {{ site.availability.short }}
+          </span>
+        }
+      </span>
+    </a>
+
+    <!-- Navegación de escritorio (en móvil se usa la barra inferior) -->
+    <nav class="nav" aria-label="Principal">
+      @for (item of nav; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.exact }"
+          ariaCurrentWhenActive="page"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+
+    @if (site.avatar) {
+      <img class="avatar" [src]="site.avatar" [alt]="site.name" width="32" height="32" />
+    }
+  </div>
+</header>

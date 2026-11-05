@@ -1,0 +1,25 @@
+.cta {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-xl);
+  background: var(--surface-container);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+
+  // En escritorio: texto a la izquierda, botones a la derecha
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+  }
+}
+
+.cta__text {
+  gap: var(--space-xs);
+}
+
+.btn--lg {
+  padding-block: 0.75rem;
+  font-size: 15px;
+}

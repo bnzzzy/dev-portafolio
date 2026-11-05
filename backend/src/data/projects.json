@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "portafolio",
+    "title": "Portafolio personal",
+    "summary": "Este mismo sitio: Angular + Express + Docker, publicado en mi servidor con Cloudflare Tunnel.",
+    "description": "Sitio donde muestro mis proyectos, con enlaces a GitHub, LinkedIn y demos en vivo. El frontend está hecho en Angular, la API en Express y todo corre en contenedores Docker en un servidor propio.",
+    "tags": ["Angular", "Express", "Docker"],
+    "highlight": "En producción",
+    "metrics": [
+      { "label": "Frontend", "value": "Angular 22" },
+      { "label": "Infra", "value": "Docker + CF Tunnel" }
+    ],
+    "repoUrl": "https://github.com/bnzzzy/dev-portafolio",
+    "demoUrl": null,
+    "image": null,
+    "featured": true
+  },
+  {
+    "slug": "proyecto-ejemplo",
+    "title": "Proyecto de ejemplo",
+    "summary": "Reemplázame por tu próximo proyecto. Cuenta qué problema resuelve.",
+    "description": "Descripción más larga del proyecto: qué problema resuelve, cómo lo construiste y qué aprendiste en el camino.",
+    "tags": ["TypeScript", "Node.js"],
+    "highlight": null,
+    "metrics": [
+      { "label": "Métrica", "value": "Valor" },
+      { "label": "Otra métrica", "value": "Valor" }
+    ],
+    "repoUrl": "https://github.com/TU_USUARIO/proyecto-ejemplo",
+    "demoUrl": "https://ejemplo.com",
+    "image": null,
+    "featured": true
+  }
+]

@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  // Espacio para el header fijo arriba y la barra inferior en móvil
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom, 0px));
+
+  @media (min-width: 1024px) {
+    padding-bottom: 0;
+  }
+}
+
+main {
+  flex: 1;
+}

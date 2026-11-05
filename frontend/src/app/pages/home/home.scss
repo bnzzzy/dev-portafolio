@@ -1,0 +1,220 @@
+// ---------- Hero ----------
+.hero {
+  display: grid;
+  gap: var(--space-lg);
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding-block: var(--space-xl);
+  }
+}
+
+.hero__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.375rem;
+}
+
+.hero__bio {
+  max-width: 36rem;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-high);
+  color: var(--tertiary);
+  font-weight: 600;
+}
+
+.hero__links {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  background: var(--surface-container);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    transform 0.1s;
+
+  &:hover {
+    background: var(--surface-high);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  &--github:hover {
+    border-color: rgba(192, 193, 255, 0.25);
+    .title-sm {
+      color: var(--primary);
+    }
+  }
+
+  &--linkedin {
+    // Línea de acento azul LinkedIn arriba
+    background:
+      linear-gradient(90deg, var(--linkedin), transparent 60%) top / 100% 1px no-repeat,
+      var(--surface-container);
+
+    &:hover {
+      border-color: rgba(76, 215, 246, 0.25);
+      .title-sm {
+        color: var(--secondary);
+      }
+    }
+  }
+}
+
+.link-card__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--surface-highest);
+  color: var(--primary);
+
+  .link-card--linkedin & {
+    background: rgba(3, 181, 211, 0.2);
+    color: var(--secondary);
+  }
+}
+
+.link-card__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+
+  .title-sm {
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+}
+
+.link-card__arrow {
+  font-size: 18px;
+  color: var(--outline);
+  transition: transform 0.2s;
+
+  .link-card:hover & {
+    transform: translate(2px, -2px);
+  }
+}
+
+.hero__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+// ---------- Estadísticas ----------
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0.875rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface-low);
+
+  .headline-lg {
+    @media (max-width: 379px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+  }
+}
+
+.stat__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+
+  .icon {
+    font-size: 18px;
+  }
+}
+
+// ---------- Secciones ----------
+.see-all {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  .icon {
+    font-size: 14px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Los proyectos son tarjetas grandes: máximo 2 columnas
+.projects {
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius);
+    background: var(--surface-container);
+  }
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--outline-variant);
+}

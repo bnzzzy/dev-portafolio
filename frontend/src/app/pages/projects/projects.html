@@ -1,0 +1,42 @@
+<div class="page">
+  <header class="stack">
+    <span class="code uppercase text-secondary">Casos de estudio</span>
+    <h1 class="display-hero">Proyectos</h1>
+    <p class="muted">Lo que he construido, con su código y demo en vivo.</p>
+  </header>
+
+  @switch (projects()) {
+    @case (undefined) {
+      <div class="grid">
+        @for (i of [1, 2, 3]; track i) {
+          <div class="skeleton" style="height: 24rem"></div>
+        }
+      </div>
+    }
+    @case (null) {
+      <p class="muted">No se pudieron cargar los proyectos. Intenta de nuevo más tarde.</p>
+    }
+    @default {
+      @if (tags().length > 1) {
+        <div class="filters" role="group" aria-label="Filtrar por tecnología">
+          <button type="button" class="filter badge-label" [class.active]="!selectedTag()" (click)="selectedTag.set(null)">
+            Todos
+          </button>
+          @for (tag of tags(); track tag) {
+            <button type="button" class="filter badge-label" [class.active]="selectedTag() === tag" (click)="toggle(tag)">
+              {{ tag }}
+            </button>
+          }
+        </div>
+      }
+
+      <div class="grid">
+        @for (project of filtered(); track project.slug) {
+          <app-project-card [project]="project" />
+        } @empty {
+          <p class="muted">Aún no hay proyectos.</p>
+        }
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,42 @@
+:host {
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 50;
+  height: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom, 0px));
+  padding: 0 var(--space-xs) env(safe-area-inset-bottom, 0px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(18, 19, 24, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  a {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    color: var(--on-surface-variant);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--on-surface);
+    }
+
+    &.active {
+      color: var(--primary);
+      font-weight: 500;
+    }
+  }
+}

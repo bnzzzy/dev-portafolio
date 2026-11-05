@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+.repo {
+  height: 100%;
+}
+
+.repo__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.repo__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+  font-size: 14px;
+  color: var(--primary);
+  overflow-wrap: anywhere;
+
+  .icon {
+    font-size: 18px;
+  }
+}
+
+.repo:hover .repo__name {
+  text-decoration: underline;
+}
+
+.repo__date {
+  flex-shrink: 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-highest);
+  color: var(--tertiary);
+}
+
+.repo__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+.repo__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .icon {
+    font-size: 13px;
+    color: var(--outline);
+  }
+}
