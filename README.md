@@ -55,13 +55,13 @@ docker compose up -d --build
 
 Abre http://localhost:8080
 
-## Publicar en el servidor (Cloudflare Tunnel)
+## Despliegue
 
-Publicado en **https://benzprojects.site** (NUC, carpeta `~/docker/portafolio`).
-El contenedor escucha solo en `127.0.0.1:8080` y el túnel `nuc-server-620` lo expone
-(config en `/etc/cloudflared/config.yml`).
+En vivo en **https://benzprojects.site**, servido con Docker detrás de Cloudflare Tunnel
+(sin puertos abiertos a internet).
 
-Para actualizar después de hacer cambios (desde Git Bash):
+Para publicar cambios (desde Git Bash), crea primero `.deploy.env` a partir de
+`.deploy.env.example` con los datos de tu servidor (ese archivo no se sube a git):
 
 ```bash
 ./deploy.sh
