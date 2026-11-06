@@ -14,8 +14,8 @@
     </div>
 
     <div class="hero__links">
-      <a class="link-card link-card--github" [href]="site.github.url" target="_blank" rel="noopener">
-        <span class="link-card__icon"><span class="icon">code</span></span>
+      <a class="link-card link-card--github" [href]="site.github.url" target="_blank" rel="noopener" aria-label="GitHub, abre en una pestaña nueva">
+        <span class="link-card__icon"><span class="brand-icon brand-icon--github"></span></span>
         <span class="link-card__text">
           <span class="title-sm">GitHub • &#64;{{ site.github.username }}</span>
           <span class="label muted">{{ site.github.caption }}</span>
@@ -23,8 +23,8 @@
         <span class="icon link-card__arrow">arrow_outward</span>
       </a>
 
-      <a class="link-card link-card--linkedin" [href]="site.linkedin.url" target="_blank" rel="noopener">
-        <span class="link-card__icon"><span class="icon">hub</span></span>
+      <a class="link-card link-card--linkedin" [href]="site.linkedin.url" target="_blank" rel="noopener" aria-label="LinkedIn, abre en una pestaña nueva">
+        <span class="link-card__icon"><span class="brand-icon brand-icon--linkedin"></span></span>
         <span class="link-card__text">
           <span class="title-sm">Conectemos en LinkedIn</span>
           <span class="label muted">{{ site.linkedin.caption }}</span>

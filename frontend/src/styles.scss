@@ -238,6 +238,31 @@ textarea {
   flex-shrink: 0;
 }
 
+// ---------- Logos de marca (GitHub, LinkedIn) ----------
+// Se dibujan con "mask": la forma viene del archivo y el color de
+// currentColor, así el logo cambia de color igual que el texto.
+.brand-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  mask: var(--brand-src) center / contain no-repeat;
+
+  &--github {
+    --brand-src: url('/icons/github.svg');
+  }
+
+  &--linkedin {
+    --brand-src: url('/icons/linkedin.png');
+  }
+
+  .btn & {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
 // ---------- Layout ----------
 .container {
   width: 100%;

@@ -19,6 +19,14 @@
     >
       <span class="icon" [class.text-secondary]="contact.calendarUrl">mail</span> Enviar email directo
     </a>
+    <div class="cta__socials">
+      <a class="btn btn--ghost btn--linkedin" [href]="linkedin.url" target="_blank" rel="noopener">
+        <span class="brand-icon brand-icon--linkedin"></span> LinkedIn
+      </a>
+      <a class="btn btn--ghost btn--github" [href]="github.url" target="_blank" rel="noopener">
+        <span class="brand-icon brand-icon--github"></span> GitHub
+      </a>
+    </div>
     @if (contact.discord) {
       <app-copy-button [value]="contact.discord" icon="chat" [showHint]="true" />
     }

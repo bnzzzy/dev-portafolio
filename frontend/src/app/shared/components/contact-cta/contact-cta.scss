@@ -23,3 +23,26 @@
   padding-block: 0.75rem;
   font-size: 15px;
 }
+
+.cta__socials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+
+  // La tarjeta ya es surface-container: los botones van un tono más claro
+  .btn {
+    background: var(--surface-high);
+    border-color: var(--surface-highest);
+  }
+
+  .btn--linkedin:hover {
+    border-color: var(--linkedin);
+    color: #fff;
+    background: var(--linkedin);
+  }
+
+  .btn--github:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}

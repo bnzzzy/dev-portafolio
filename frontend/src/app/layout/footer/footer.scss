@@ -33,14 +33,34 @@
 
 .footer__links {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-sm);
+}
 
-  a {
-    color: var(--on-surface-variant);
-    transition: color 0.2s;
+// Botones redondos de 40px: fáciles de tocar en móvil
+.social {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--surface-container);
+  color: var(--on-surface-variant);
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.1s;
 
-    &:hover {
-      color: var(--primary);
-    }
+  &:hover {
+    background: var(--surface-high);
+    color: var(--primary);
+  }
+
+  &--linkedin:hover {
+    background: var(--linkedin);
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
