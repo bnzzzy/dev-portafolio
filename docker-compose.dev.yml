@@ -1,0 +1,7 @@
+# Solo para desarrollo local: expone PostgreSQL en tu máquina (puerto 5234) para
+# correr el backend con "npm run dev". Uso:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d db
+services:
+  db:
+    ports:
+      - "127.0.0.1:5234:5234"

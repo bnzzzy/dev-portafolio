@@ -8,7 +8,7 @@ a GitHub, LinkedIn y demos en vivo.
 ## Stack
 
 - **Frontend:** Angular 22 · TypeScript · SCSS
-- **Backend:** Node.js · Express
+- **Backend:** Node.js · Express · PostgreSQL
 - **Infraestructura:** Docker · Nginx · Cloudflare
 
 ## Estructura
@@ -25,8 +25,28 @@ dev-portafolio/
 ├── backend/           # API Express
 │   ├── src/
 │   │   ├── routes/    # endpoints de la API
-│   │   └── data/      # datos de los proyectos
+│   │   └── db/        # conexión, esquema SQL y datos semilla
 │   └── test/
 ├── design/            # diseño original y logos
 └── docker-compose.yml
+```
+
+## Base de datos
+
+Los proyectos y los mensajes de contacto se guardan en PostgreSQL (servicio `db`
+del `docker-compose.yml`, con los datos en el volumen `pgdata`). Al arrancar, la API
+crea las tablas (`backend/src/db/schema.sql`) y, si no hay proyectos, carga los de
+`backend/src/db/seed-projects.json`.
+
+Desarrollo local:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d db
+cd backend && npm run dev   # usa DATABASE_URL de backend/.env
+```
+
+Consultar la base en el servidor:
+
+```bash
+docker compose exec db psql -p 5234 -U portafolio -d portafolio
 ```

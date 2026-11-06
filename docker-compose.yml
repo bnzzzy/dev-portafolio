@@ -1,10 +1,35 @@
 services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: portafolio
+      POSTGRES_USER: portafolio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env}
+      PGPORT: 5234   # Postgres escucha en 5234 en vez del 5432 por defecto
+    volumes:
+      # Los datos viven en un volumen: sobreviven a reconstruir los contenedores.
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -p 5234 -U portafolio -d portafolio"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    # Sin "ports": solo el backend (dentro de la red de Docker) puede conectarse.
+
   backend:
     build: ./backend
     environment:
       PORT: 3000
+      # La contraseña va aparte (PGPASSWORD) para no tener que escapar
+      # sus caracteres especiales dentro de la URL.
+      DATABASE_URL: postgres://portafolio@db:5234/portafolio
+      PGPASSWORD: ${POSTGRES_PASSWORD}
       GITHUB_USERNAME: ${GITHUB_USERNAME:-}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
   frontend:
@@ -16,3 +41,6 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  pgdata:

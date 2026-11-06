@@ -6,7 +6,8 @@ import projectsRouter from './routes/projects.js';
 import contactRouter from './routes/contact.js';
 import githubRouter from './routes/github.js';
 
-export function createApp() {
+// db: objeto con las funciones de acceso a datos (ver db/index.js).
+export function createApp({ db }) {
   const app = express();
 
   app.use(cors({ origin: process.env.CORS_ORIGIN ?? 'http://localhost:4200' }));
@@ -16,8 +17,8 @@ export function createApp() {
     res.json({ status: 'ok', uptime: process.uptime() });
   });
 
-  app.use('/api/projects', projectsRouter);
-  app.use('/api/contact', contactRouter);
+  app.use('/api/projects', projectsRouter(db));
+  app.use('/api/contact', contactRouter(db));
   app.use('/api/github', githubRouter);
 
   // 404 para cualquier ruta /api no definida
