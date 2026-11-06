@@ -35,7 +35,7 @@ export const SITE = {
   cliCommand: null as string | null, // ej: 'npx tu-usuario' → botón para copiar
 
   contact: {
-    email: 'tu@email.com',
+    email: 'bnja.lpz16@gmail.com',
     calendarUrl: null as string | null, // ej: 'https://cal.com/tu-usuario'
     discord: null as string | null, // ej: 'tu_usuario'
     pitch: 'Abierto a roles Full Stack o Backend y a proyectos de automatización y datos. Conversemos.',
