@@ -8,9 +8,13 @@
   } @else if (project(); as p) {
     <article class="detail" [class.detail--has-media]="p.image">
       @if (p.image) {
-        <div class="detail__media">
-          <img [src]="p.image" [alt]="'Imagen del proyecto ' + p.title" />
-        </div>
+        <a class="detail__media" [href]="p.image" target="_blank" rel="noopener">
+          <img [src]="p.image" [alt]="p.imageAlt || 'Imagen del proyecto ' + p.title" />
+          <span class="detail__zoom label">
+            <span class="icon" aria-hidden="true">open_in_full</span> Ver en tamaño completo
+            <span class="sr-only">(abre en una pestaña nueva)</span>
+          </span>
+        </a>
       }
 
       <div class="detail__lead">

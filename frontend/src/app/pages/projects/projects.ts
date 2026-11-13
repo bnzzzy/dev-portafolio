@@ -3,12 +3,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of, startWith, Subject, switchMap } from 'rxjs';
 import { SITE } from '../../core/config/site.config';
 import { ProjectsService } from '../../core/services/projects.service';
-import { RouterLink } from '@angular/router';
 import { ProjectCard } from '../../shared/components/project-card/project-card';
 
 @Component({
   selector: 'app-projects',
-  imports: [ProjectCard, RouterLink],
+  imports: [ProjectCard],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })

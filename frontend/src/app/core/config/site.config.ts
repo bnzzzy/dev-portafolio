@@ -9,7 +9,7 @@ export interface ExperienceEntry {
   company: string; // ej: 'Empresa S.A.'
   period: string; // ej: 'mar. 2024 – actualidad'
   summary: string; // qué hiciste, en una o dos frases
-  outcome?: string; // un resultado concreto, ej: 'Reduje el tiempo de carga de reportes de 40 s a 6 s'
+  outcome?: string; // solo un resultado real y verificable (se muestra en negrita); si no hay, omitir
   tags?: string[]; // tecnologías usadas
 }
 
@@ -36,6 +36,9 @@ export const SITE = {
     caption: 'Experiencia y trayectoria',
   },
 
+  // Repositorios públicos necesarios para mostrar la sección de GitHub en el inicio
+  minRepos: 3,
+
   cvUrl: null as string | null, // ej: '/cv.pdf' (ponlo en frontend/public)
   cliCommand: null as string | null, // ej: 'npx tu-usuario' → botón para copiar
 
@@ -54,9 +57,7 @@ export const SITE = {
       company: 'ID Logistics Chile',
       period: 'feb. 2026 – oct. 2026',
       summary:
-        'Microservicios e integración de APIs con Spring Boot y JPA, autenticación con JWT y tareas programadas. Interfaces en Angular y React, apps móviles en Flutter y pruebas end-to-end con Playwright.',
-      outcome:
-        'Flujos ETL con SQL avanzado en PostgreSQL y MySQL, y pipelines de CI/CD con Jenkins y GitLab CI desplegando en Docker sobre Linux.',
+        'Microservicios e integración de APIs con Spring Boot y JPA, autenticación con JWT y tareas programadas. Interfaces en Angular y React, apps móviles en Flutter y pruebas end-to-end con Playwright. Flujos ETL con SQL avanzado en PostgreSQL y MySQL, y pipelines de CI/CD con Jenkins y GitLab CI sobre Docker y Linux.',
       tags: ['Spring Boot', 'Angular', 'Flutter', 'Jenkins'],
     },
     {
@@ -64,8 +65,7 @@ export const SITE = {
       company: 'ID Logistics Chile',
       period: 'nov. 2025 – ene. 2026',
       summary:
-        'Desarrollo de una aplicación Full Stack con Python (Flask y FastAPI) y JavaScript, sobre una base de datos MySQL de diseño propio.',
-      outcome: 'Automatización de tareas repetitivas y entornos de desarrollo y pruebas en Docker.',
+        'Desarrollo de una aplicación Full Stack con Python (Flask y FastAPI) y JavaScript, sobre una base de datos MySQL de diseño propio. Automatización de tareas repetitivas y entornos de desarrollo y pruebas en Docker.',
       tags: ['Python', 'FastAPI', 'MySQL', 'Docker'],
     },
     {

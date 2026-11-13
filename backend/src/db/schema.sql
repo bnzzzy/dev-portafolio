@@ -20,6 +20,9 @@ CREATE TABLE IF NOT EXISTS projects (
 -- Secciones del caso de estudio: [{ "heading": "...", "body": "..." }]
 ALTER TABLE projects ADD COLUMN IF NOT EXISTS sections JSONB NOT NULL DEFAULT '[]';
 
+-- Texto alternativo de la imagen del proyecto
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS image_alt TEXT;
+
 CREATE TABLE IF NOT EXISTS contact_messages (
   id         SERIAL PRIMARY KEY,
   name       TEXT NOT NULL,

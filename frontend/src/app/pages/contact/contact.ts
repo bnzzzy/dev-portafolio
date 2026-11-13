@@ -30,6 +30,8 @@ export class Contact {
   protected submit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      // Tras pintar los errores, el foco va al primer campo inválido
+      setTimeout(() => document.querySelector<HTMLElement>('.form [aria-invalid="true"]')?.focus());
       return;
     }
     this.status.set('sending');

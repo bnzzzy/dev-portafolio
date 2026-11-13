@@ -44,6 +44,8 @@
 
 // Proyectos: tarjetas grandes, máximo 2 columnas
 .project-grid {
+  align-items: start;
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }

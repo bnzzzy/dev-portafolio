@@ -26,6 +26,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+
+  // La tarjeta ya es surface-container: los secundarios van un tono más claro y con borde
+  .btn--ghost {
+    background: var(--surface-high);
+    border-color: var(--surface-highest);
+
+    @media (hover: hover) {
+      &:hover {
+        background: var(--surface-highest);
+      }
+    }
+  }
 }
 
 .cta__email {

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { catchError, of } from 'rxjs';
@@ -9,6 +9,8 @@ import { ContactCta } from '../../shared/components/contact-cta/contact-cta';
 import { Education } from '../../shared/components/education/education';
 import { ProjectCard } from '../../shared/components/project-card/project-card';
 import { RepoCard } from '../../shared/components/repo-card/repo-card';
+
+type ProfileTab = 'stack' | 'competencias' | 'formacion';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,30 @@ export class Home {
     const list = this.projects();
     return list ? list.filter((p) => p.featured) : list;
   });
+
+  // Pestañas de la sección Perfil
+  protected readonly tabs = [
+    { id: 'stack', label: 'Stack' },
+    { id: 'competencias', label: 'Competencias' },
+    { id: 'formacion', label: 'Formación' },
+  ] as const;
+  protected readonly tab = signal<ProfileTab>('stack');
+
+  /** Flechas, Inicio y Fin mueven entre pestañas (patrón ARIA de tabs). */
+  protected onTabKey(event: KeyboardEvent, index: number) {
+    const last = this.tabs.length - 1;
+    const next =
+      event.key === 'ArrowRight' ? (index === last ? 0 : index + 1)
+      : event.key === 'ArrowLeft' ? (index === 0 ? last : index - 1)
+      : event.key === 'Home' ? 0
+      : event.key === 'End' ? last
+      : null;
+    if (next === null) return;
+    event.preventDefault();
+    const id = this.tabs[next].id;
+    this.tab.set(id);
+    document.getElementById('tab-' + id)?.focus();
+  }
 
   // Los repos son complementarios: si GitHub falla, la sección simplemente no aparece
   protected readonly repos = toSignal(

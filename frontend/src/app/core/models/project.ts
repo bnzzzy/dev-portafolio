@@ -20,5 +20,6 @@ export interface Project {
   repoUrl: string | null;
   demoUrl: string | null;
   image: string | null;
+  imageAlt?: string | null; // descripción de la imagen para lectores de pantalla
   featured: boolean;
 }

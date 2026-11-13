@@ -591,7 +591,29 @@ a.card:hover,
   cursor: pointer;
 }
 
-// El <main> recibe foco desde "Saltar al contenido"; no necesita anillo
-main:focus {
+// El <main> y los títulos reciben foco por código (salto de contenido,
+// cambio de página); no son controles, no necesitan anillo
+main:focus,
+[tabindex='-1']:focus {
   outline: none;
+}
+
+// Enlace "Volver a ..." al inicio de una página
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  align-self: flex-start;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+
+  .icon {
+    font-size: 18px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -120,45 +120,64 @@
     }
   </section>
 
-  <!-- ============ STACK ============ -->
-  <section id="stack" aria-labelledby="stack-title">
+  <!-- ============ PERFIL (stack, competencias y formación en pestañas) ============ -->
+  <section id="perfil" aria-labelledby="perfil-title">
     <div class="section-head">
-      <h2 id="stack-title" class="headline-md">Stack y herramientas</h2>
+      <h2 id="perfil-title" class="headline-md">Perfil</h2>
     </div>
-    <div class="skills">
-      @for (group of site.skills; track group.area) {
-        <div class="skills__group">
-          <h3 class="skills__area label">{{ group.area }}</h3>
-          <ul class="skills__list">
-            @for (skill of group.items; track skill) {
-              <li>{{ skill }}</li>
-            }
-          </ul>
-        </div>
+
+    <div class="tabs" role="tablist" aria-labelledby="perfil-title">
+      @for (t of tabs; track t.id; let i = $index) {
+        <button
+          type="button"
+          role="tab"
+          class="tabs__tab"
+          [id]="'tab-' + t.id"
+          [attr.aria-selected]="tab() === t.id"
+          [attr.aria-controls]="'panel-' + t.id"
+          [attr.tabindex]="tab() === t.id ? 0 : -1"
+          (click)="tab.set(t.id)"
+          (keydown)="onTabKey($event, i)"
+        >
+          {{ t.label }}
+        </button>
       }
     </div>
-  </section>
 
-  <!-- ============ HABILIDADES PROFESIONALES ============ -->
-  <section id="competencias" aria-labelledby="soft-title">
-    <div class="section-head">
-      <h2 id="soft-title" class="headline-md">Competencias profesionales</h2>
+    <div class="tabs__panel" role="tabpanel" id="panel-stack" aria-labelledby="tab-stack" [hidden]="tab() !== 'stack'">
+      <div class="skills">
+        @for (group of site.skills; track group.area) {
+          <div class="skills__group">
+            <h3 class="skills__area label">{{ group.area }}</h3>
+            <ul class="skills__list">
+              @for (skill of group.items; track skill) {
+                <li>{{ skill }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
     </div>
-    <ul class="soft">
-      @for (skill of site.softSkills; track skill.name) {
-        <li class="soft__item">
-          <h3 class="soft__name">{{ skill.name }}</h3>
-          <p class="muted">{{ skill.evidence }}</p>
-        </li>
-      }
-    </ul>
-  </section>
 
-  <!-- ============ FORMACIÓN ============ -->
-  <app-education />
+    <div class="tabs__panel" role="tabpanel" id="panel-competencias" aria-labelledby="tab-competencias" [hidden]="tab() !== 'competencias'">
+      <ul class="soft">
+        @for (skill of site.softSkills; track skill.name) {
+          <li class="soft__item">
+            <h3 class="soft__name">{{ skill.name }}</h3>
+            <p class="muted">{{ skill.evidence }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="tabs__panel" role="tabpanel" id="panel-formacion" aria-labelledby="tab-formacion" [hidden]="tab() !== 'formacion'">
+      <app-education [embedded]="true" />
+    </div>
+  </section>
 
   <!-- ============ REPOSITORIOS ============ -->
-  @if (repos() !== null && repos()?.length !== 0) {
+  <!-- Se muestra solo con suficientes repos públicos (misma regla que el menú) -->
+  @if ((repos()?.length ?? 0) >= site.minRepos) {
     <section id="codigo" aria-labelledby="repos-title">
       <div class="section-head">
         <h2 id="repos-title" class="headline-md">Código reciente en GitHub</h2>
@@ -167,19 +186,11 @@
         </a>
       </div>
 
-      @if (repos(); as list) {
-        <div class="grid">
-          @for (repo of list; track repo.name) {
-            <app-repo-card [repo]="repo" />
-          }
-        </div>
-      } @else {
-        <div class="grid">
-          @for (i of [1, 2, 3]; track i) {
-            <div class="skeleton" style="height: 8.5rem"></div>
-          }
-        </div>
-      }
+      <div class="grid">
+        @for (repo of repos(); track repo.name) {
+          <app-repo-card [repo]="repo" />
+        }
+      </div>
     </section>
   }
 

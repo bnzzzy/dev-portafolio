@@ -8,7 +8,7 @@ import { readFile } from 'node:fs/promises';
 // igual que el JSON que espera el frontend.
 const PROJECT_COLUMNS = `
   slug, title, summary, description, sections, tags, highlight, metrics,
-  repo_url AS "repoUrl", demo_url AS "demoUrl", image, featured`;
+  repo_url AS "repoUrl", demo_url AS "demoUrl", image, image_alt AS "imageAlt", featured`;
 
 export function createDb(connectionString = process.env.DATABASE_URL) {
   const pool = new pg.Pool({ connectionString });
@@ -48,13 +48,14 @@ export function createDb(connectionString = process.env.DATABASE_URL) {
         await pool.query(
           `INSERT INTO projects
              (slug, title, summary, description, sections, tags, highlight, metrics,
-              repo_url, demo_url, image, featured, position)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+              repo_url, demo_url, image, image_alt, featured, position)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
            ON CONFLICT (slug) DO UPDATE SET
              title = EXCLUDED.title, summary = EXCLUDED.summary,
              description = EXCLUDED.description, sections = EXCLUDED.sections,
              tags = EXCLUDED.tags, highlight = EXCLUDED.highlight, metrics = EXCLUDED.metrics,
              repo_url = EXCLUDED.repo_url, demo_url = EXCLUDED.demo_url, image = EXCLUDED.image,
+             image_alt = EXCLUDED.image_alt,
              featured = EXCLUDED.featured, position = EXCLUDED.position`,
           [
             p.slug,
@@ -68,6 +69,7 @@ export function createDb(connectionString = process.env.DATABASE_URL) {
             p.repoUrl,
             p.demoUrl,
             p.image,
+            p.imageAlt ?? null,
             p.featured,
             i,
           ],

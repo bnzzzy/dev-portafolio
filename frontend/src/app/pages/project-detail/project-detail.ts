@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, input } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { Subject, catchError, combineLatest, map, of, startWith, switchMap } from 'rxjs';
 import { SITE } from '../../core/config/site.config';
 import { Project } from '../../core/models/project';
 import { ProjectsService } from '../../core/services/projects.service';
@@ -23,12 +23,14 @@ export class ProjectDetail {
   readonly slug = input.required<string>();
 
   // undefined = cargando. Un 404 es "no encontrado"; cualquier otro error es una falla de la API.
-  private readonly result = toSignal<Result>(
-    toObservable(this.slug).pipe(
-      switchMap((slug) =>
+  private readonly retry$ = new Subject<void>();
+  private readonly result = toSignal<Result | undefined>(
+    combineLatest([toObservable(this.slug), this.retry$.pipe(startWith(undefined))]).pipe(
+      switchMap(([slug]) =>
         this.projectsService.getBySlug(slug).pipe(
           map((project): Result => ({ project, failed: false })),
           catchError((err) => of<Result>({ project: null, failed: err?.status !== 404 })),
+          startWith(undefined),
         ),
       ),
     ),
@@ -54,10 +56,15 @@ export class ProjectDetail {
 
   /** Baja al bloque de contacto (sin "#": con <base href="/"> recargaría el inicio). */
   protected toContact() {
-    document.getElementById('contacto-proyecto')?.scrollIntoView({ behavior: 'smooth' });
+    const block = document.getElementById('contacto-proyecto');
+    block?.scrollIntoView({ behavior: 'smooth' });
+    const heading = block?.querySelector<HTMLElement>('h2');
+    heading?.setAttribute('tabindex', '-1');
+    heading?.focus({ preventScroll: true });
   }
 
+  /** Vuelve a pedir el proyecto sin recargar la página. */
   protected reload() {
-    location.reload();
+    this.retry$.next();
   }
 }

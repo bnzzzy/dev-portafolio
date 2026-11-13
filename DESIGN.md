@@ -139,16 +139,16 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 1. Hero: estado, nombre, rol, bio y una acción principal (Contactar, o Descargar CV si existe `cvUrl`). GitHub y LinkedIn van a la derecha como enlaces secundarios; en móvil, como dos botones compactos.
 2. Experiencia: línea de tiempo (aparece cuando `SITE.experience` tiene entradas). Va primero porque es la evidencia más fuerte.
 3. Proyectos: con un solo destacado se muestra a ancho completo; con varios, grilla de 2 columnas. Filtros solo con 4 o más proyectos.
-4. Stack y herramientas: agrupado por área (Backend y datos, Frontend y móvil, DevOps y automatización).
-5. Competencias profesionales: cada una con el hecho del CV que la respalda.
-6. Formación: título e idiomas visibles; las certificaciones académicas van en un `<details>`.
-7. Código reciente en GitHub: complementario; se oculta si GitHub falla o no hay repos.
-8. CTA de contacto con email visible y botón de copiar.
+4. Perfil: una sola sección con pestañas accesibles (patrón ARIA tabs, flechas/Inicio/Fin): Stack (agrupado por área), Competencias (cada una con su respaldo del CV) y Formación. Mantiene el inicio corto en móvil.
+5. Código reciente en GitHub: solo con `SITE.minRepos` (3) o más repos públicos; la misma regla decide si /repositorios vuelve al menú.
+6. CTA de contacto con email visible y botón de copiar.
 
 ## Componentes
 
 - **Botones:** mínimo 44px de alto. Primario relleno `--primary`; ghost con superficie un tono más claro que su contenedor.
 - **Tarjeta de proyecto:** etiqueta de estado sobre el título, un solo enlace al detalle ("Ver caso"); demo y código como acciones secundarias. Sin imagen no se inventa una: la tarjeta queda solo con texto. Las imágenes son capturas reales o diagramas (SVG) del sistema, nunca ilustraciones decorativas.
+- **Grillas de proyectos:** `align-items: start`; una tarjeta sin imagen no se estira a la altura de su vecina.
+- **Experiencia:** la línea en negrita (`outcome`) es solo para resultados reales; la tecnología va en el resumen.
 - **Detalle de proyecto:** sin imagen, texto a la izquierda y ficha (métricas y acciones) a la derecha. Termina con "Siguiente proyecto" y un bloque de contacto.
 - **Tarjeta de repo:** toda la tarjeta es un enlace; estrellas y forks se ocultan cuando son 0, y la descripción cuando no existe.
 - **Formularios:** etiquetas visibles, `aria-invalid` y `aria-describedby` en errores, contador de caracteres y una región `aria-live` siempre montada.
@@ -159,4 +159,6 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 - Enlaces externos anuncian "(abre en una pestaña nueva)" con `.sr-only`.
 - Enlace "Saltar al contenido" al inicio de la página.
 - Títulos de pestaña con `SiteTitleStrategy`: "Página · Benjamín López".
+- Foco: al cambiar de página va al `<h1>` de la vista nueva; al enviar un formulario inválido, al primer campo con error; las acciones que hacen scroll también mueven el foco.
+- Imágenes de proyecto con `imageAlt` descriptivo (los diagramas describen el flujo completo).
 - Movimiento: una sola entrada escalonada del hero (opacidad, 10px y desenfoque, 0.7 s, ease-out exponencial) y el punto de estado que pulsa. `prefers-reduced-motion` desactiva ambas.

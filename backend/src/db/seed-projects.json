@@ -43,7 +43,8 @@
     "repoUrl": null,
     "demoUrl": null,
     "image": null,
-    "featured": true
+    "featured": true,
+    "imageAlt": null
   },
   {
     "slug": "portafolio",
@@ -88,6 +89,7 @@
     "repoUrl": "https://github.com/bnzzzy/dev-portafolio",
     "demoUrl": null,
     "image": "/projects/portafolio-arquitectura.svg",
-    "featured": true
+    "featured": true,
+    "imageAlt": "Diagrama de arquitectura: el navegador llega por Cloudflare Tunnel a un servidor propio con Docker Compose, donde nginx sirve Angular, una API en Express consulta PostgreSQL y la API de GitHub."
   }
 ]
