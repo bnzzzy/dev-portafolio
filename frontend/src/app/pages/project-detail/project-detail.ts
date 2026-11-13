@@ -6,13 +6,14 @@ import { Subject, catchError, combineLatest, map, of, startWith, switchMap } fro
 import { SITE } from '../../core/config/site.config';
 import { Project } from '../../core/models/project';
 import { ProjectsService } from '../../core/services/projects.service';
+import { Breadcrumb, Crumb } from '../../shared/components/breadcrumb/breadcrumb';
 import { ContactCta } from '../../shared/components/contact-cta/contact-cta';
 
 type Result = { project: Project | null; failed: boolean };
 
 @Component({
   selector: 'app-project-detail',
-  imports: [RouterLink, ContactCta],
+  imports: [RouterLink, ContactCta, Breadcrumb],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.scss',
 })
@@ -38,6 +39,12 @@ export class ProjectDetail {
   protected readonly loading = computed(() => this.result() === undefined);
   protected readonly project = computed(() => this.result()?.project ?? null);
   protected readonly failed = computed(() => this.result()?.failed ?? false);
+
+  protected readonly crumbs = computed<Crumb[]>(() => [
+    { label: 'Inicio', link: '/' },
+    { label: 'Proyectos', link: '/proyectos' },
+    { label: this.project()?.title ?? 'Proyecto' },
+  ]);
 
   // Siguiente proyecto de la lista, para no terminar el caso en un callejón sin salida
   private readonly all = toSignal(this.projectsService.getAll().pipe(catchError(() => of([]))));

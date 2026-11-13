@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { catchError, of } from 'rxjs';
+import { Subject, catchError, of, startWith, switchMap } from 'rxjs';
 import { SITE } from '../../core/config/site.config';
 import { GithubService } from '../../core/services/github.service';
 import { ProjectsService } from '../../core/services/projects.service';
@@ -22,11 +22,24 @@ export class Home {
   protected readonly site = SITE;
 
   // undefined = cargando, null = la API falló (se muestra un aviso con alternativa)
+  private readonly projectsService = inject(ProjectsService);
+  private readonly reloadProjects$ = new Subject<void>();
   private readonly projects = toSignal(
-    inject(ProjectsService)
-      .getAll()
-      .pipe(catchError(() => of(null))),
+    this.reloadProjects$.pipe(
+      startWith(undefined),
+      switchMap(() =>
+        this.projectsService.getAll().pipe(
+          catchError(() => of(null)),
+          startWith(undefined),
+        ),
+      ),
+    ),
   );
+
+  /** Vuelve a pedir los proyectos sin recargar la página. */
+  protected reloadProjects() {
+    this.reloadProjects$.next();
+  }
   protected readonly featured = computed(() => {
     const list = this.projects();
     return list ? list.filter((p) => p.featured) : list;

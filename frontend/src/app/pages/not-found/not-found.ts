@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   template: `
     <div class="page nf">
       <pre class="nf__term code" aria-hidden="true"><span class="text-secondary">$ cd {{ path }}</span>
-<span class="nf__err">bash: cd: {{ path }}: No such file or directory</span></pre>
+<span class="nf__err">bash: cd: {{ path }}: No existe el archivo o el directorio</span></pre>
       <div class="nf__text">
         <h1 class="display-hero"><span aria-hidden="true">404</span><span class="sr-only">Página no encontrada</span></h1>
         <p class="muted">La página solicitada no existe.</p>

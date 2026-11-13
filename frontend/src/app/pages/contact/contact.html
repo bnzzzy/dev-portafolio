@@ -11,6 +11,14 @@
         <p class="label muted">Todos los campos son obligatorios.</p>
       </div>
 
+      @if (draftRestored()) {
+        <p class="form__draft label">
+          <span class="icon" aria-hidden="true">history</span>
+          Se recuperó el borrador de su visita anterior.
+          <button type="button" class="link-button" (click)="discardDraft()">Descartar</button>
+        </p>
+      }
+
       @let name = form.controls.name;
       <div class="field">
         <label class="label" for="c-name">Nombre</label>
@@ -41,6 +49,12 @@
           [attr.aria-invalid]="email.touched && email.invalid"
           [attr.aria-describedby]="email.touched && email.invalid ? 'c-email-error' : null"
         />
+        @if (emailSuggestion(); as suggestion) {
+          <p class="field__hint label" aria-live="polite">
+            ¿Quiso decir <b>{{ suggestion }}</b>?
+            <button type="button" class="link-button" (click)="applySuggestion()">Corregir</button>
+          </p>
+        }
         @if (email.touched && email.invalid) {
           <small id="c-email-error" class="field__error label">
             {{ email.hasError('required') ? 'Ingrese su email para recibir respuesta.' : 'El email no es válido: verifique la @ y el dominio.' }}

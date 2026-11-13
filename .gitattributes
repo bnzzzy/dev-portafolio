@@ -6,3 +6,6 @@
 
 # La carpeta design/ es referencia, no cuenta para el lenguaje del repo
 design/** linguist-documentation
+
+# Los estilos no definen el lenguaje del proyecto (es TypeScript/JavaScript)
+*.scss linguist-detectable=false

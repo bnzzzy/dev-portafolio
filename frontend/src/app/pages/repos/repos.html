@@ -1,7 +1,5 @@
 <div class="page">
-  <a routerLink="/proyectos" class="back-link">
-    <span class="icon" aria-hidden="true">arrow_back</span> Volver a proyectos
-  </a>
+  <app-breadcrumb [items]="crumbs" />
 
   <header class="page-head">
     <h1 class="display-hero">Repositorios</h1>
@@ -14,14 +12,16 @@
   @switch (repos()) {
     @case (undefined) {
       <div class="grid">
-        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
-          <div class="skeleton" style="height: 8.5rem"></div>
+        @for (i of [1, 2, 3]; track i) {
+          <div class="skeleton" style="height: 8.5rem" [attr.role]="i === 1 ? 'status' : null" [attr.aria-label]="i === 1 ? 'Cargando repositorios' : null"></div>
         }
       </div>
     }
     @case (null) {
       <p class="notice" role="alert">
-        No se pudo conectar con GitHub. Intente nuevamente en unos minutos o abra
+        No se pudo conectar con GitHub.
+        <button type="button" class="link-button" (click)="reload()">Reintentar</button>
+        o abra
         <a [href]="github.url" target="_blank" rel="noopener">el perfil directamente<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
       </p>
     }

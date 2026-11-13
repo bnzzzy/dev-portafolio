@@ -1,10 +1,8 @@
 <div class="page">
-  <a routerLink="/proyectos" class="back label text-primary">
-    <span class="icon" aria-hidden="true">arrow_back</span> Volver a proyectos
-  </a>
+  <app-breadcrumb [items]="crumbs()" />
 
   @if (loading()) {
-    <div class="skeleton" style="height: 24rem"></div>
+    <div class="skeleton" style="height: 24rem" role="status" aria-label="Cargando proyecto"></div>
   } @else if (project(); as p) {
     <article class="detail" [class.detail--has-media]="p.image">
       @if (p.image) {
@@ -81,7 +79,7 @@
     }
 
     <div id="contacto-proyecto">
-      <app-contact-cta heading="¿Un proyecto similar?" />
+      <app-contact-cta />
     </div>
   } @else if (failed()) {
     <div class="stack" role="alert">

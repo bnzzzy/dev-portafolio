@@ -11,7 +11,7 @@
       @case (undefined) {
         <div class="grid project-grid">
           @for (i of [1, 2]; track i) {
-            <div class="skeleton" style="height: 20rem"></div>
+            <div class="skeleton" style="height: 20rem" [attr.role]="i === 1 ? 'status' : null" [attr.aria-label]="i === 1 ? 'Cargando proyectos' : null"></div>
           }
         </div>
       }

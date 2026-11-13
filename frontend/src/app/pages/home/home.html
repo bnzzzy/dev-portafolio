@@ -94,12 +94,13 @@
 
     @switch (featured()) {
       @case (undefined) {
-        <div class="skeleton" style="height: 20rem"></div>
+        <div class="skeleton" style="height: 20rem" role="status" aria-label="Cargando proyectos"></div>
       }
       @case (null) {
         <p class="notice">
           No se pudieron cargar los proyectos.
-          El código está disponible directamente en
+          <button type="button" class="link-button" (click)="reloadProjects()">Reintentar</button>
+          o consulte el código directamente en
           <a [href]="site.github.url" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
         </p>
       }
@@ -114,7 +115,7 @@
             }
           </div>
         } @else {
-          <p class="notice">Casos de estudio en preparación. El código está disponible en los repositorios más abajo.</p>
+          <p class="notice">Casos de estudio en preparación. El código está disponible en <a [href]="site.github.url" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre en una pestaña nueva)</span></a>.</p>
         }
       }
     }

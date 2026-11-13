@@ -117,3 +117,22 @@
   flex-direction: column;
   gap: var(--space-xs);
 }
+
+.form__draft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs) var(--space-sm);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--surface-low);
+  color: var(--on-surface-variant);
+
+  .icon {
+    font-size: 16px;
+  }
+}
+
+.field__hint {
+  color: var(--on-surface-variant);
+}
