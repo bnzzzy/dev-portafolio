@@ -4,7 +4,7 @@
   padding: 1.25rem;
   border-radius: var(--radius-xl);
   background: var(--surface-container);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--surface-high);
 
   // En escritorio: texto a la izquierda, botones a la derecha
   @media (min-width: 1024px) {
@@ -16,6 +16,21 @@
 }
 
 .cta__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 34rem;
+}
+
+.cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.cta__email {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-xs);
 }
 

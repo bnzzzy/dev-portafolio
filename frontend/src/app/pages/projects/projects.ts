@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
+import { catchError, of, startWith, Subject, switchMap } from 'rxjs';
+import { SITE } from '../../core/config/site.config';
 import { ProjectsService } from '../../core/services/projects.service';
 import { ProjectCard } from '../../shared/components/project-card/project-card';
 
@@ -11,11 +12,26 @@ import { ProjectCard } from '../../shared/components/project-card/project-card';
   styleUrl: './projects.scss',
 })
 export class Projects {
+  private readonly projectsService = inject(ProjectsService);
+  private readonly reload$ = new Subject<void>();
+  protected readonly github = SITE.github;
+
+  // undefined = cargando, null = error. "Reintentar" vuelve a pedir la lista.
   protected readonly projects = toSignal(
-    inject(ProjectsService)
-      .getAll()
-      .pipe(catchError(() => of(null))),
+    this.reload$.pipe(
+      startWith(undefined),
+      switchMap(() =>
+        this.projectsService.getAll().pipe(
+          catchError(() => of(null)),
+          startWith(undefined),
+        ),
+      ),
+    ),
   );
+
+  protected reload() {
+    this.reload$.next();
+  }
 
   /** Tecnología seleccionada en el filtro (null = todas). */
   protected readonly selectedTag = signal<string | null>(null);

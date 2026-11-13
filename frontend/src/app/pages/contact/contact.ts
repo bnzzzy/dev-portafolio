@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SITE } from '../../core/config/site.config';
 import { ContactService } from '../../core/services/contact.service';
 import { ContactCta } from '../../shared/components/contact-cta/contact-cta';
 
@@ -15,11 +16,15 @@ export class Contact {
   private readonly contactService = inject(ContactService);
 
   protected readonly status = signal<Status>('idle');
+  /** Email al que se responderá, para confirmarlo después de enviar. */
+  protected readonly sentTo = signal('');
+  protected readonly contactEmail = SITE.contact.email;
+  protected readonly minLength = 10;
 
   protected readonly form = inject(FormBuilder).nonNullable.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    message: ['', [Validators.required, Validators.minLength(10)]],
+    message: ['', [Validators.required, Validators.minLength(this.minLength)]],
   });
 
   protected submit() {
@@ -30,6 +35,7 @@ export class Contact {
     this.status.set('sending');
     this.contactService.send(this.form.getRawValue()).subscribe({
       next: () => {
+        this.sentTo.set(this.form.controls.email.value);
         this.status.set('sent');
         this.form.reset();
       },

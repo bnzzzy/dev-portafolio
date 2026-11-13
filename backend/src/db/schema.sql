@@ -24,3 +24,6 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   message    TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Limpieza: el proyecto de ejemplo de la plantilla nunca debe publicarse.
+DELETE FROM projects WHERE slug = 'proyecto-ejemplo';

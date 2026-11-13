@@ -1,7 +1,9 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { catchError, of, switchMap } from 'rxjs';
+import { SITE } from '../../core/config/site.config';
 import { ProjectsService } from '../../core/services/projects.service';
 
 @Component({
@@ -22,4 +24,11 @@ export class ProjectDetail {
       switchMap((slug) => this.projectsService.getBySlug(slug).pipe(catchError(() => of(null)))),
     ),
   );
+
+  // La pestaña muestra el nombre del proyecto en vez de "Proyecto"
+  private readonly title = inject(Title);
+  private readonly syncTitle = effect(() => {
+    const p = this.project();
+    if (p) this.title.setTitle(`${p.title} · ${SITE.name}`);
+  });
 }

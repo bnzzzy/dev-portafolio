@@ -1,14 +1,14 @@
-<section class="cta">
-  <div class="stack cta__text">
-    <span class="label text-tertiary">¿Tienes una propuesta?</span>
-    <h2 class="headline-md">Hablemos de tu próximo proyecto</h2>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="cta__text">
+    <h2 id="cta-title" class="headline-md">¿Trabajamos juntos?</h2>
     <p class="muted">{{ contact.pitch }}</p>
   </div>
 
-  <div class="stack">
+  <div class="cta__actions">
     @if (contact.calendarUrl) {
       <a class="btn btn--primary btn--block btn--lg" [href]="contact.calendarUrl" target="_blank" rel="noopener">
-        <span class="icon">calendar_today</span> Agendar videollamada de 30m
+        <span class="icon" aria-hidden="true">calendar_today</span> Agendar videollamada de 30 min
+        <span class="sr-only">(abre en una pestaña nueva)</span>
       </a>
     }
     <a
@@ -17,14 +17,22 @@
       [class.btn--ghost]="contact.calendarUrl"
       [href]="'mailto:' + contact.email"
     >
-      <span class="icon" [class.text-secondary]="contact.calendarUrl">mail</span> Enviar email directo
+      <span class="icon" aria-hidden="true">mail</span> Escribir un email
     </a>
+
+    <div class="cta__email">
+      <span class="label muted" id="cta-email-label">O copia la dirección:</span>
+      <app-copy-button [value]="contact.email" icon="alternate_email" [showHint]="true" />
+    </div>
+
     <div class="cta__socials">
       <a class="btn btn--ghost btn--linkedin" [href]="linkedin.url" target="_blank" rel="noopener">
-        <span class="brand-icon brand-icon--linkedin"></span> LinkedIn
+        <span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span> LinkedIn
+        <span class="sr-only">(abre en una pestaña nueva)</span>
       </a>
       <a class="btn btn--ghost btn--github" [href]="github.url" target="_blank" rel="noopener">
-        <span class="brand-icon brand-icon--github"></span> GitHub
+        <span class="brand-icon brand-icon--github" aria-hidden="true"></span> GitHub
+        <span class="sr-only">(abre en una pestaña nueva)</span>
       </a>
     </div>
     @if (contact.discord) {

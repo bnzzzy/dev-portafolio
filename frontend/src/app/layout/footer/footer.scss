@@ -36,10 +36,10 @@
   gap: var(--space-sm);
 }
 
-// Botones redondos de 40px: fáciles de tocar en móvil
+// Botones redondos de 44px: el mínimo cómodo para tocar en móvil
 .social {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   display: grid;
   place-items: center;
   border-radius: var(--radius-full);

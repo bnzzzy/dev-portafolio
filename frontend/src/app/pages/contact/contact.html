@@ -1,57 +1,98 @@
 <div class="page">
-  <header class="stack">
-    <span class="eyebrow text-secondary">Contacto</span>
+  <header class="page-head">
     <h1 class="display-hero">Hablemos</h1>
-    <p class="muted">Escríbeme por el medio que prefieras o déjame un mensaje aquí.</p>
+    <p class="muted">Déjame un mensaje aquí o escríbeme por el medio que prefieras.</p>
   </header>
 
   <div class="contact">
-    <app-contact-cta />
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate aria-labelledby="form-title">
+      <h2 id="form-title" class="title-sm">Enviar un mensaje</h2>
 
-    <form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
-      <h2 class="title-sm">Enviar un mensaje</h2>
-
-      <label class="field">
-        <span class="label muted">Nombre</span>
-        <input formControlName="name" autocomplete="name" placeholder="Tu nombre" />
-        @if (form.controls.name.touched && form.controls.name.invalid) {
-          <small class="field__error label">El nombre es obligatorio.</small>
+      @let name = form.controls.name;
+      <div class="field">
+        <label class="label" for="c-name">Nombre</label>
+        <input
+          id="c-name"
+          formControlName="name"
+          autocomplete="name"
+          [attr.aria-invalid]="name.touched && name.invalid"
+          [attr.aria-describedby]="name.touched && name.invalid ? 'c-name-error' : null"
+        />
+        @if (name.touched && name.invalid) {
+          <small id="c-name-error" class="field__error label">Escribe tu nombre.</small>
         }
-      </label>
+      </div>
 
-      <label class="field">
-        <span class="label muted">Email</span>
-        <input type="email" formControlName="email" autocomplete="email" placeholder="tu@email.com" />
-        @if (form.controls.email.touched && form.controls.email.invalid) {
-          <small class="field__error label">Ingresa un email válido.</small>
+      @let email = form.controls.email;
+      <div class="field">
+        <label class="label" for="c-email">Email</label>
+        <input
+          id="c-email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          inputmode="email"
+          placeholder="tu@email.com"
+          [attr.aria-invalid]="email.touched && email.invalid"
+          [attr.aria-describedby]="email.touched && email.invalid ? 'c-email-error' : null"
+        />
+        @if (email.touched && email.invalid) {
+          <small id="c-email-error" class="field__error label">
+            {{ email.hasError('required') ? 'Escribe tu email para que pueda responderte.' : 'Revisa el email: falta la @ o el dominio.' }}
+          </small>
         }
-      </label>
+      </div>
 
-      <label class="field">
-        <span class="label muted">Mensaje</span>
-        <textarea rows="5" formControlName="message" placeholder="Cuéntame sobre tu proyecto..."></textarea>
-        @if (form.controls.message.touched && form.controls.message.invalid) {
-          <small class="field__error label">El mensaje debe tener al menos 10 caracteres.</small>
+      @let message = form.controls.message;
+      <div class="field">
+        <div class="field__row">
+          <label class="label" for="c-message">Mensaje</label>
+          <span id="c-message-hint" class="label muted" [class.field__count--ok]="message.value.length >= minLength">
+            {{ message.value.length }} / {{ minLength }} mín.
+          </span>
+        </div>
+        <textarea
+          id="c-message"
+          rows="5"
+          formControlName="message"
+          placeholder="Cuéntame sobre el rol o el proyecto..."
+          [attr.aria-invalid]="message.touched && message.invalid"
+          [attr.aria-describedby]="message.touched && message.invalid ? 'c-message-hint c-message-error' : 'c-message-hint'"
+        ></textarea>
+        @if (message.touched && message.invalid) {
+          <small id="c-message-error" class="field__error label">
+            El mensaje necesita al menos {{ minLength }} caracteres.
+          </small>
         }
-      </label>
+      </div>
 
       <button type="submit" class="btn btn--primary btn--block" [disabled]="status() === 'sending'">
-        <span class="icon">send</span>
+        <span class="icon" aria-hidden="true">send</span>
         {{ status() === 'sending' ? 'Enviando...' : 'Enviar mensaje' }}
       </button>
 
-      @switch (status()) {
-        @case ('sent') {
-          <p class="form__feedback form__feedback--ok" role="status">
-            <span class="icon">check_circle</span> ¡Mensaje enviado! Te responderé pronto.
-          </p>
+      <!-- Región siempre montada para que los lectores de pantalla anuncien el resultado -->
+      <div class="form__live" aria-live="polite">
+        @switch (status()) {
+          @case ('sent') {
+            <p class="form__feedback form__feedback--ok">
+              <span class="icon" aria-hidden="true">check_circle</span>
+              <span>Mensaje enviado. Te responderé a <b>{{ sentTo() }}</b>.</span>
+            </p>
+          }
+          @case ('error') {
+            <p class="form__feedback form__feedback--error">
+              <span class="icon" aria-hidden="true">error</span>
+              <span>
+                No se pudo enviar el mensaje y no se perdió lo que escribiste. Inténtalo de nuevo o escríbeme a
+                <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
+              </span>
+            </p>
+          }
         }
-        @case ('error') {
-          <p class="form__feedback form__feedback--error" role="alert">
-            <span class="icon">error</span> Hubo un error, intenta de nuevo.
-          </p>
-        }
-      }
+      </div>
     </form>
+
+    <app-contact-cta />
   </div>
 </div>

@@ -2,25 +2,34 @@
 
 <a class="card repo" [href]="r.url" target="_blank" rel="noopener">
   <div class="repo__head">
-    <span class="repo__name badge-label">
-      <span class="icon">folder</span>
+    <span class="repo__name code">
+      <span class="icon" aria-hidden="true">folder</span>
       {{ r.name }}
     </span>
-    <span class="repo__date meta">{{ r.updatedAt | timeAgo }}</span>
+    <span class="repo__date meta">
+      <span class="sr-only">Actualizado </span>{{ r.updatedAt | timeAgo }}
+    </span>
   </div>
 
-  <p class="muted">{{ r.description || 'Sin descripción.' }}</p>
+  @if (r.description) {
+    <p class="muted">{{ r.description }}</p>
+  }
 
   <div class="repo__foot meta muted">
     <div class="repo__stats">
       @if (r.language) {
-        <span><span class="dot" [style.color]="languageColor()"></span> {{ r.language }}</span>
+        <span><span class="dot" aria-hidden="true" [style.color]="languageColor()"></span> {{ r.language }}</span>
       }
-      <span><span class="icon">star</span> {{ r.stars | number }}</span>
-      <span><span class="icon">fork_right</span> {{ r.forks | number }}</span>
+      @if (r.stars > 0) {
+        <span><span class="icon" aria-hidden="true">star</span> {{ r.stars | number }}<span class="sr-only"> estrellas</span></span>
+      }
+      @if (r.forks > 0) {
+        <span><span class="icon" aria-hidden="true">fork_right</span> {{ r.forks | number }}<span class="sr-only"> forks</span></span>
+      }
     </div>
     @if (r.license && r.license !== 'NOASSERTION') {
       <span class="text-outline">{{ r.license }}</span>
     }
   </div>
+  <span class="sr-only">(abre GitHub en una pestaña nueva)</span>
 </a>

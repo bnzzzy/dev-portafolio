@@ -14,7 +14,8 @@ DIR="${DIR:-docker/portafolio}"
 echo "→ Subiendo código a $SERVER:~/$DIR"
 tar -czf - \
   --exclude=node_modules --exclude=dist --exclude=.angular \
-  --exclude=.git --exclude='.env' --exclude='.deploy.env' --exclude='*.log' . \
+  --exclude=.git --exclude='.env' --exclude='.deploy.env' --exclude='*.log' \
+  --exclude=privado --exclude=.claude --exclude=.impeccable . \
   | ssh "$SERVER" "mkdir -p ~/$DIR && tar -xzf - -C ~/$DIR"
 
 echo "→ Reconstruyendo contenedores"

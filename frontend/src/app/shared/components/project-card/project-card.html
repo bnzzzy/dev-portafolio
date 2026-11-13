@@ -1,24 +1,15 @@
 @let p = project();
 
-<article class="project">
-  <a class="project__media" [routerLink]="['/proyectos', p.slug]" [attr.aria-label]="p.title">
-    @if (p.image) {
-      <img [src]="p.image" [alt]="p.title" loading="lazy" />
-    } @else {
-      <div class="project__placeholder"><span class="icon">deployed_code</span></div>
-    }
-    <div class="project__tags">
-      @for (tag of p.tags; track tag) {
-        <span class="badge-label">{{ tag }}</span>
-      }
+<article class="project" [class.project--has-media]="p.image">
+  @if (p.image) {
+    <div class="project__media">
+      <img [src]="p.image" alt="" loading="lazy" />
     </div>
-  </a>
+  }
 
   <div class="project__body">
     <div class="project__head">
-      <h3 class="title-sm">
-        <a [routerLink]="['/proyectos', p.slug]">{{ p.title }}</a>
-      </h3>
+      <h3 class="project__title">{{ p.title }}</h3>
       @if (p.highlight) {
         <span class="project__highlight label">{{ p.highlight }}</span>
       }
@@ -26,30 +17,39 @@
 
     <p class="muted">{{ p.summary }}</p>
 
+    @if (p.tags.length) {
+      <ul class="project__tags" aria-label="Tecnologías">
+        @for (tag of p.tags; track tag) {
+          <li class="chip">{{ tag }}</li>
+        }
+      </ul>
+    }
+
     @if (p.metrics?.length) {
-      <div class="project__metrics">
+      <dl class="project__metrics">
         @for (m of p.metrics; track m.label) {
           <div>
-            <span class="label muted">{{ m.label }}</span>
-            <span class="code">{{ m.value }}</span>
+            <dt class="label muted">{{ m.label }}</dt>
+            <dd class="code">{{ m.value }}</dd>
           </div>
         }
-      </div>
+      </dl>
     }
 
     <div class="project__actions">
+      <a class="btn btn--primary" [routerLink]="['/proyectos', p.slug]">
+        Ver caso<span class="sr-only">: {{ p.title }}</span>
+      </a>
       @if (p.demoUrl) {
-        <a class="btn btn--primary" [href]="p.demoUrl" target="_blank" rel="noopener">
-          <span class="icon">visibility</span> Ver demo
-        </a>
-      } @else {
-        <a class="btn btn--primary" [routerLink]="['/proyectos', p.slug]">
-          <span class="icon">info</span> Ver detalle
+        <a class="btn btn--ghost" [href]="p.demoUrl" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">open_in_new</span> Demo
+          <span class="sr-only">(abre en una pestaña nueva)</span>
         </a>
       }
       @if (p.repoUrl) {
-        <a class="btn btn--icon" [href]="p.repoUrl" target="_blank" rel="noopener" aria-label="Ver código en GitHub" title="Ver código en GitHub">
-          <span class="brand-icon brand-icon--github"></span>
+        <a class="btn btn--ghost" [href]="p.repoUrl" target="_blank" rel="noopener">
+          <span class="brand-icon brand-icon--github" aria-hidden="true"></span> Código
+          <span class="sr-only">(abre GitHub en una pestaña nueva)</span>
         </a>
       }
     </div>

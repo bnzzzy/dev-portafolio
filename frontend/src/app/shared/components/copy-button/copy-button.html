@@ -1,12 +1,19 @@
-<button type="button" class="copy" [class.copy--row]="showHint()" (click)="copy()">
+<button
+  type="button"
+  class="copy"
+  [class.copy--row]="showHint()"
+  (click)="copy()"
+  [attr.aria-label]="'Copiar ' + value()"
+>
   <span class="copy__main">
-    <span class="icon">{{ icon() }}</span>
+    <span class="icon" aria-hidden="true">{{ icon() }}</span>
     <span class="code">{{ copied() && !showHint() ? '¡Copiado!' : value() }}</span>
   </span>
   @if (showHint()) {
-    <span class="copy__hint label">
+    <span class="copy__hint label" aria-hidden="true">
       <span class="icon">{{ copied() ? 'check' : 'content_copy' }}</span>
       {{ copied() ? 'Copiado' : 'Copiar' }}
     </span>
   }
 </button>
+<span class="sr-only" aria-live="polite">{{ copied() ? 'Copiado al portapapeles' : '' }}</span>

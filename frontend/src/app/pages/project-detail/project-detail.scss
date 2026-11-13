@@ -4,8 +4,12 @@
   gap: var(--space-xs);
   align-self: flex-start;
 
+  min-height: 44px;
+  margin-block: -0.5rem;
+  font-size: 14px;
+
   .icon {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   &:hover {
@@ -17,9 +21,17 @@
   display: grid;
   gap: var(--space-lg);
 
-  // En escritorio: imagen a la izquierda, información a la derecha
+  max-width: 48rem;
+
+  // Con imagen, en escritorio: imagen a la izquierda, información a la derecha
+  &--has-media {
+    @media (min-width: 1024px) {
+      max-width: none;
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
   @media (min-width: 1024px) {
-    grid-template-columns: 1.1fr 1fr;
     align-items: start;
     gap: 3rem;
   }
@@ -38,21 +50,6 @@
   }
 }
 
-.detail__placeholder {
-  height: 100%;
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(128, 131, 255, 0.25), transparent 55%),
-    radial-gradient(circle at 75% 70%, rgba(76, 215, 246, 0.18), transparent 50%),
-    var(--surface-lowest);
-
-  .icon {
-    font-size: 64px;
-    color: var(--outline-variant);
-  }
-}
-
 .detail__info {
   display: flex;
   flex-direction: column;
@@ -60,6 +57,9 @@
 }
 
 .detail__tags {
+  margin: var(--space-xs) 0 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem;
@@ -69,6 +69,11 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-sm);
+  margin: 0;
+
+  dd {
+    margin: 0;
+  }
 
   div {
     display: flex;

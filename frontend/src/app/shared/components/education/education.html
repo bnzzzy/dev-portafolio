@@ -1,9 +1,6 @@
-<section>
+<section aria-labelledby="edu-title">
   <div class="section-head">
-    <h2 class="section-title headline-md">
-      <span class="icon-box text-secondary"><span class="icon">school</span></span>
-      Formación y certificaciones
-    </h2>
+    <h2 id="edu-title" class="headline-md">Formación y certificaciones</h2>
   </div>
 
   <div class="edu">
@@ -13,27 +10,33 @@
       <h3 class="title-sm">{{ edu.degree }}</h3>
       <p class="muted">{{ edu.detail }}</p>
 
-      <span class="label text-secondary edu__label">Certificaciones académicas</span>
-      <ul class="edu__chips">
-        @for (cert of edu.certifications; track cert) {
-          <li class="chip chip--text">{{ cert }}</li>
+      <h4 class="edu__label label">Idiomas</h4>
+      <ul class="edu__langs">
+        @for (lang of edu.languages; track lang.name) {
+          <li><b>{{ lang.name }}</b><span class="muted">&nbsp;· {{ lang.level }}</span></li>
         }
       </ul>
 
-      <span class="label text-secondary edu__label">Idiomas</span>
-      <ul class="edu__langs">
-        @for (lang of edu.languages; track lang.name) {
-          <li><b>{{ lang.name }}</b><span class="muted">&nbsp;— {{ lang.level }}</span></li>
-        }
-      </ul>
+      <details class="edu__more">
+        <summary class="label">
+          <span class="icon" aria-hidden="true">expand_more</span>
+          {{ edu.certifications.length }} certificaciones académicas de la carrera
+        </summary>
+        <ul class="edu__chips">
+          @for (cert of edu.certifications; track cert) {
+            <li class="chip chip--text">{{ cert }}</li>
+          }
+        </ul>
+      </details>
     </article>
 
     <!-- Google Cloud -->
     <article class="card">
-      <span class="label muted">Google Cloud · {{ cloud.length }} certificaciones</span>
+      <h3 class="title-sm">Google Cloud</h3>
+      <span class="label muted">{{ cloud.length }} certificaciones</span>
       <ul class="edu__cloud">
         @for (cert of cloud; track cert) {
-          <li><span class="icon text-tertiary">verified</span> {{ cert }}</li>
+          <li><span class="icon text-tertiary" aria-hidden="true">verified</span> {{ cert }}</li>
         }
       </ul>
     </article>

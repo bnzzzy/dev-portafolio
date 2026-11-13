@@ -1,7 +1,13 @@
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import {
+  provideRouter,
+  TitleStrategy,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+} from '@angular/router';
 import { routes } from './app.routes';
+import { SiteTitleStrategy } from './core/title-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,5 +18,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
     ),
     provideHttpClient(withFetch()),
+    { provide: TitleStrategy, useClass: SiteTitleStrategy },
   ],
 };

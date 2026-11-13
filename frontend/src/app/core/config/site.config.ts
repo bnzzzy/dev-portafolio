@@ -3,8 +3,15 @@
 //  Los valores en null ocultan su sección o botón.
 // =============================================================
 
-/** Colores de acento disponibles para íconos, puntos y estadísticas. */
-export type Accent = 'primary' | 'secondary' | 'tertiary';
+/** Un puesto de trabajo, práctica o proyecto freelance. */
+export interface ExperienceEntry {
+  role: string; // ej: 'Desarrollador Full Stack'
+  company: string; // ej: 'Empresa S.A.'
+  period: string; // ej: 'mar. 2024 – actualidad'
+  summary: string; // qué hiciste, en una o dos frases
+  outcome?: string; // un resultado concreto, ej: 'Reduje el tiempo de carga de reportes de 40 s a 6 s'
+  tags?: string[]; // tecnologías usadas
+}
 
 export const SITE = {
   name: 'Benjamín López',
@@ -38,35 +45,103 @@ export const SITE = {
     email: 'bnja.lpz16@gmail.com',
     calendarUrl: null as string | null, // ej: 'https://cal.com/tu-usuario'
     discord: null as string | null, // ej: 'tu_usuario'
-    pitch: 'Abierto a roles Full Stack o Backend y a proyectos de automatización y datos. Conversemos.',
+    pitch: 'Busco roles Full Stack o Backend, y también tomo proyectos de automatización y datos.',
   },
 
-  stats: [
-    { label: 'Experiencia', value: '1+ año', detail: 'Desarrollo Full Stack', icon: 'verified', accent: 'primary' },
-    { label: 'Formación', value: 'Ingeniería', detail: 'Informática · Ciencia de Datos', icon: 'school', accent: 'secondary' },
-    { label: 'Certificaciones', value: '14', detail: '6 Google Cloud · 8 Duoc UC', icon: 'cloud_done', accent: 'tertiary' },
-    { label: 'Stack', value: 'Java + Angular', detail: 'Spring Boot · React · Flask', icon: 'layers', accent: 'primary' },
-  ] satisfies { label: string; value: string; detail: string; icon: string; accent: Accent }[],
+  // Experiencia laboral, de la más reciente a la más antigua.
+  // Mientras esté vacía, la sección no aparece en el inicio.
+  experience: [
+    {
+      role: 'Desarrollador Full Stack',
+      company: 'ID Logistics Chile',
+      period: 'feb. 2026 – oct. 2026',
+      summary:
+        'Microservicios e integración de APIs con Spring Boot y JPA, autenticación con JWT y tareas programadas. Interfaces en Angular y React, apps móviles en Flutter y pruebas end-to-end con Playwright.',
+      outcome:
+        'Flujos ETL con SQL avanzado en PostgreSQL y MySQL, y pipelines de CI/CD con Jenkins y GitLab CI desplegando en Docker sobre Linux.',
+      tags: ['Java', 'Spring Boot', 'Angular', 'React', 'Flutter', 'Playwright', 'Jenkins', 'Docker'],
+    },
+    {
+      role: 'Ingeniero de Proyectos Trainee',
+      company: 'ID Logistics Chile',
+      period: 'nov. 2025 – ene. 2026',
+      summary:
+        'Desarrollo de una aplicación Full Stack con Python (Flask y FastAPI) y JavaScript, sobre una base MySQL que diseñé y modelé.',
+      outcome: 'Automaticé tareas repetitivas y armé entornos de desarrollo y pruebas con Docker.',
+      tags: ['Python', 'Flask', 'FastAPI', 'MySQL', 'Docker'],
+    },
+    {
+      role: 'Práctica profesional · Ingeniería y Proyectos',
+      company: 'ID Logistics Chile',
+      period: 'ago. 2025 – oct. 2025',
+      summary:
+        'Scripts en Python (Pandas) para analizar y procesar datos, modelado con SQL avanzado y documentación técnica de las soluciones.',
+      outcome:
+        'Desarrollé de forma autónoma una app de RRHH integrada con la API de BUK para analizar ausentismo, presentismo y rotación por cargo y cuenta.',
+      tags: ['Python', 'Pandas', 'SQL', 'API BUK'],
+    },
+    {
+      role: 'Práctica · RPA y Soporte',
+      company: 'Fundación de Salud Trabajadores BancoEstado',
+      period: 'dic. 2024 – ene. 2025',
+      summary:
+        'Desarrollo e implementación de automatizaciones (RPA) con Automation Anywhere y proyectos de mejora en Bizagi. Operación de robots en producción y soporte en QlikView y Bizagi.',
+      tags: ['Automation Anywhere', 'Bizagi', 'QlikView'],
+    },
+  ] as ExperienceEntry[],
 
-  // primary = backend/datos · secondary = frontend/móvil · tertiary = DevOps/automatización
+  // Stack agrupado por área
   skills: [
-    { name: 'Java', accent: 'primary' },
-    { name: 'Spring Boot', accent: 'primary' },
-    { name: 'Python', accent: 'primary' },
-    { name: 'FastAPI / Flask', accent: 'primary' },
-    { name: 'PostgreSQL', accent: 'primary' },
-    { name: 'MySQL', accent: 'primary' },
-    { name: 'TypeScript', accent: 'secondary' },
-    { name: 'Angular', accent: 'secondary' },
-    { name: 'React', accent: 'secondary' },
-    { name: 'Flutter', accent: 'secondary' },
-    { name: 'Docker', accent: 'tertiary' },
-    { name: 'Linux', accent: 'tertiary' },
-    { name: 'Git Flow', accent: 'tertiary' },
-    { name: 'Jenkins / GitLab CI', accent: 'tertiary' },
-    { name: 'Playwright', accent: 'tertiary' },
-    { name: 'RPA', accent: 'tertiary' },
-  ] satisfies { name: string; accent: Accent }[],
+    {
+      area: 'Backend y datos',
+      items: ['Java', 'Spring Boot', 'JPA', 'JWT', 'Python', 'FastAPI / Flask', 'Pandas', 'PostgreSQL', 'MySQL', 'ETL'],
+    },
+    {
+      area: 'Frontend y móvil',
+      items: ['TypeScript', 'JavaScript', 'Angular', 'React', 'Flutter / Dart', 'HTML / CSS'],
+    },
+    {
+      area: 'DevOps y automatización',
+      items: [
+        'Docker',
+        'Linux / SSH',
+        'Git Flow',
+        'Jenkins / GitLab CI',
+        'Playwright',
+        'Automation Anywhere',
+        'Bizagi',
+        'QlikView',
+      ],
+    },
+  ] satisfies { area: string; items: string[] }[],
+
+  // Habilidades profesionales, cada una con un hecho concreto que la respalda
+  softSkills: [
+    {
+      name: 'Autonomía',
+      evidence: 'Llevé de punta a punta, por mi cuenta, una app de RRHH integrada con la API de BUK.',
+    },
+    {
+      name: 'Visión de negocio',
+      evidence: 'Convierto necesidades de RRHH y operaciones en indicadores concretos, como ausentismo, presentismo y rotación.',
+    },
+    {
+      name: 'Trabajo en equipo',
+      evidence: 'Desarrollo en equipo con Git Flow y pipelines de CI/CD compartidos.',
+    },
+    {
+      name: 'Orientación a la calidad',
+      evidence: 'Pruebas end-to-end con Playwright y formación en Calidad y Arquitectura de Software.',
+    },
+    {
+      name: 'Comunicación y servicio',
+      evidence: 'Soporte a usuarios en mesa de ayuda y documentación técnica de cada solución que entrego.',
+    },
+    {
+      name: 'Aprendizaje continuo',
+      evidence: 'Seis certificaciones de Google Cloud y un stack que va de RPA a microservicios y apps móviles.',
+    },
+  ] satisfies { name: string; evidence: string }[],
 
   education: {
     degree: 'Ingeniero en Informática',

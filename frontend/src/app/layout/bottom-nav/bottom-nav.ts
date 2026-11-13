@@ -15,7 +15,7 @@ import { NAV_ITEMS } from '../../core/config/site.config';
           [routerLinkActiveOptions]="{ exact: item.exact }"
           ariaCurrentWhenActive="page"
         >
-          <span class="icon">{{ item.icon }}</span>
+          <span class="icon" aria-hidden="true">{{ item.icon }}</span>
           <span class="label">{{ item.label }}</span>
         </a>
       }

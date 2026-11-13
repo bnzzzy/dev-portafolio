@@ -50,77 +50,46 @@ colors:
   surface-variant: '#34343a'
 typography:
   display-hero:
-    fontFamily: Space Grotesk
-    fontSize: 44px
+    fontFamily: IBM Plex Sans
+    fontSize: 32px / 44px (≥768) / 56px hero de inicio (≥1024)
     fontWeight: '700'
-    lineHeight: 48px
-    letterSpacing: -0.04em
-  display-hero-mobile:
-    fontFamily: Space Grotesk
-    fontSize: 32px
-    fontWeight: '700'
-    lineHeight: 36px
-    letterSpacing: -0.03em
-  headline-lg:
-    fontFamily: Space Grotesk
-    fontSize: 28px
-    fontWeight: '600'
-    lineHeight: 34px
-    letterSpacing: -0.02em
+    letterSpacing: -0.02em a -0.03em
   headline-md:
-    fontFamily: Space Grotesk
+    fontFamily: IBM Plex Sans
     fontSize: 22px
     fontWeight: '600'
     lineHeight: 28px
-    letterSpacing: -0.02em
   title-sm:
-    fontFamily: Geist
+    fontFamily: IBM Plex Sans
     fontSize: 18px
     fontWeight: '600'
-    lineHeight: 24px
-    letterSpacing: -0.01em
-  body-lg:
-    fontFamily: Geist
-    fontSize: 16px
-    fontWeight: '400'
-    lineHeight: 24px
-    letterSpacing: 0em
-  body-md:
-    fontFamily: Geist
-    fontSize: 14px
-    fontWeight: '400'
-    lineHeight: 20px
-    letterSpacing: 0em
-  code-inline:
-    fontFamily: JetBrains Mono
+  body:
+    fontFamily: IBM Plex Sans
+    fontSize: 15px / 16px (≥768)
+    lineHeight: 24px / 26px
+  label:
+    fontFamily: IBM Plex Sans
     fontSize: 13px
     fontWeight: '500'
-    lineHeight: 18px
-    letterSpacing: -0.01em
+  meta:
+    fontFamily: IBM Plex Sans
+    fontSize: 12px
+  code:
+    fontFamily: IBM Plex Mono
+    fontSize: 13px
+    fontWeight: '500'
   badge-label:
-    fontFamily: JetBrains Mono
+    fontFamily: IBM Plex Mono
     fontSize: 11px
     fontWeight: '600'
-    lineHeight: 14px
-    letterSpacing: 0.04em
-  caption-meta:
-    fontFamily: JetBrains Mono
-    fontSize: 10px
-    fontWeight: '400'
-    lineHeight: 14px
-    letterSpacing: 0.02em
 rounded:
-  sm: 0.125rem
-  DEFAULT: 0.25rem
-  md: 0.375rem
-  lg: 0.5rem
-  xl: 0.75rem
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  lg: 0.75rem
+  xl: 1rem
   full: 9999px
 spacing:
-  gutter: 1rem
-  gutter-mobile: 0.75rem
-  margin: 1rem
-  margin-desktop: 2rem
+  margin: 1rem (móvil) / 2rem (≥768)
   space-xs: 0.25rem
   space-sm: 0.5rem
   space-md: 0.75rem
@@ -128,77 +97,57 @@ spacing:
   space-xl: 2rem
 ---
 
-## Brand & Style
+> Fuente de verdad: los tokens viven en `frontend/src/styles.scss`. Este documento describe
+> las reglas; si discrepan, manda el código y hay que actualizar este archivo.
 
-This design system blends refined engineering discipline with a high-performance cyber-minimalist aesthetic. Created specifically for mobile-first developer portfolios, it evokes technical precision, deep focus, and cutting-edge craft without falling into dated terminal or vaporwave clichés. 
+## Tono
 
-The visual voice is quiet, confident, and architectural. It relies on pitch-black and deep zinc substrates, razor-thin luminous borders, monospaced data readouts, and concentrated bursts of electric indigo and cyan light. The emotional response is immediate credibility, sophisticated architectural structure, and modern engineering prowess.
+Portafolio oscuro, sobrio y editorial. El contenido (proyectos, experiencia, stack) lleva el peso;
+la interfaz se retira. La metáfora de terminal se reserva para lugares donde significa algo
+(la página 404), no como decoración general.
 
-## Colors
+## Color
 
-The palette is tuned specifically for deep OLED displays, minimizing eye strain while maximizing visual contrast.
+- Superficies de `--surface` (#121318) a `--surface-highest` (#34343a). El fondo es plano, sin degradados radiales.
+- `--primary` (#c0c1ff) para la acción principal y enlaces; `--on-primary` (#1000a9) como texto sobre ella.
+- `--secondary` (#4cd7f6) para chips técnicos y foco (`:focus-visible`).
+- `--tertiary` (#4edea3) solo para estado positivo: "Abierto a nuevas oportunidades", "En producción", éxito de formularios.
+- El color nunca es la única fuente de significado (el stack se agrupa por título, no por color).
 
-- **Primary (`#6366F1` - Electric Indigo):** Primary calls to action, active navigation states, primary repository star indicators, and focal points.
-- **Secondary (`#06B6D4` - Cyber Cyan):** Live status beacons, commits, dynamic telemetry, tech stack highlights, and hyperlinked inline elements.
-- **Tertiary (`#10B981` - Emerald Matrix):** Status indicators denoting active uptime, green contribution metrics, and production verification badges.
-- **Neutral Core (`#090A0F` to `#F8FAFC`):** 
-  - Base Background: `#090A0F` (deep void black with a faint cool undertone).
-  - Elevated Container: `#11131F` (slate-zinc hybrid surface).
-  - High Elevation / Overlay: `#181B2C`.
-  - Border Hairline: `#23273D` (subtle structural divider) and `#313854` (interactive state border).
-  - Typography Base: `#F8FAFC` (90% white primary), `#94A3B8` (slate muted secondary), and `#475569` (low-contrast tertiary/meta text).
+## Tipografía
 
-## Typography
+- IBM Plex Sans para todo el texto; IBM Plex Mono solo para datos técnicos (nombres de repos, tags de tecnologías, métricas, código).
+- Cuerpo mínimo 15px en móvil y 16px en escritorio; ningún texto de interfaz bajo 12px.
+- Sin eyebrows ni kickers sobre los títulos: el título habla solo.
+- `text-wrap: balance` en títulos y `pretty` en párrafos.
 
-The typographic hierarchy uses a triad of specialized fonts:
+## Elevación y forma
 
-1. **Space Grotesk (Headlines & Hero):** Delivers geometric, machine-aesthetic visual impact with tight letter tracking and deliberate angularity.
-2. **Geist (Body & Narrative Text):** Provides ultra-refined, uncolored neutral legibility for experience descriptions, project summaries, and bio statements.
-3. **JetBrains Mono (Metadata, Badges & Labels):** Anchor points for numerical metrics, tech stack tags, timestamps, commit hashes, and system prompts.
+- Una sola forma de elevación: borde de 1px (`--surface-high` / `--surface-highest`). En hover, el borde se aclara; los enlaces-tarjeta usan `--shadow-raised` (sombra real con desplazamiento).
+- Sin halos de color (`glow`) ni degradados decorativos.
+- Radios: 0.75rem en tarjetas, 1rem en bloques grandes (CTA, formulario), pill solo en controles pequeños (filtros, estado).
 
-All display titles on mobile are capped at tight leading to maintain a high-density, command-center posture.
+## Estructura del inicio
 
-## Layout & Spacing
+1. Hero: estado, nombre, rol, bio y una acción principal (Contactar, o Descargar CV si existe `cvUrl`). GitHub y LinkedIn van a la derecha como enlaces secundarios.
+2. Proyectos: con un solo destacado se muestra a ancho completo; con varios, grilla de 2 columnas.
+3. Experiencia: línea de tiempo (aparece cuando `SITE.experience` tiene entradas).
+4. Stack y herramientas: agrupado por área (Backend y datos, Frontend y móvil, DevOps y automatización).
+5. Formación: título e idiomas visibles; las certificaciones académicas van en un `<details>`.
+6. Código reciente en GitHub: complementario; se oculta si GitHub falla o no hay repos.
+7. CTA de contacto con email visible y botón de copiar.
 
-This design system uses a strict 4-column fluid mobile grid scaling to a single-column stacked hierarchy on narrow viewport screens (< 380px) and an 8-column layout on tablets. 
+## Componentes
 
-Outer margins on mobile are locked to `1rem` (16px) to maximize screen real estate, while gutters maintain `0.75rem` (12px) separation between sibling card elements. Vertical cadence adheres to an 8px baseline rhythm, with compact `0.25rem` (4px) and `0.5rem` (8px) gaps used internally inside component cards to preserve an ultra-compact, high-density HUD feeling.
+- **Botones:** mínimo 44px de alto. Primario relleno `--primary`; ghost con superficie un tono más claro que su contenedor.
+- **Tarjeta de proyecto:** un solo enlace al detalle ("Ver caso"); demo y código como acciones secundarias. Sin imagen no se inventa una: la tarjeta queda solo con texto.
+- **Tarjeta de repo:** toda la tarjeta es un enlace; estrellas y forks se ocultan cuando son 0, y la descripción cuando no existe.
+- **Formularios:** etiquetas visibles, `aria-invalid` y `aria-describedby` en errores, contador de caracteres y una región `aria-live` siempre montada.
 
-## Elevation & Depth
+## Accesibilidad
 
-Visual hierarchy bypasses heavy blurry drop shadows in favor of a layered "glass-substrate" hierarchy and targeted photonic glow:
-
-- **Surface Tier 0 (Canvas):** Pure `#090A0F` base canvas with an optional 32px radial gradient overlay (`rgba(99, 102, 241, 0.05)`) positioned behind the hero section.
-- **Surface Tier 1 (Cards & Modules):** Background `#11131F` coupled with a 1px solid border of `#23273D`. 
-- **Surface Tier 2 (Interactive Floating Overlays & Drawers):** Background `rgba(17, 19, 31, 0.85)` with a `12px` backdrop-filter blur and top edge border highlight of `rgba(255, 255, 255, 0.12)`.
-- **Luminescent Accents (Glow):** Interactive elements (focused inputs, featured project cards, active status beads) introduce subtle directional glows using `box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.35)` or `0 0 15px -4px rgba(6, 182, 212, 0.4)`. Never cast opaque dark drop shadows.
-
-## Shapes
-
-The design system employs a geometric, soft-chiseled shape profile (`roundedness: 1`). Cards and integration panels utilize `0.5rem` (8px) corner radiuses, maintaining crisp structural clarity that matches the technical tone. Micro-elements like tech stack badges, live status dots, and pill buttons scale between `0.25rem` (4px) and full pill shapes (`9999px`) purely for functional semantic differentiation.
-
-## Components
-
-### Buttons
-- **Primary Action:** Solid background in Primary Electric Indigo (`#6366F1`) with high-contrast text (`#FFFFFF`), 8px border radius, subtle hover glow (`box-shadow: 0 0 16px rgba(99, 102, 241, 0.4)`), and monospaced or Geist medium typography.
-- **Secondary / Ghost Action:** Translucent fill (`rgba(255, 255, 255, 0.03)`), 1px border (`#23273D`), hover transition to cyan edge highlight (`#06B6D4`).
-
-### Tech Stack Badges & Chips
-- Rendered in `JetBrains Mono` at `11px` uppercase.
-- Contained within a `0.25rem` (4px) rounded frame, `rgba(6, 182, 212, 0.08)` surface, and a 1px border colored `rgba(6, 182, 212, 0.25)`. Text sits in secondary cyan or high-contrast neutral slate.
-
-### GitHub Integration Card
-- Background: Surface Tier 1 (`#11131F`).
-- Features a top-aligned repository moniker with an external-link glyph, commit activity pulse, language indicator (colored circular dot with language string), and repository star/fork count readouts rendered in monospaced captions.
-- Border includes a subtle hover glow shift from zinc to electric indigo.
-
-### LinkedIn Integration Card
-- Surface styled in dark carbon tones with an electric blue accent line (1px top border gradient: `linear-gradient(90deg, #0A66C2, transparent)`).
-- Embeds avatar thumbnail, current engineering role, real-time connection tally, and a direct "Connect" ghost button with an outbound arrow icon.
-
-### Form Inputs & Terminal Command Line
-- Inset field styled with dark background (`#0D0E17`), 1px structural border (`#23273D`), and monospaced typography with a blinking cyan cursor (`|`) for search or quick-filter interactions.
-- Focus state activates an electric cyan hairline border and a faint 10px diffuse outer glow.
-
-### Lists & Timeline Trees
-- Experience entries connect via a 1px vertical trace line (`#23273D`) punctuated by active status nodes (emerald `#10B981` for current position; muted slate for historical roles).
+- Íconos de Material Symbols siempre con `aria-hidden="true"` (si no, el lector de pantalla lee el nombre de la ligadura).
+- Enlaces externos anuncian "(abre en una pestaña nueva)" con `.sr-only`.
+- Enlace "Saltar al contenido" al inicio de la página.
+- Títulos de pestaña con `SiteTitleStrategy`: "Página · Benjamín López".
+- `prefers-reduced-motion` desactiva animaciones; solo el punto de estado del hero pulsa.
