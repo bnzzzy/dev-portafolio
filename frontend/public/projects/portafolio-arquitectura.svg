@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Arquitectura del portafolio: el navegador llega por Cloudflare Tunnel a un servidor propio con Docker Compose, donde nginx sirve Angular, una API en Express consulta PostgreSQL y la API de GitHub.">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#908fa0"/>
+    </marker>
+    <style>
+      text { font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; fill: #e3e1e9; }
+      .t { font-size: 42px; font-weight: 600; }
+      .s { font-size: 30px; fill: #c7c4d7; }
+      .m { font-family: 'IBM Plex Mono', Consolas, monospace; font-size: 28px; fill: #4cd7f6; }
+      .box { fill: #1e1f25; stroke: #464554; stroke-width: 3; }
+      .edge { stroke: #908fa0; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#121318"/>
+
+  <!-- Navegador -->
+  <rect class="box" x="50" y="410" width="270" height="160" rx="18"/>
+  <text class="t" x="80" y="480">Navegador</text>
+  <text class="s" x="80" y="525">Visitante</text>
+
+  <!-- Cloudflare Tunnel -->
+  <rect class="box" x="400" y="410" width="300" height="160" rx="18" style="stroke:#4cd7f6"/>
+  <text class="t" x="430" y="480">Cloudflare</text>
+  <text class="s" x="430" y="525">Tunnel · HTTPS</text>
+
+  <!-- API de GitHub (externa) -->
+  <rect class="box" x="400" y="720" width="300" height="160" rx="18"/>
+  <text class="t" x="430" y="790">GitHub</text>
+  <text class="s" x="430" y="835">API pública</text>
+
+  <!-- Servidor propio -->
+  <rect x="780" y="70" width="780" height="860" rx="26" fill="none" stroke="#464554" stroke-width="3" stroke-dasharray="14 12"/>
+  <text class="s" x="815" y="125">Servidor propio · Linux · Docker Compose</text>
+
+  <rect class="box" x="830" y="170" width="680" height="170" rx="18"/>
+  <text class="t" x="865" y="240">Frontend</text>
+  <text class="m" x="865" y="292">nginx · Angular 22</text>
+
+  <rect class="box" x="830" y="420" width="680" height="170" rx="18" style="stroke:#c0c1ff"/>
+  <text class="t" x="865" y="490">API</text>
+  <text class="m" x="865" y="542">Express 5 · Node.js</text>
+
+  <rect class="box" x="830" y="670" width="680" height="170" rx="18"/>
+  <text class="t" x="865" y="740">Base de datos</text>
+  <text class="m" x="865" y="792">PostgreSQL 17</text>
+
+  <!-- Flujo -->
+  <path class="edge" d="M320 490 H392"/>
+  <path class="edge" d="M700 490 C 760 490, 760 255, 822 255"/>
+  <path class="edge" d="M1170 340 V412"/>
+  <path class="edge" d="M1170 590 V662"/>
+  <path class="edge" d="M830 560 C 760 560, 760 800, 708 800"/>
+</svg>

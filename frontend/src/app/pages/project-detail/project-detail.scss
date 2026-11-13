@@ -5,7 +5,6 @@
   align-self: flex-start;
 
   min-height: 44px;
-  margin-block: -0.5rem;
   font-size: 14px;
 
   .icon {
@@ -21,19 +20,23 @@
   display: grid;
   gap: var(--space-lg);
 
-  max-width: 48rem;
-
-  // Con imagen, en escritorio: imagen a la izquierda, información a la derecha
-  &--has-media {
-    @media (min-width: 1024px) {
-      max-width: none;
-      grid-template-columns: 1.1fr 1fr;
-    }
-  }
-
   @media (min-width: 1024px) {
     align-items: start;
-    gap: 3rem;
+    column-gap: 3rem;
+    row-gap: var(--space-lg);
+    // Sin imagen: texto a la izquierda, ficha (métricas y acciones) a la derecha
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+
+  // Con imagen: imagen a la izquierda; texto y ficha apilados a la derecha
+  &--has-media {
+    @media (min-width: 1024px) {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+
+      .detail__media {
+        grid-row: 1 / span 2;
+      }
+    }
   }
 }
 
@@ -50,11 +53,35 @@
   }
 }
 
-.detail__info {
-  max-width: 65ch;
+.detail__lead {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  align-items: flex-start;
+  gap: var(--space-md);
+  max-width: 65ch;
+}
+
+.detail__highlight {
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  color: var(--tertiary);
+  background: rgba(0, 136, 93, 0.25);
+}
+
+.detail__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  .detail:not(.detail--has-media) & {
+    @media (min-width: 1024px) {
+      padding: 1.25rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--surface-high);
+      background: var(--surface-container);
+    }
+  }
 }
 
 .detail__tags {
@@ -79,6 +106,7 @@
   div {
     display: flex;
     flex-direction: column;
+    gap: 0.125rem;
     padding: 0.75rem;
     border-radius: var(--radius);
     background: var(--surface-low);
@@ -119,4 +147,45 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
+}
+
+// ---------- Siguiente proyecto ----------
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-highest);
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: var(--outline-variant);
+
+    .icon {
+      transform: translateX(3px);
+    }
+  }
+}
+
+.next__title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+
+  .icon {
+    transition: transform 0.2s;
+  }
+}
+
+// En la ficha lateral (sin imagen) las métricas van una bajo otra
+.detail:not(.detail--has-media) .detail__metrics {
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 }

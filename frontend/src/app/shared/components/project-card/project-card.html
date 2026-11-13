@@ -9,10 +9,10 @@
 
   <div class="project__body">
     <div class="project__head">
-      <h3 class="project__title">{{ p.title }}</h3>
       @if (p.highlight) {
         <span class="project__highlight label">{{ p.highlight }}</span>
       }
+      <h3 class="project__title">{{ p.title }}</h3>
     </div>
 
     <p class="muted">{{ p.summary }}</p>

@@ -16,7 +16,7 @@
   background: rgba(18, 19, 24, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--nav-border);
 
   a {
     min-width: 44px;
@@ -30,13 +30,28 @@
     color: var(--on-surface-variant);
     transition: color 0.2s;
 
-    &:hover {
-      color: var(--on-surface);
+    .icon {
+      padding: 0.125rem 1.125rem;
+      border-radius: var(--radius-full);
+      transition:
+        background-color 0.2s,
+        font-variation-settings 0.2s;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--on-surface);
+      }
     }
 
     &.active {
       color: var(--primary);
-      font-weight: 500;
+      font-weight: 600;
+
+      .icon {
+        background: var(--nav-active-bg);
+        font-variation-settings: 'FILL' 1;
+      }
     }
   }
 }

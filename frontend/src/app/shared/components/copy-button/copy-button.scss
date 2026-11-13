@@ -44,7 +44,7 @@
 
   .icon {
     font-size: 18px;
-    color: var(--tertiary);
+    color: var(--primary);
   }
 
   .code {
@@ -62,7 +62,12 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  color: var(--tertiary);
+  color: var(--primary);
+
+  // Verde solo cuando ya se copió (estado positivo)
+  &--done {
+    color: var(--tertiary);
+  }
 
   .icon {
     font-size: 14px;

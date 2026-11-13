@@ -12,6 +12,8 @@ import { CopyButton } from '../copy-button/copy-button';
 export class ContactCta {
   /** Título del bloque (en /contacto cambia para no repetir el h1). */
   readonly heading = input('Contacto');
+  /** En /contacto el formulario es la acción principal: el email pasa a secundario. */
+  readonly emailPrimary = input(true);
   protected readonly contact = SITE.contact;
   protected readonly github = SITE.github;
   protected readonly linkedin = SITE.linkedin;

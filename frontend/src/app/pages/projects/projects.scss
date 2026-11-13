@@ -41,3 +41,15 @@
     background: rgba(76, 215, 246, 0.08);
   }
 }
+
+// Proyectos: tarjetas grandes, máximo 2 columnas
+.project-grid {
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.more-code a {
+  color: var(--primary);
+  text-decoration: underline;
+}

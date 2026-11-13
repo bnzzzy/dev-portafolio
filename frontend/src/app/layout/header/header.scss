@@ -1,12 +1,19 @@
 .header {
-  position: fixed;
-  inset: 0 0 auto;
+  // En móvil no queda fijo (la navegación vive en la barra inferior);
+  // en escritorio sí, porque ahí está el menú.
+  position: relative;
   z-index: 50;
+
+  @media (min-width: 1024px) {
+    position: fixed;
+    inset: 0 0 auto;
+  }
+
   padding-top: env(safe-area-inset-top, 0px);
   background: rgba(18, 19, 24, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--nav-border);
 }
 
 .header__inner {
@@ -82,14 +89,17 @@
       color 0.2s,
       background-color 0.2s;
 
-    &:hover {
-      color: var(--on-surface);
-      background: var(--surface-container);
+    @media (hover: hover) {
+      &:hover {
+        color: var(--on-surface);
+        background: var(--surface-container);
+      }
     }
 
     &.active {
       color: var(--primary);
-      background: rgba(192, 193, 255, 0.08);
+      background: var(--nav-active-bg);
+      font-weight: 600;
     }
   }
 }

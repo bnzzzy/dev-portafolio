@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  // Espacio para el header fijo arriba y la barra inferior en móvil
-  padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  // Móvil: espacio para la barra inferior fija.
+  // Escritorio: espacio para el header fijo.
   padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom, 0px));
 
   @media (min-width: 1024px) {
+    padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
     padding-bottom: 0;
   }
 }

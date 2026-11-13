@@ -10,7 +10,7 @@
     <span class="code">{{ copied() && !showHint() ? '¡Copiado!' : value() }}</span>
   </span>
   @if (showHint()) {
-    <span class="copy__hint label" aria-hidden="true">
+    <span class="copy__hint label" [class.copy__hint--done]="copied()" aria-hidden="true">
       <span class="icon">{{ copied() ? 'check' : 'content_copy' }}</span>
       {{ copied() ? 'Copiado' : 'Copiar' }}
     </span>

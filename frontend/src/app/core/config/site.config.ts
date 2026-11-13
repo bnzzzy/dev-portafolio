@@ -22,7 +22,6 @@ export const SITE = {
 
   availability: {
     open: true,
-    short: 'Disponible', // aparece en el header
     long: 'Abierto a nuevas oportunidades', // aparece en el inicio
   },
 
@@ -173,10 +172,13 @@ export const SITE = {
   ],
 };
 
-/** Enlaces de navegación (header en escritorio, barra inferior en móvil). */
+/**
+ * Enlaces de navegación (header en escritorio, barra inferior en móvil).
+ * /repositorios sigue existiendo (enlazado desde Inicio y Proyectos); vuelve al
+ * menú cuando haya 3 o más repositorios públicos.
+ */
 export const NAV_ITEMS = [
-  { path: '/', label: 'Inicio', icon: 'terminal', exact: true },
+  { path: '/', label: 'Inicio', icon: 'home', exact: true },
   { path: '/proyectos', label: 'Proyectos', icon: 'layers', exact: false },
-  { path: '/repositorios', label: 'Repositorios', icon: 'code_blocks', exact: false },
   { path: '/contacto', label: 'Contacto', icon: 'alternate_email', exact: false },
 ];

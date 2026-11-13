@@ -18,7 +18,7 @@
 }
 
 .project__media {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   background: var(--surface-highest);
   overflow: hidden;
 
@@ -39,8 +39,8 @@
 
 .project__head {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
   gap: var(--space-sm);
 }
 

@@ -111,3 +111,9 @@
     color: var(--error);
   }
 }
+
+.form__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}

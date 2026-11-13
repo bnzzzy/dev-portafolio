@@ -13,8 +13,8 @@
     }
     <a
       class="btn btn--block btn--lg"
-      [class.btn--primary]="!contact.calendarUrl"
-      [class.btn--ghost]="contact.calendarUrl"
+      [class.btn--primary]="!contact.calendarUrl && emailPrimary()"
+      [class.btn--ghost]="contact.calendarUrl || !emailPrimary()"
       [href]="'mailto:' + contact.email"
     >
       <span class="icon" aria-hidden="true">mail</span> Escribir un email

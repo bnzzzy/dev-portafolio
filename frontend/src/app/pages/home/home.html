@@ -53,8 +53,38 @@
     </ul>
   </section>
 
+  <!-- ============ EXPERIENCIA ============ -->
+  @if (site.experience.length) {
+    <section id="experiencia" aria-labelledby="experience-title">
+      <div class="section-head">
+        <h2 id="experience-title" class="headline-md">Experiencia</h2>
+      </div>
+      <ol class="timeline">
+        @for (job of site.experience; track job.company + job.period) {
+          <li class="timeline__item">
+            <div class="timeline__when label muted">{{ job.period }}</div>
+            <div class="timeline__body">
+              <h3 class="title-sm">{{ job.role }} <span class="muted">· {{ job.company }}</span></h3>
+              <p class="muted">{{ job.summary }}</p>
+              @if (job.outcome) {
+                <p class="timeline__outcome">{{ job.outcome }}</p>
+              }
+              @if (job.tags?.length) {
+                <ul class="tag-list" aria-label="Tecnologías">
+                  @for (tag of job.tags; track tag) {
+                    <li class="chip">{{ tag }}</li>
+                  }
+                </ul>
+              }
+            </div>
+          </li>
+        }
+      </ol>
+    </section>
+  }
+
   <!-- ============ PROYECTOS ============ -->
-  <section aria-labelledby="projects-title">
+  <section id="proyectos" aria-labelledby="projects-title">
     <div class="section-head">
       <h2 id="projects-title" class="headline-md">Proyectos</h2>
       <a class="see-all" routerLink="/proyectos">
@@ -90,38 +120,8 @@
     }
   </section>
 
-  <!-- ============ EXPERIENCIA ============ -->
-  @if (site.experience.length) {
-    <section aria-labelledby="experience-title">
-      <div class="section-head">
-        <h2 id="experience-title" class="headline-md">Experiencia</h2>
-      </div>
-      <ol class="timeline">
-        @for (job of site.experience; track job.company + job.period) {
-          <li class="timeline__item">
-            <div class="timeline__when label muted">{{ job.period }}</div>
-            <div class="timeline__body">
-              <h3 class="title-sm">{{ job.role }} <span class="muted">· {{ job.company }}</span></h3>
-              <p class="muted">{{ job.summary }}</p>
-              @if (job.outcome) {
-                <p class="timeline__outcome">{{ job.outcome }}</p>
-              }
-              @if (job.tags?.length) {
-                <ul class="tag-list" aria-label="Tecnologías">
-                  @for (tag of job.tags; track tag) {
-                    <li class="chip">{{ tag }}</li>
-                  }
-                </ul>
-              }
-            </div>
-          </li>
-        }
-      </ol>
-    </section>
-  }
-
   <!-- ============ STACK ============ -->
-  <section aria-labelledby="stack-title">
+  <section id="stack" aria-labelledby="stack-title">
     <div class="section-head">
       <h2 id="stack-title" class="headline-md">Stack y herramientas</h2>
     </div>
@@ -140,7 +140,7 @@
   </section>
 
   <!-- ============ HABILIDADES PROFESIONALES ============ -->
-  <section aria-labelledby="soft-title">
+  <section id="competencias" aria-labelledby="soft-title">
     <div class="section-head">
       <h2 id="soft-title" class="headline-md">Competencias profesionales</h2>
     </div>
@@ -159,7 +159,7 @@
 
   <!-- ============ REPOSITORIOS ============ -->
   @if (repos() !== null && repos()?.length !== 0) {
-    <section aria-labelledby="repos-title">
+    <section id="codigo" aria-labelledby="repos-title">
       <div class="section-head">
         <h2 id="repos-title" class="headline-md">Código reciente en GitHub</h2>
         <a class="see-all" routerLink="/repositorios">

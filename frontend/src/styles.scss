@@ -54,6 +54,10 @@
   --bottom-nav-h: 4rem;
   --max-width: 1120px;
 
+  // Navegación: un solo lenguaje de "activo" para header y barra inferior
+  --nav-active-bg: rgba(192, 193, 255, 0.14);
+  --nav-border: rgba(255, 255, 255, 0.06);
+
   // Elevación: sombra real con desplazamiento, no halos de color
   --shadow-raised: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
 
@@ -76,6 +80,11 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+
+  // Los enlaces a secciones (#experiencia) no quedan bajo el header fijo
+  @media (min-width: 1024px) {
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
 }
 
 body {
@@ -229,8 +238,8 @@ textarea {
 
 .badge-label {
   font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 600;
   letter-spacing: 0.04em;
 }
@@ -493,10 +502,10 @@ a.card:hover,
   padding: 0.125rem 0.5rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   background: rgba(76, 215, 246, 0.08);
   border: 1px solid rgba(76, 215, 246, 0.25);
   color: var(--secondary);

@@ -9,8 +9,8 @@
 
     @switch (projects()) {
       @case (undefined) {
-        <div class="grid">
-          @for (i of [1, 2, 3]; track i) {
+        <div class="grid project-grid">
+          @for (i of [1, 2]; track i) {
             <div class="skeleton" style="height: 20rem"></div>
           }
         </div>
@@ -24,7 +24,7 @@
         </p>
       }
       @default {
-        @if (tags().length > 1) {
+        @if ((projects()?.length ?? 0) >= minForFilters && tags().length > 1) {
           <div class="filters" role="group" aria-label="Filtrar por tecnología">
             <button
               type="button"
@@ -49,7 +49,7 @@
           </div>
         }
 
-        <div class="grid">
+        <div class="grid project-grid">
           @for (project of filtered(); track project.slug) {
             <app-project-card [project]="project" />
           } @empty {
@@ -59,4 +59,10 @@
       }
     }
   </section>
+
+  <p class="more-code muted">
+    Más código en
+    <a routerLink="/repositorios">los repositorios públicos</a>
+    y en <a [href]="github.url" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
+  </p>
 </div>

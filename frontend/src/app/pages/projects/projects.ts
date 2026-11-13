@@ -3,11 +3,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of, startWith, Subject, switchMap } from 'rxjs';
 import { SITE } from '../../core/config/site.config';
 import { ProjectsService } from '../../core/services/projects.service';
+import { RouterLink } from '@angular/router';
 import { ProjectCard } from '../../shared/components/project-card/project-card';
 
 @Component({
   selector: 'app-projects',
-  imports: [ProjectCard],
+  imports: [ProjectCard, RouterLink],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
@@ -15,6 +16,8 @@ export class Projects {
   private readonly projectsService = inject(ProjectsService);
   private readonly reload$ = new Subject<void>();
   protected readonly github = SITE.github;
+  /** Con menos proyectos que esto, los filtros estorban más de lo que ayudan. */
+  protected readonly minForFilters = 4;
 
   // undefined = cargando, null = error. "Reintentar" vuelve a pedir la lista.
   protected readonly projects = toSignal(

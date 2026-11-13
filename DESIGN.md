@@ -80,7 +80,7 @@ typography:
     fontWeight: '500'
   badge-label:
     fontFamily: IBM Plex Mono
-    fontSize: 11px
+    fontSize: 12px
     fontWeight: '600'
 rounded:
   sm: 0.25rem
@@ -111,7 +111,7 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 - Superficies de `--surface` (#121318) a `--surface-highest` (#34343a). El fondo es plano, sin degradados radiales.
 - `--primary` (#c0c1ff) para la acción principal y enlaces; `--on-primary` (#1000a9) como texto sobre ella.
 - `--secondary` (#4cd7f6) para chips técnicos y foco (`:focus-visible`).
-- `--tertiary` (#4edea3) solo para estado positivo: "Abierto a nuevas oportunidades", "En producción", éxito de formularios.
+- `--tertiary` (#4edea3) solo para estado positivo: "Abierto a nuevas oportunidades", "En producción", "En uso", éxito de formularios y "Copiado". Nunca para estados neutros (fechas, acciones en reposo).
 - El color nunca es la única fuente de significado (el stack se agrupa por título, no por color).
 
 ## Tipografía
@@ -127,20 +127,29 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 - Sin halos de color (`glow`) ni degradados decorativos.
 - Radios: 0.75rem en tarjetas, 1rem en bloques grandes (CTA, formulario), pill solo en controles pequeños (filtros, estado).
 
+## Navegación
+
+- Escritorio: header fijo con Inicio, Proyectos y Contacto. Móvil: barra inferior fija; el header no es fijo.
+- Un solo lenguaje de "activo" en ambas: fondo `--nav-active-bg` (píldora) y peso 600; en la barra inferior el ícono además se rellena (`FILL 1`).
+- /repositorios no está en el menú mientras haya menos de 3 repos públicos; se enlaza desde Inicio y Proyectos.
+- "Saltar al contenido" mueve el foco por código: con `<base href="/">` un enlace `#ancla` navegaría al inicio. Ninguna página usa enlaces `#ancla` por la misma razón.
+
 ## Estructura del inicio
 
-1. Hero: estado, nombre, rol, bio y una acción principal (Contactar, o Descargar CV si existe `cvUrl`). GitHub y LinkedIn van a la derecha como enlaces secundarios.
-2. Proyectos: con un solo destacado se muestra a ancho completo; con varios, grilla de 2 columnas.
-3. Experiencia: línea de tiempo (aparece cuando `SITE.experience` tiene entradas).
+1. Hero: estado, nombre, rol, bio y una acción principal (Contactar, o Descargar CV si existe `cvUrl`). GitHub y LinkedIn van a la derecha como enlaces secundarios; en móvil, como dos botones compactos.
+2. Experiencia: línea de tiempo (aparece cuando `SITE.experience` tiene entradas). Va primero porque es la evidencia más fuerte.
+3. Proyectos: con un solo destacado se muestra a ancho completo; con varios, grilla de 2 columnas. Filtros solo con 4 o más proyectos.
 4. Stack y herramientas: agrupado por área (Backend y datos, Frontend y móvil, DevOps y automatización).
-5. Formación: título e idiomas visibles; las certificaciones académicas van en un `<details>`.
-6. Código reciente en GitHub: complementario; se oculta si GitHub falla o no hay repos.
-7. CTA de contacto con email visible y botón de copiar.
+5. Competencias profesionales: cada una con el hecho del CV que la respalda.
+6. Formación: título e idiomas visibles; las certificaciones académicas van en un `<details>`.
+7. Código reciente en GitHub: complementario; se oculta si GitHub falla o no hay repos.
+8. CTA de contacto con email visible y botón de copiar.
 
 ## Componentes
 
 - **Botones:** mínimo 44px de alto. Primario relleno `--primary`; ghost con superficie un tono más claro que su contenedor.
-- **Tarjeta de proyecto:** un solo enlace al detalle ("Ver caso"); demo y código como acciones secundarias. Sin imagen no se inventa una: la tarjeta queda solo con texto.
+- **Tarjeta de proyecto:** etiqueta de estado sobre el título, un solo enlace al detalle ("Ver caso"); demo y código como acciones secundarias. Sin imagen no se inventa una: la tarjeta queda solo con texto. Las imágenes son capturas reales o diagramas (SVG) del sistema, nunca ilustraciones decorativas.
+- **Detalle de proyecto:** sin imagen, texto a la izquierda y ficha (métricas y acciones) a la derecha. Termina con "Siguiente proyecto" y un bloque de contacto.
 - **Tarjeta de repo:** toda la tarjeta es un enlace; estrellas y forks se ocultan cuando son 0, y la descripción cuando no existe.
 - **Formularios:** etiquetas visibles, `aria-invalid` y `aria-describedby` en errores, contador de caracteres y una región `aria-live` siempre montada.
 
@@ -150,4 +159,4 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 - Enlaces externos anuncian "(abre en una pestaña nueva)" con `.sr-only`.
 - Enlace "Saltar al contenido" al inicio de la página.
 - Títulos de pestaña con `SiteTitleStrategy`: "Página · Benjamín López".
-- `prefers-reduced-motion` desactiva animaciones; solo el punto de estado del hero pulsa.
+- Movimiento: una sola entrada escalonada del hero (opacidad, 10px y desenfoque, 0.7 s, ease-out exponencial) y el punto de estado que pulsa. `prefers-reduced-motion` desactiva ambas.

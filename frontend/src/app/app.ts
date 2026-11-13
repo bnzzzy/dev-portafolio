@@ -10,4 +10,15 @@ import { Header } from './layout/header/header';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  /**
+   * Lleva el foco al contenido principal. No se usa la navegación por "#":
+   * con <base href="/">, "#contenido" apunta a "/#contenido" y recargaría el inicio.
+   */
+  protected skipToContent(event: Event) {
+    event.preventDefault();
+    const main = document.getElementById('contenido');
+    main?.focus();
+    main?.scrollIntoView();
+  }
+}
