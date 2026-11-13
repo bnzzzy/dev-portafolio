@@ -11,11 +11,16 @@ export interface ExperienceEntry {
   summary: string; // qué hiciste, en una o dos frases
   outcome?: string; // solo un resultado real y verificable (se muestra en negrita); si no hay, omitir
   tags?: string[]; // tecnologías usadas
+  featured?: boolean; // logro principal: se muestra destacado arriba de la experiencia
+  headline?: string; // título del logro destacado (ej: el sistema que se construyó)
 }
 
 export const SITE = {
   name: 'Benjamín López',
   role: 'Ingeniero en Informática · Desarrollador Full Stack',
+  location: 'Santiago, Chile',
+  // Titular del inicio. Debe poder respaldarse con la experiencia (la app de RRHH quedó en uso).
+  headline: { before: 'Software que se usa en', accent: 'operación real' },
   bio: 'Desarrollo de APIs y microservicios con Java (Spring Boot) y Python, interfaces con Angular y React, procesos ETL y automatización de procesos, con despliegue en Docker sobre Linux. Experiencia en el sector logístico.',
   logo: '/logo.svg', // monograma <B> del header
   avatar: null as string | null, // ej: '/avatar.jpg' (ponlo en frontend/public)
@@ -72,10 +77,11 @@ export const SITE = {
       role: 'Práctica profesional · Ingeniería y Proyectos',
       company: 'ID Logistics Chile',
       period: 'ago. 2025 – oct. 2025',
+      featured: true,
+      headline: 'Aplicación web de RRHH integrada con la API de BUK',
       summary:
-        'Scripts en Python (Pandas) para analizar y procesar datos, modelado con SQL avanzado y documentación técnica de las soluciones.',
-      outcome:
-        'Desarrollo autónomo de una aplicación web de RRHH (Flask, MySQL y Pandas) integrada con la API de BUK para analizar ausentismo, presentismo y rotación por cargo y cuenta; quedó en uso en el área.',
+        'Desarrollo autónomo con Flask, MySQL y Pandas: ausentismo, presentismo y rotación por cargo y cuenta. Además, scripts de análisis de datos en Python, modelado con SQL avanzado y documentación técnica.',
+      outcome: 'Quedó en uso en el área de Recursos Humanos.',
       tags: ['Python', 'Flask', 'MySQL', 'API BUK'],
     },
     {

@@ -1,56 +1,54 @@
 <div class="page">
   <!-- ============ HERO ============ -->
-  <section class="hero" aria-labelledby="hero-name">
-    <div class="hero__intro">
-      @if (site.availability.open) {
-        <span class="status-pill label">
-          <span class="dot dot--pulse" aria-hidden="true"></span>
-          {{ site.availability.long }}
-        </span>
-      }
-      <h1 id="hero-name" class="display-hero">{{ site.name }}</h1>
-      <p class="hero__role">{{ site.role }}</p>
-      <p class="hero__bio muted">{{ site.bio }}</p>
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title" class="hero__headline">
+      {{ site.headline.before }} <span class="accent">{{ site.headline.accent }}</span>.
+    </h1>
 
-      <div class="hero__actions">
-        @if (site.cvUrl) {
-          <a class="btn btn--primary" [href]="site.cvUrl" download>
-            <span class="icon" aria-hidden="true">download</span> Descargar CV
-          </a>
-          <a class="btn btn--ghost" routerLink="/contacto">Contactar</a>
-        } @else {
-          <a class="btn btn--primary" routerLink="/contacto">
-            <span class="icon" aria-hidden="true">alternate_email</span> Contactar
-          </a>
-          <a class="btn btn--ghost" routerLink="/proyectos">Ver proyectos</a>
+    <div class="hero__row">
+      <div class="hero__intro">
+        <p class="hero__who"><b>{{ site.name }}</b> · {{ site.role }}</p>
+        <p class="hero__bio muted">{{ site.bio }}</p>
+      </div>
+
+      <div class="hero__side">
+        <div class="hero__actions">
+          @if (site.cvUrl) {
+            <a class="btn btn--primary" [href]="site.cvUrl" download>
+              <span class="icon" aria-hidden="true">download</span> Descargar CV
+            </a>
+            <a class="btn btn--ghost" routerLink="/contacto">Contactar</a>
+          } @else {
+            <a class="btn btn--primary" routerLink="/contacto">Contactar</a>
+            <a class="btn btn--ghost" routerLink="/proyectos">Ver proyectos</a>
+          }
+        </div>
+
+        @if (site.availability.open) {
+          <p class="hero__status label">
+            <span class="dot dot--pulse" aria-hidden="true"></span>
+            <span><b>{{ site.availability.long }}</b> · {{ site.location }}</span>
+          </p>
         }
+
+        <ul class="hero__links" aria-label="Perfiles">
+          <li>
+            <a class="profile-link" [href]="site.github.url" target="_blank" rel="noopener">
+              <span class="brand-icon brand-icon--github" aria-hidden="true"></span> GitHub
+              <span class="icon" aria-hidden="true">arrow_outward</span>
+              <span class="sr-only">(abre en una pestaña nueva)</span>
+            </a>
+          </li>
+          <li>
+            <a class="profile-link" [href]="site.linkedin.url" target="_blank" rel="noopener">
+              <span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span> LinkedIn
+              <span class="icon" aria-hidden="true">arrow_outward</span>
+              <span class="sr-only">(abre en una pestaña nueva)</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-
-    <ul class="hero__links" aria-label="Perfiles">
-      <li>
-        <a class="link-card" [href]="site.github.url" target="_blank" rel="noopener">
-          <span class="link-card__icon" aria-hidden="true"><span class="brand-icon brand-icon--github"></span></span>
-          <span class="link-card__text">
-            <span class="link-card__title">GitHub <span class="link-card__handle">&#64;{{ site.github.username }}</span></span>
-            <span class="label muted">{{ site.github.caption }}</span>
-          </span>
-          <span class="icon link-card__arrow" aria-hidden="true">arrow_outward</span>
-          <span class="sr-only">(abre en una pestaña nueva)</span>
-        </a>
-      </li>
-      <li>
-        <a class="link-card link-card--linkedin" [href]="site.linkedin.url" target="_blank" rel="noopener">
-          <span class="link-card__icon" aria-hidden="true"><span class="brand-icon brand-icon--linkedin"></span></span>
-          <span class="link-card__text">
-            <span class="link-card__title">LinkedIn</span>
-            <span class="label muted">{{ site.linkedin.caption }}</span>
-          </span>
-          <span class="icon link-card__arrow" aria-hidden="true">arrow_outward</span>
-          <span class="sr-only">(abre en una pestaña nueva)</span>
-        </a>
-      </li>
-    </ul>
   </section>
 
   <!-- ============ EXPERIENCIA ============ -->
@@ -59,24 +57,39 @@
       <div class="section-head">
         <h2 id="experience-title" class="headline-md">Experiencia</h2>
       </div>
-      <ol class="timeline">
-        @for (job of site.experience; track job.company + job.period) {
-          <li class="timeline__item">
-            <div class="timeline__when label muted">{{ job.period }}</div>
-            <div class="timeline__body">
-              <h3 class="title-sm">{{ job.role }} <span class="muted">· {{ job.company }}</span></h3>
-              <p class="muted">{{ job.summary }}</p>
-              @if (job.outcome) {
-                <p class="timeline__outcome">{{ job.outcome }}</p>
+
+      <!-- El logro principal va destacado; el resto en orden cronológico -->
+      @for (job of featuredJobs; track job.company + job.period) {
+        <article class="job-key">
+          <p class="job-key__meta label muted">{{ job.period }} · {{ job.role }}, {{ job.company }}</p>
+          <h3 class="job-key__title">{{ job.headline }}</h3>
+          @if (job.outcome) {
+            <p class="job-key__outcome"><b>{{ job.outcome }}</b></p>
+          }
+          <p class="muted">{{ job.summary }}</p>
+          @if (job.tags?.length) {
+            <ul class="tag-list" aria-label="Tecnologías">
+              @for (tag of job.tags; track tag) {
+                <li class="chip">{{ tag }}</li>
               }
-              @if (job.tags?.length) {
-                <ul class="tag-list" aria-label="Tecnologías">
-                  @for (tag of job.tags; track tag) {
-                    <li class="chip">{{ tag }}</li>
-                  }
-                </ul>
-              }
-            </div>
+            </ul>
+          }
+        </article>
+      }
+
+      <ol class="jobs">
+        @for (job of otherJobs; track job.company + job.period) {
+          <li class="job">
+            <p class="job__when label muted">{{ job.period }}</p>
+            <h3 class="job__title">{{ job.role }} <span class="job__company">· {{ job.company }}</span></h3>
+            <p class="muted">{{ job.summary }}</p>
+            @if (job.tags?.length) {
+              <ul class="tag-list" aria-label="Tecnologías">
+                @for (tag of job.tags; track tag) {
+                  <li class="chip">{{ tag }}</li>
+                }
+              </ul>
+            }
           </li>
         }
       </ol>

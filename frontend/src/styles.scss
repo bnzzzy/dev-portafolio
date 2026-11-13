@@ -1,31 +1,30 @@
 // =============================================================
-//  Terminal Horizon — design system (ver /DESIGN.md)
+//  Ingeniería editorial — design system (ver /DESIGN.md)
 //  Para cambiar colores o tipografías, edita solo las variables.
 // =============================================================
 
 :root {
-  // Superficies (de más oscura a más clara)
-  --surface: #121318;
-  --surface-lowest: #0d0e13;
-  --surface-low: #1a1b21;
-  --surface-container: #1e1f25;
-  --surface-high: #292a2f;
-  --surface-highest: #34343a;
+  // Superficies (gris neutro, de más oscura a más clara)
+  --surface: #0f1115;
+  --surface-lowest: #0a0b0e;
+  --surface-low: #14171c;
+  --surface-container: #181c22;
+  --surface-high: #20252c;
+  --surface-highest: #2a3038;
 
   // Texto
-  --on-surface: #e3e1e9;
-  --on-surface-variant: #c7c4d7;
-  --outline: #908fa0;
-  --outline-variant: #464554;
+  --on-surface: #e6e7ea;
+  --on-surface-variant: #a3a9b4;
+  --outline: #8a909b;
+  --outline-variant: #333842;
 
-  // Acentos
-  --primary: #c0c1ff;
-  --on-primary: #1000a9;
-  --primary-container: #8083ff;
-  --secondary: #4cd7f6;
-  --secondary-container: #03b5d3;
-  --tertiary: #4edea3;
-  --tertiary-container: #00885d;
+  // Acento único: turquesa. Acción principal, enlaces, foco, estado y "activo".
+  --primary: #3dd6c0;
+  --primary-hover: #6fe3d2;
+  --on-primary: #062521;
+  --primary-tint: rgba(61, 214, 192, 0.14);
+  --secondary: var(--primary);
+  --tertiary: var(--primary);
   --error: #ffb4ab;
   --linkedin: #0a66c2;
 
@@ -55,7 +54,7 @@
   --max-width: 1120px;
 
   // Navegación: un solo lenguaje de "activo" para header y barra inferior
-  --nav-active-bg: rgba(192, 193, 255, 0.14);
+  --nav-active-bg: var(--primary-tint);
   --nav-border: rgba(255, 255, 255, 0.06);
 
   // Elevación: sombra real con desplazamiento, no halos de color
@@ -104,7 +103,7 @@ body {
 }
 
 ::selection {
-  background: rgba(192, 193, 255, 0.3);
+  background: rgba(61, 214, 192, 0.3);
   color: var(--on-surface);
 }
 
@@ -210,10 +209,16 @@ textarea {
 
 .headline-md {
   font-family: var(--font-display);
-  font-size: 22px;
-  line-height: 28px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: -0.03em;
+  }
 }
 
 .title-sm {
@@ -335,12 +340,12 @@ textarea {
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: 3rem;
   padding-block: var(--space-lg) var(--space-xl);
 
   @media (min-width: 1024px) {
-    gap: 3rem;
-    padding-block: var(--space-xl) 4rem;
+    gap: 5rem;
+    padding-block: var(--space-xl) 5rem;
   }
 }
 
@@ -378,7 +383,7 @@ textarea {
 a.card:hover,
 .card--interactive:hover {
   background: var(--surface-high);
-  border-color: rgba(192, 193, 255, 0.2);
+  border-color: rgba(61, 214, 192, 0.25);
   box-shadow: var(--shadow-raised);
 }
 
@@ -387,9 +392,7 @@ a.card:hover,
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-md);
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--surface-highest);
+  margin-bottom: var(--space-lg);
 }
 
 // Enlace "Ver todos" al final del encabezado de sección (área táctil de 44px)
@@ -434,9 +437,9 @@ a.card:hover,
   justify-content: center;
   gap: var(--space-sm);
   min-height: 44px;
-  padding: 0.625rem 1rem;
+  padding: 0.625rem 1.25rem;
   border: 1px solid transparent;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
@@ -466,7 +469,7 @@ a.card:hover,
   color: var(--on-primary);
 
   &:hover {
-    background: #d4d4ff;
+    background: var(--primary-hover);
   }
 }
 
@@ -506,9 +509,9 @@ a.card:hover,
   line-height: 16px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: rgba(76, 215, 246, 0.08);
-  border: 1px solid rgba(76, 215, 246, 0.25);
-  color: var(--secondary);
+  background: var(--surface-high);
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface);
 
   // Variante para texto normal (no técnico)
   &--text {
@@ -616,4 +619,9 @@ main:focus,
   &:hover {
     text-decoration: underline;
   }
+}
+
+// Palabra destacada con el acento (titulares)
+.accent {
+  color: var(--primary);
 }

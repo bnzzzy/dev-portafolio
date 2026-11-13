@@ -1,53 +1,22 @@
 ---
-name: Terminal Horizon
+name: Ingeniería editorial
 colors:
-  surface: '#121318'
-  surface-dim: '#121318'
-  surface-bright: '#38393f'
-  surface-container-lowest: '#0d0e13'
-  surface-container-low: '#1a1b21'
-  surface-container: '#1e1f25'
-  surface-container-high: '#292a2f'
-  surface-container-highest: '#34343a'
-  on-surface: '#e3e1e9'
-  on-surface-variant: '#c7c4d7'
-  inverse-surface: '#e3e1e9'
-  inverse-on-surface: '#2f3036'
-  outline: '#908fa0'
-  outline-variant: '#464554'
-  surface-tint: '#c0c1ff'
-  primary: '#c0c1ff'
-  on-primary: '#1000a9'
-  primary-container: '#8083ff'
-  on-primary-container: '#0d0096'
-  inverse-primary: '#494bd6'
-  secondary: '#4cd7f6'
-  on-secondary: '#003640'
-  secondary-container: '#03b5d3'
-  on-secondary-container: '#00424e'
-  tertiary: '#4edea3'
-  on-tertiary: '#003824'
-  tertiary-container: '#00885d'
-  on-tertiary-container: '#000703'
+  surface: '#0f1115'
+  surface-lowest: '#0a0b0e'
+  surface-low: '#14171c'
+  surface-container: '#181c22'
+  surface-high: '#20252c'
+  surface-highest: '#2a3038'
+  on-surface: '#e6e7ea'
+  on-surface-variant: '#a3a9b4'
+  outline: '#8a909b'
+  outline-variant: '#333842'
+  primary: '#3dd6c0'
+  primary-hover: '#6fe3d2'
+  on-primary: '#062521'
+  primary-tint: 'rgba(61, 214, 192, 0.14)'
   error: '#ffb4ab'
-  on-error: '#690005'
-  error-container: '#93000a'
-  on-error-container: '#ffdad6'
-  primary-fixed: '#e1e0ff'
-  primary-fixed-dim: '#c0c1ff'
-  on-primary-fixed: '#07006c'
-  on-primary-fixed-variant: '#2f2ebe'
-  secondary-fixed: '#acedff'
-  secondary-fixed-dim: '#4cd7f6'
-  on-secondary-fixed: '#001f26'
-  on-secondary-fixed-variant: '#004e5c'
-  tertiary-fixed: '#6ffbbe'
-  tertiary-fixed-dim: '#4edea3'
-  on-tertiary-fixed: '#002113'
-  on-tertiary-fixed-variant: '#005236'
-  background: '#121318'
-  on-background: '#e3e1e9'
-  surface-variant: '#34343a'
+  linkedin: '#0a66c2'
 typography:
   display-hero:
     fontFamily: IBM Plex Sans
@@ -102,17 +71,16 @@ spacing:
 
 ## Tono
 
-Portafolio oscuro, sobrio y editorial. El contenido (proyectos, experiencia, stack) lleva el peso;
-la interfaz se retira. La metáfora de terminal se reserva para lugares donde significa algo
-(la página 404), no como decoración general.
+Dirección "Ingeniería editorial" (elegida el 2026-11-13 entre tres propuestas). Oscuro, sobrio y con tipografía grande. El inicio abre con una tesis respaldada por la experiencia ("Software que se usa en operación real.") y el contenido (experiencia, proyectos) lleva el peso. La metáfora de terminal solo aparece en el 404.
 
 ## Color
 
-- Superficies de `--surface` (#121318) a `--surface-highest` (#34343a). El fondo es plano, sin degradados radiales.
-- `--primary` (#c0c1ff) para la acción principal y enlaces; `--on-primary` (#1000a9) como texto sobre ella.
-- `--secondary` (#4cd7f6) para chips técnicos y foco (`:focus-visible`).
-- `--tertiary` (#4edea3) solo para estado positivo: "Abierto a nuevas oportunidades", "En producción", "En uso", éxito de formularios y "Copiado". Nunca para estados neutros (fechas, acciones en reposo).
-- El color nunca es la única fuente de significado (el stack se agrupa por título, no por color).
+- Gris neutro de `--surface` (#0f1115) a `--surface-highest` (#2a3038), sin tinte violeta. Fondo plano.
+- **Un solo acento: turquesa `--primary` (#3dd6c0)**, con `--on-primary` (#062521) como texto encima. Se usa para la acción principal, los enlaces, el foco, el estado "abierto", el "activo" de la navegación y la palabra destacada del titular (`.accent`).
+- `--primary-tint` es el fondo suave del acento (pestaña activa, etiquetas de estado, filtros activos).
+- Los chips de tecnología son neutros (superficie y borde gris): el acento queda reservado para lo accionable y lo positivo.
+- `--secondary` y `--tertiary` existen solo como alias de `--primary` por compatibilidad; no introducir otros acentos.
+- El logo conserva su violeta original (activo de marca del usuario).
 
 ## Tipografía
 
@@ -130,14 +98,14 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 ## Navegación
 
 - Escritorio: header fijo con Inicio, Proyectos y Contacto. Móvil: barra inferior fija; el header no es fijo.
-- Un solo lenguaje de "activo" en ambas: fondo `--nav-active-bg` (píldora) y peso 600; en la barra inferior el ícono además se rellena (`FILL 1`).
+- "Activo" en el acento: en escritorio, subrayado turquesa de 2px y peso 600; en la barra inferior, píldora `--primary-tint` tras el ícono relleno (`FILL 1`).
 - /repositorios no está en el menú mientras haya menos de 3 repos públicos; se enlaza desde Inicio y Proyectos.
 - "Saltar al contenido" mueve el foco por código: con `<base href="/">` un enlace `#ancla` navegaría al inicio. Ninguna página usa enlaces `#ancla` por la misma razón.
 
 ## Estructura del inicio
 
-1. Hero: estado, nombre, rol, bio y una acción principal (Contactar, o Descargar CV si existe `cvUrl`). GitHub y LinkedIn van a la derecha como enlaces secundarios; en móvil, como dos botones compactos.
-2. Experiencia: línea de tiempo (aparece cuando `SITE.experience` tiene entradas). Va primero porque es la evidencia más fuerte.
+1. Hero: titular grande (`SITE.headline`, máx. 14ch) y debajo, separados por una línea, nombre + rol + bio a la izquierda y a la derecha la acción principal (Contactar, o Descargar CV si existe `cvUrl`), el estado y los enlaces a GitHub y LinkedIn.
+2. Experiencia: el logro marcado `featured` va destacado en una tarjeta (título del sistema y resultado en el acento); el resto en dos columnas, en orden cronológico. Va primero porque es la evidencia más fuerte.
 3. Proyectos: con un solo destacado se muestra a ancho completo; con varios, grilla de 2 columnas. Filtros solo con 4 o más proyectos.
 4. Perfil: una sola sección con pestañas accesibles (patrón ARIA tabs, flechas/Inicio/Fin): Stack (agrupado por área), Competencias (cada una con su respaldo del CV) y Formación. Mantiene el inicio corto en móvil.
 5. Código reciente en GitHub: solo con `SITE.minRepos` (3) o más repos públicos; la misma regla decide si /repositorios vuelve al menú.
@@ -145,7 +113,7 @@ la interfaz se retira. La metáfora de terminal se reserva para lugares donde si
 
 ## Componentes
 
-- **Botones:** mínimo 44px de alto. Primario relleno `--primary`; ghost con superficie un tono más claro que su contenedor.
+- **Botones:** píldora (`--radius-full`), mínimo 44px de alto. Primario relleno `--primary`; ghost con superficie un tono más claro que su contenedor.
 - **Tarjeta de proyecto:** etiqueta de estado sobre el título, un solo enlace al detalle ("Ver caso"); demo y código como acciones secundarias. Sin imagen no se inventa una: la tarjeta queda solo con texto. Las imágenes son capturas reales o diagramas (SVG) del sistema, nunca ilustraciones decorativas.
 - **Grillas de proyectos:** `align-items: start`; una tarjeta sin imagen no se estira a la altura de su vecina.
 - **Experiencia:** la línea en negrita (`outcome`) es solo para resultados reales; la tecnología va en el resumen.

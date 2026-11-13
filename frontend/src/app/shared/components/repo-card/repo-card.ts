@@ -5,7 +5,7 @@ import { TimeAgoPipe } from '../../pipes/time-ago';
 
 // Color del punto según el lenguaje del repo
 const LANGUAGE_COLORS: Record<string, string> = {
-  TypeScript: 'var(--primary-container)',
+  TypeScript: '#3178c6',
   JavaScript: '#f7df1e',
   HTML: '#e34c26',
   CSS: '#663399',

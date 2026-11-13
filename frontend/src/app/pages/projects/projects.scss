@@ -37,8 +37,8 @@
 
   &.active {
     color: var(--secondary);
-    border-color: rgba(76, 215, 246, 0.4);
-    background: rgba(76, 215, 246, 0.08);
+    border-color: rgba(61, 214, 192, 0.45);
+    background: var(--primary-tint);
   }
 }
 

@@ -45,6 +45,10 @@ export class Home {
     return list ? list.filter((p) => p.featured) : list;
   });
 
+  // Experiencia: el logro principal va destacado; el resto, en orden cronológico
+  protected readonly featuredJobs = SITE.experience.filter((j) => j.featured);
+  protected readonly otherJobs = SITE.experience.filter((j) => !j.featured);
+
   // Pestañas de la sección Perfil
   protected readonly tabs = [
     { id: 'stack', label: 'Stack' },
