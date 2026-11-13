@@ -76,8 +76,8 @@ export const SITE = {
       summary:
         'Scripts en Python (Pandas) para analizar y procesar datos, modelado con SQL avanzado y documentación técnica de las soluciones.',
       outcome:
-        'Desarrollo autónomo de una aplicación de RRHH integrada con la API de BUK para analizar ausentismo, presentismo y rotación por cargo y cuenta.',
-      tags: ['Python', 'Pandas', 'SQL', 'API BUK'],
+        'Desarrollo autónomo de una aplicación web de RRHH (Flask, MySQL y Pandas) integrada con la API de BUK para analizar ausentismo, presentismo y rotación por cargo y cuenta; quedó en uso en el área.',
+      tags: ['Python', 'Flask', 'MySQL', 'API BUK'],
     },
     {
       role: 'Práctica · RPA y Soporte',

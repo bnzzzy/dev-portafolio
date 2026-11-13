@@ -2,7 +2,7 @@
   {
     "slug": "indicadores-rrhh-buk",
     "title": "Indicadores de RRHH con la API de BUK",
-    "summary": "Aplicación interna para visualizar y analizar ausentismo, presentismo y rotación de personal por cargo y cuenta, integrada con la API de BUK.",
+    "summary": "Aplicación web interna que integra la API de BUK y presenta ausentismo, presentismo y rotación de personal por cargo y cuenta. Quedó en uso en el área de Recursos Humanos.",
     "description": "Desarrollo autónomo, durante la práctica profesional en ID Logistics Chile, de una aplicación que integra los datos de personal de BUK y los transforma en indicadores de gestión para el área de Recursos Humanos.",
     "sections": [
       {
@@ -11,11 +11,11 @@
       },
       {
         "heading": "Solución",
-        "body": "Aplicación que consume la API de BUK, procesa los registros de personal y presenta los tres indicadores con desglose por cargo y por cuenta. El procesamiento y el análisis de datos se apoyaron en scripts de Python con Pandas y en modelado de datos con consultas SQL avanzadas."
+        "body": "Backend en Python con Flask que consume la API de BUK, almacena los registros en MySQL y calcula los indicadores con Pandas. Interfaz web en HTML, CSS y JavaScript que presenta los tres indicadores con desglose por cargo y por cuenta."
       },
       {
-        "heading": "Rol",
-        "body": "Desarrollo completo de forma autónoma: integración con la API, procesamiento de datos, presentación de los indicadores y documentación técnica de la solución."
+        "heading": "Rol y resultado",
+        "body": "Desarrollo completo de forma autónoma: integración con la API, modelo de datos, cálculo de indicadores, interfaz y documentación técnica. La aplicación quedó en uso en el área de Recursos Humanos."
       },
       {
         "heading": "Confidencialidad",
@@ -24,19 +24,20 @@
     ],
     "tags": [
       "Python",
+      "Flask",
       "Pandas",
-      "SQL",
+      "MySQL",
       "API BUK"
     ],
-    "highlight": "Proyecto interno",
+    "highlight": "En uso por RRHH",
     "metrics": [
       {
         "label": "Indicadores",
         "value": "Ausentismo · Presentismo · Rotación"
       },
       {
-        "label": "Desglose",
-        "value": "Por cargo y cuenta"
+        "label": "Stack",
+        "value": "Flask + MySQL + JS"
       }
     ],
     "repoUrl": null,

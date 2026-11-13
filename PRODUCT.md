@@ -42,7 +42,7 @@ Experiencia real en logística (ID Logistics Chile) que cruza backend Java/Sprin
 ## Evidence on Hand
 
 - CV v3 (`privado/`, no versionado): 4 puestos entre dic. 2024 y oct. 2026, certificaciones y habilidades.
-- App de RRHH integrada con la API de BUK: proyecto interno, sin código público ni capturas.
+- App de RRHH integrada con la API de BUK (Flask, MySQL, Pandas, HTML/CSS/JS): proyecto interno que quedó en uso en el área de RRHH; sin código público ni capturas.
 - Este portafolio: código en github.com/bnzzzy/dev-portafolio.
 - 6 certificaciones de Google Cloud y 7 certificaciones académicas de Duoc UC.
 - **No existen** y no deben inventarse: métricas cuantificadas de impacto, testimonios, capturas de la app de RRHH, foto de perfil.
