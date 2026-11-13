@@ -1,6 +1,6 @@
 <section class="cta" aria-labelledby="cta-title">
   <div class="cta__text">
-    <h2 id="cta-title" class="headline-md">¿Trabajamos juntos?</h2>
+    <h2 id="cta-title" class="headline-md">{{ heading() }}</h2>
     <p class="muted">{{ contact.pitch }}</p>
   </div>
 
@@ -21,7 +21,7 @@
     </a>
 
     <div class="cta__email">
-      <span class="label muted" id="cta-email-label">O copia la dirección:</span>
+      <span class="label muted" id="cta-email-label">O copie la dirección:</span>
       <app-copy-button [value]="contact.email" icon="alternate_email" [showHint]="true" />
     </div>
 

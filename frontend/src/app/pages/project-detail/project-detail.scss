@@ -51,6 +51,7 @@
 }
 
 .detail__info {
+  max-width: 65ch;
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
@@ -88,4 +89,34 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: var(--space-sm);
+}
+
+// ---------- Caso de estudio ----------
+.case {
+  display: grid;
+  gap: 0 var(--space-xl);
+  max-width: 64rem;
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.case__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--surface-highest);
+
+  p {
+    max-width: 65ch;
+    color: var(--on-surface-variant);
+  }
+}
+
+.case__heading {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
 }

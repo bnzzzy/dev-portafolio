@@ -1,7 +1,13 @@
 <footer class="footer">
   <div class="footer__inner container">
     <div class="footer__brand">
-      <img class="footer__logo" [src]="site.logoFull" [alt]="site.name + ' - ' + site.role" width="285" height="72" />
+      <div class="footer__id">
+        <img class="footer__logo" [src]="site.logo" alt="" width="54" height="32" />
+        <div class="footer__text">
+          <span class="footer__name">{{ site.name }}</span>
+          <span class="label muted">{{ site.role }}</span>
+        </div>
+      </div>
       <span class="label text-outline">© {{ year }} {{ site.name }}</span>
     </div>
     <nav class="footer__links" aria-label="Redes">

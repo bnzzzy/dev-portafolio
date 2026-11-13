@@ -7,7 +7,7 @@ import { readFile } from 'node:fs/promises';
 // Los alias "AS ..." devuelven las columnas en camelCase,
 // igual que el JSON que espera el frontend.
 const PROJECT_COLUMNS = `
-  slug, title, summary, description, tags, highlight, metrics,
+  slug, title, summary, description, sections, tags, highlight, metrics,
   repo_url AS "repoUrl", demo_url AS "demoUrl", image, featured`;
 
 export function createDb(connectionString = process.env.DATABASE_URL) {
@@ -36,12 +36,10 @@ export function createDb(connectionString = process.env.DATABASE_URL) {
       ]);
     },
 
-    // Crea las tablas y, si no hay proyectos, carga los del JSON semilla.
+    // Crea las tablas y sincroniza los proyectos con el JSON semilla.
+    // El JSON es la fuente de verdad: si un proyecto ya existe, se actualiza.
     async migrate() {
       await pool.query(await readFile(new URL('./schema.sql', import.meta.url), 'utf-8'));
-
-      const { rows } = await pool.query('SELECT count(*)::int AS n FROM projects');
-      if (rows[0].n > 0) return;
 
       const seed = JSON.parse(
         await readFile(new URL('./seed-projects.json', import.meta.url), 'utf-8'),
@@ -49,17 +47,24 @@ export function createDb(connectionString = process.env.DATABASE_URL) {
       for (const [i, p] of seed.entries()) {
         await pool.query(
           `INSERT INTO projects
-             (slug, title, summary, description, tags, highlight, metrics,
+             (slug, title, summary, description, sections, tags, highlight, metrics,
               repo_url, demo_url, image, featured, position)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+           ON CONFLICT (slug) DO UPDATE SET
+             title = EXCLUDED.title, summary = EXCLUDED.summary,
+             description = EXCLUDED.description, sections = EXCLUDED.sections,
+             tags = EXCLUDED.tags, highlight = EXCLUDED.highlight, metrics = EXCLUDED.metrics,
+             repo_url = EXCLUDED.repo_url, demo_url = EXCLUDED.demo_url, image = EXCLUDED.image,
+             featured = EXCLUDED.featured, position = EXCLUDED.position`,
           [
             p.slug,
             p.title,
             p.summary,
             p.description,
+            JSON.stringify(p.sections ?? []),
             p.tags,
             p.highlight,
-            JSON.stringify(p.metrics),
+            JSON.stringify(p.metrics ?? []),
             p.repoUrl,
             p.demoUrl,
             p.image,
@@ -68,7 +73,7 @@ export function createDb(connectionString = process.env.DATABASE_URL) {
           ],
         );
       }
-      console.log(`Base de datos inicializada con ${seed.length} proyectos`);
+      console.log(`Proyectos sincronizados: ${seed.length}`);
     },
 
     close: () => pool.end(),

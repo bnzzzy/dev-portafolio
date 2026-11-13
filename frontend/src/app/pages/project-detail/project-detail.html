@@ -55,6 +55,17 @@
         </div>
       </div>
     </article>
+
+    @if (p.sections?.length) {
+      <section class="case" aria-label="Caso de estudio">
+        @for (s of p.sections; track s.heading) {
+          <div class="case__block">
+            <h2 class="case__heading">{{ s.heading }}</h2>
+            <p>{{ s.body }}</p>
+          </div>
+        }
+      </section>
+    }
   } @else if (p === null) {
     <div class="stack">
       <h1 class="headline-lg">Proyecto no encontrado</h1>

@@ -69,7 +69,7 @@
       @case (null) {
         <p class="notice">
           No se pudieron cargar los proyectos.
-          Puedes ver mi código directamente en
+          El código está disponible directamente en
           <a [href]="site.github.url" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
         </p>
       }
@@ -84,7 +84,7 @@
             }
           </div>
         } @else {
-          <p class="notice">Estoy preparando los casos de estudio. Mientras tanto, mira mis repositorios más abajo.</p>
+          <p class="notice">Casos de estudio en preparación. El código está disponible en los repositorios más abajo.</p>
         }
       }
     }
@@ -142,7 +142,7 @@
   <!-- ============ HABILIDADES PROFESIONALES ============ -->
   <section aria-labelledby="soft-title">
     <div class="section-head">
-      <h2 id="soft-title" class="headline-md">Cómo trabajo</h2>
+      <h2 id="soft-title" class="headline-md">Competencias profesionales</h2>
     </div>
     <ul class="soft">
       @for (skill of site.softSkills; track skill.name) {

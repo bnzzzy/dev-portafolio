@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
       <p class="code text-secondary" aria-hidden="true">$ cd {{ path }}</p>
       <p class="code text-error" aria-hidden="true">bash: no such file or directory</p>
       <h1 class="display-hero">404</h1>
-      <p class="muted">Esta página no existe.</p>
+      <p class="muted">La página solicitada no existe.</p>
       <a class="btn btn--primary" routerLink="/"><span class="icon" aria-hidden="true">terminal</span> Volver al inicio</a>
     </div>
   `,

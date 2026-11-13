@@ -2,7 +2,7 @@
   <header class="page-head">
     <h1 class="display-hero">Repositorios</h1>
     <p class="muted">
-      Mis repositorios públicos, actualizados en vivo desde
+      Repositorios públicos, actualizados en vivo desde
       <a class="text-primary" [href]="github.url" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
     </p>
   </header>
@@ -17,8 +17,8 @@
     }
     @case (null) {
       <p class="notice" role="alert">
-        No se pudo conectar con GitHub. Intenta de nuevo en unos minutos o abre
-        <a [href]="github.url" target="_blank" rel="noopener">mi perfil directamente<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
+        No se pudo conectar con GitHub. Intente nuevamente en unos minutos o abra
+        <a [href]="github.url" target="_blank" rel="noopener">el perfil directamente<span class="sr-only"> (abre en una pestaña nueva)</span></a>.
       </p>
     }
     @default {

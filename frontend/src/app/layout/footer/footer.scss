@@ -19,16 +19,28 @@
   gap: var(--space-sm);
 }
 
-// El logo completo trae texto chico: solo se muestra desde tablet
-.footer__logo {
+.footer__id {
   display: none;
-  height: 4.5rem;
-  width: auto;
-  margin-left: -0.5rem; // compensa el margen interno del SVG
+  align-items: center;
+  gap: var(--space-md);
 
   @media (min-width: 768px) {
-    display: block;
+    display: flex;
   }
+}
+
+.footer__logo {
+  height: 2rem;
+  width: auto;
+}
+
+.footer__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__name {
+  font-weight: 600;
 }
 
 .footer__links {

@@ -1,7 +1,7 @@
 <div class="page">
   <header class="page-head">
-    <h1 class="display-hero">Hablemos</h1>
-    <p class="muted">Déjame un mensaje aquí o escríbeme por el medio que prefieras.</p>
+    <h1 class="display-hero">Contacto</h1>
+    <p class="muted">Envíe un mensaje mediante el formulario o utilice el medio que prefiera.</p>
   </header>
 
   <div class="contact">
@@ -19,7 +19,7 @@
           [attr.aria-describedby]="name.touched && name.invalid ? 'c-name-error' : null"
         />
         @if (name.touched && name.invalid) {
-          <small id="c-name-error" class="field__error label">Escribe tu nombre.</small>
+          <small id="c-name-error" class="field__error label">Ingrese su nombre.</small>
         }
       </div>
 
@@ -38,7 +38,7 @@
         />
         @if (email.touched && email.invalid) {
           <small id="c-email-error" class="field__error label">
-            {{ email.hasError('required') ? 'Escribe tu email para que pueda responderte.' : 'Revisa el email: falta la @ o el dominio.' }}
+            {{ email.hasError('required') ? 'Ingrese su email para recibir respuesta.' : 'El email no es válido: verifique la @ y el dominio.' }}
           </small>
         }
       </div>
@@ -55,13 +55,13 @@
           id="c-message"
           rows="5"
           formControlName="message"
-          placeholder="Cuéntame sobre el rol o el proyecto..."
+          placeholder="Describa el rol o el proyecto..."
           [attr.aria-invalid]="message.touched && message.invalid"
           [attr.aria-describedby]="message.touched && message.invalid ? 'c-message-hint c-message-error' : 'c-message-hint'"
         ></textarea>
         @if (message.touched && message.invalid) {
           <small id="c-message-error" class="field__error label">
-            El mensaje necesita al menos {{ minLength }} caracteres.
+            El mensaje debe tener al menos {{ minLength }} caracteres.
           </small>
         }
       </div>
@@ -77,14 +77,14 @@
           @case ('sent') {
             <p class="form__feedback form__feedback--ok">
               <span class="icon" aria-hidden="true">check_circle</span>
-              <span>Mensaje enviado. Te responderé a <b>{{ sentTo() }}</b>.</span>
+              <span>Mensaje enviado. La respuesta llegará a <b>{{ sentTo() }}</b>.</span>
             </p>
           }
           @case ('error') {
             <p class="form__feedback form__feedback--error">
               <span class="icon" aria-hidden="true">error</span>
               <span>
-                No se pudo enviar el mensaje y no se perdió lo que escribiste. Inténtalo de nuevo o escríbeme a
+                No se pudo enviar el mensaje; el texto ingresado se conserva. Intente nuevamente o escriba a
                 <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
               </span>
             </p>
@@ -93,6 +93,6 @@
       </div>
     </form>
 
-    <app-contact-cta />
+    <app-contact-cta heading="Otros medios de contacto" />
   </div>
 </div>

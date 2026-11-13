@@ -1,12 +1,76 @@
 [
   {
+    "slug": "indicadores-rrhh-buk",
+    "title": "Indicadores de RRHH con la API de BUK",
+    "summary": "Aplicación interna para visualizar y analizar ausentismo, presentismo y rotación de personal por cargo y cuenta, integrada con la API de BUK.",
+    "description": "Desarrollo autónomo, durante la práctica profesional en ID Logistics Chile, de una aplicación que integra los datos de personal de BUK y los transforma en indicadores de gestión para el área de Recursos Humanos.",
+    "sections": [
+      {
+        "heading": "Contexto",
+        "body": "El área de Recursos Humanos necesitaba seguir el ausentismo, el presentismo y la rotación del personal desglosados por cargo y por cuenta de cliente. Los datos existían en BUK, la plataforma de gestión de personas de la empresa, pero no en una forma que permitiera analizarlos de manera directa."
+      },
+      {
+        "heading": "Solución",
+        "body": "Aplicación que consume la API de BUK, procesa los registros de personal y presenta los tres indicadores con desglose por cargo y por cuenta. El procesamiento y el análisis de datos se apoyaron en scripts de Python con Pandas y en modelado de datos con consultas SQL avanzadas."
+      },
+      {
+        "heading": "Rol",
+        "body": "Desarrollo completo de forma autónoma: integración con la API, procesamiento de datos, presentación de los indicadores y documentación técnica de la solución."
+      },
+      {
+        "heading": "Confidencialidad",
+        "body": "Proyecto interno de ID Logistics Chile. El código y los datos no son públicos, por lo que no se incluyen capturas ni repositorio."
+      }
+    ],
+    "tags": [
+      "Python",
+      "Pandas",
+      "SQL",
+      "API BUK"
+    ],
+    "highlight": "Proyecto interno",
+    "metrics": [
+      {
+        "label": "Indicadores",
+        "value": "Ausentismo · Presentismo · Rotación"
+      },
+      {
+        "label": "Desglose",
+        "value": "Por cargo y cuenta"
+      }
+    ],
+    "repoUrl": null,
+    "demoUrl": null,
+    "image": null,
+    "featured": true
+  },
+  {
     "slug": "portafolio",
     "title": "Portafolio personal",
-    "summary": "Este mismo sitio: Angular + Express + Docker, publicado en mi servidor con Cloudflare Tunnel.",
-    "description": "Sitio donde muestro mis proyectos, con enlaces a GitHub, LinkedIn y demos en vivo. El frontend está hecho en Angular, la API en Express y todo corre en contenedores Docker en un servidor propio.",
+    "summary": "Este sitio: Angular, Express y PostgreSQL en contenedores Docker, publicado en un servidor propio mediante Cloudflare Tunnel.",
+    "description": "Sitio que reúne experiencia, proyectos y repositorios. Se diseñó, desarrolló y desplegó de punta a punta, incluida la infraestructura en la que se ejecuta.",
+    "sections": [
+      {
+        "heading": "Arquitectura",
+        "body": "Frontend en Angular 22 con componentes independientes y rutas de carga diferida. API en Express 5 que entrega los proyectos desde PostgreSQL, guarda los mensajes del formulario de contacto y consulta los repositorios públicos en la API de GitHub con una caché de 10 minutos."
+      },
+      {
+        "heading": "Infraestructura",
+        "body": "Tres contenedores orquestados con Docker Compose (base de datos, API y frontend servido por nginx) en un servidor propio con Linux. La base de datos no expone puertos fuera de la red de Docker y el sitio se publica con Cloudflare Tunnel, sin abrir puertos del servidor a internet."
+      },
+      {
+        "heading": "Calidad",
+        "body": "Pruebas de la API con node:test y una base de datos simulada en memoria. Interfaz revisada con criterios WCAG: navegación por teclado, lectores de pantalla, contraste y objetivos táctiles de 44 px."
+      },
+      {
+        "heading": "Despliegue",
+        "body": "Un script empaqueta el código, lo sube al servidor por SSH y reconstruye los contenedores. Al arrancar, la API crea las tablas y sincroniza los proyectos desde un archivo semilla versionado."
+      }
+    ],
     "tags": [
       "Angular",
       "Express",
+      "PostgreSQL",
       "Docker"
     ],
     "highlight": "En producción",
@@ -16,13 +80,13 @@
         "value": "Angular 22"
       },
       {
-        "label": "Infra",
-        "value": "Docker + CF Tunnel"
+        "label": "Infraestructura",
+        "value": "Docker + Cloudflare Tunnel"
       }
     ],
     "repoUrl": "https://github.com/bnzzzy/dev-portafolio",
     "demoUrl": null,
-    "image": null,
+    "image": "/projects/portafolio.png",
     "featured": true
   }
 ]

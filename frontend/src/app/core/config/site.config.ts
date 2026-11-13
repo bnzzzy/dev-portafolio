@@ -15,10 +15,9 @@ export interface ExperienceEntry {
 
 export const SITE = {
   name: 'Benjamín López',
-  role: 'Ingeniero en Informática · Full Stack Developer',
-  bio: 'Construyo APIs y microservicios con Java (Spring Boot) y Python, interfaces con Angular y React, procesos ETL y automatizaciones de punta a punta, y los despliego con Docker en Linux.',
+  role: 'Ingeniero en Informática · Desarrollador Full Stack',
+  bio: 'Desarrollo de APIs y microservicios con Java (Spring Boot) y Python, interfaces con Angular y React, procesos ETL y automatización de procesos, con despliegue en Docker sobre Linux. Experiencia en el sector logístico.',
   logo: '/logo.svg', // monograma <B> del header
-  logoFull: '/logo-full.svg', // logo completo del footer
   avatar: null as string | null, // ej: '/avatar.jpg' (ponlo en frontend/public)
 
   availability: {
@@ -30,7 +29,7 @@ export const SITE = {
   github: {
     username: 'bnzzzy',
     url: 'https://github.com/bnzzzy',
-    caption: 'Código fuente de todos mis proyectos',
+    caption: 'Código fuente de los proyectos',
   },
 
   linkedin: {
@@ -45,7 +44,7 @@ export const SITE = {
     email: 'bnja.lpz16@gmail.com',
     calendarUrl: null as string | null, // ej: 'https://cal.com/tu-usuario'
     discord: null as string | null, // ej: 'tu_usuario'
-    pitch: 'Busco roles Full Stack o Backend, y también tomo proyectos de automatización y datos.',
+    pitch: 'Disponible para roles Full Stack o Backend y para proyectos de automatización y datos.',
   },
 
   // Experiencia laboral, de la más reciente a la más antigua.
@@ -59,16 +58,16 @@ export const SITE = {
         'Microservicios e integración de APIs con Spring Boot y JPA, autenticación con JWT y tareas programadas. Interfaces en Angular y React, apps móviles en Flutter y pruebas end-to-end con Playwright.',
       outcome:
         'Flujos ETL con SQL avanzado en PostgreSQL y MySQL, y pipelines de CI/CD con Jenkins y GitLab CI desplegando en Docker sobre Linux.',
-      tags: ['Java', 'Spring Boot', 'Angular', 'React', 'Flutter', 'Playwright', 'Jenkins', 'Docker'],
+      tags: ['Spring Boot', 'Angular', 'Flutter', 'Jenkins'],
     },
     {
       role: 'Ingeniero de Proyectos Trainee',
       company: 'ID Logistics Chile',
       period: 'nov. 2025 – ene. 2026',
       summary:
-        'Desarrollo de una aplicación Full Stack con Python (Flask y FastAPI) y JavaScript, sobre una base MySQL que diseñé y modelé.',
-      outcome: 'Automaticé tareas repetitivas y armé entornos de desarrollo y pruebas con Docker.',
-      tags: ['Python', 'Flask', 'FastAPI', 'MySQL', 'Docker'],
+        'Desarrollo de una aplicación Full Stack con Python (Flask y FastAPI) y JavaScript, sobre una base de datos MySQL de diseño propio.',
+      outcome: 'Automatización de tareas repetitivas y entornos de desarrollo y pruebas en Docker.',
+      tags: ['Python', 'FastAPI', 'MySQL', 'Docker'],
     },
     {
       role: 'Práctica profesional · Ingeniería y Proyectos',
@@ -77,7 +76,7 @@ export const SITE = {
       summary:
         'Scripts en Python (Pandas) para analizar y procesar datos, modelado con SQL avanzado y documentación técnica de las soluciones.',
       outcome:
-        'Desarrollé de forma autónoma una app de RRHH integrada con la API de BUK para analizar ausentismo, presentismo y rotación por cargo y cuenta.',
+        'Desarrollo autónomo de una aplicación de RRHH integrada con la API de BUK para analizar ausentismo, presentismo y rotación por cargo y cuenta.',
       tags: ['Python', 'Pandas', 'SQL', 'API BUK'],
     },
     {
@@ -119,15 +118,15 @@ export const SITE = {
   softSkills: [
     {
       name: 'Autonomía',
-      evidence: 'Llevé de punta a punta, por mi cuenta, una app de RRHH integrada con la API de BUK.',
+      evidence: 'Desarrollo de punta a punta, sin supervisión directa, de una aplicación de RRHH integrada con la API de BUK.',
     },
     {
       name: 'Visión de negocio',
-      evidence: 'Convierto necesidades de RRHH y operaciones en indicadores concretos, como ausentismo, presentismo y rotación.',
+      evidence: 'Traducción de necesidades de RRHH y operaciones en indicadores concretos: ausentismo, presentismo y rotación.',
     },
     {
       name: 'Trabajo en equipo',
-      evidence: 'Desarrollo en equipo con Git Flow y pipelines de CI/CD compartidos.',
+      evidence: 'Desarrollo colaborativo con Git Flow y pipelines de CI/CD compartidos.',
     },
     {
       name: 'Orientación a la calidad',
@@ -135,11 +134,11 @@ export const SITE = {
     },
     {
       name: 'Comunicación y servicio',
-      evidence: 'Soporte a usuarios en mesa de ayuda y documentación técnica de cada solución que entrego.',
+      evidence: 'Soporte a usuarios en mesa de ayuda y documentación técnica de cada solución entregada.',
     },
     {
       name: 'Aprendizaje continuo',
-      evidence: 'Seis certificaciones de Google Cloud y un stack que va de RPA a microservicios y apps móviles.',
+      evidence: 'Seis certificaciones de Google Cloud y un stack que abarca desde RPA hasta microservicios y aplicaciones móviles.',
     },
   ] satisfies { name: string; evidence: string }[],
 

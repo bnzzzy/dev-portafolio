@@ -3,11 +3,17 @@ export interface ProjectMetric {
   value: string;
 }
 
+export interface ProjectSection {
+  heading: string;
+  body: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
   summary: string;
   description: string;
+  sections?: ProjectSection[]; // caso de estudio: contexto, solución, rol...
   tags: string[];
   highlight?: string | null; // badge junto al título, ej: "-40% latencia"
   metrics?: ProjectMetric[];

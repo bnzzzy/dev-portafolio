@@ -13,6 +13,6 @@ export class SiteTitleStrategy extends TitleStrategy {
 
   override updateTitle(snapshot: RouterStateSnapshot) {
     const page = this.buildTitle(snapshot);
-    this.title.setTitle(page ? `${page} · ${SITE.name}` : `${SITE.name} · Full Stack Developer`);
+    this.title.setTitle(page ? `${page} · ${SITE.name}` : `${SITE.name} · Desarrollador Full Stack`);
   }
 }

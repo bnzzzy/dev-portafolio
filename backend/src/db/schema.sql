@@ -17,6 +17,9 @@ CREATE TABLE IF NOT EXISTS projects (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Secciones del caso de estudio: [{ "heading": "...", "body": "..." }]
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS sections JSONB NOT NULL DEFAULT '[]';
+
 CREATE TABLE IF NOT EXISTS contact_messages (
   id         SERIAL PRIMARY KEY,
   name       TEXT NOT NULL,
