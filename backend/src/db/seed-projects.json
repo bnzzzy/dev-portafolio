@@ -47,6 +47,57 @@
     "imageAlt": null
   },
   {
+    "slug": "gymdesk360",
+    "title": "GymDesk360: gestión de gimnasios",
+    "summary": "SaaS multi-gimnasio para gestionar socios, planes y membresías, con datos aislados por gimnasio, JWT con rotación de tokens y despliegue en Docker. Demo pública con tres roles.",
+    "description": "Plataforma SaaS para gimnasios, boxes y estudios. Cada gimnasio cliente administra sus propios socios, planes y ventas, aislados de los demás, y el dueño de la plataforma gestiona a todos los clientes desde un panel central.",
+    "sections": [
+      {
+        "heading": "Producto",
+        "body": "Planes con precio en pesos y duración en meses o días. Socios con RUT validado por dígito verificador, contacto de emergencia y notas. Venta de membresías con renovación encadenada, descuentos, ventas con fecha pasada y anulación. Panel con socios activos, vencimientos de la semana sin renovar, ventas e ingresos del mes."
+      },
+      {
+        "heading": "Multi-tenant y roles",
+        "body": "Toda consulta se filtra por el gimnasio del token; acceder a un recurso de otro gimnasio responde 404 para no revelar su existencia. El aislamiento está verificado con pruebas. Roles SUPER_ADMIN, ADMIN, STAFF y MEMBER con permisos por endpoint."
+      },
+      {
+        "heading": "Seguridad",
+        "body": "Access token de 15 minutos y refresh token rotativo almacenado como hash SHA-256. Reutilizar un refresh token ya rotado se interpreta como robo y revoca todas las sesiones del usuario. Límite de intentos de login por IP y por email, contraseñas con BCrypt, login en tiempo constante, CORS estricto y cabeceras de seguridad."
+      },
+      {
+        "heading": "Decisiones de diseño",
+        "body": "Cada membresía guarda el nombre y el precio del plan al momento de la venta, de modo que editar un plan no altera el historial. Las fechas de negocio se calculan con un Clock inyectado en la zona horaria de Chile, para que una membresía no venza según la hora UTC del servidor."
+      },
+      {
+        "heading": "Infraestructura y pruebas",
+        "body": "Backend en Spring Boot 3.4 con Java 21, Spring Security, JPA, Flyway y Swagger; frontend en Angular 21 con PrimeNG y Tailwind CSS. Docker Compose con PostgreSQL 17, publicado con Cloudflare Tunnel, respaldos diarios con pg_dump y datos de demo que se regeneran cada noche. Pruebas con JUnit 5, integración de la API y E2E con Playwright."
+      }
+    ],
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "highlight": "Demo en vivo",
+    "metrics": [
+      {
+        "label": "Backend",
+        "value": "Spring Boot 3.4 · Java 21"
+      },
+      {
+        "label": "Seguridad",
+        "value": "JWT + refresh rotativo"
+      }
+    ],
+    "repoUrl": "https://github.com/bnzzzy/GymDesk360-demo",
+    "demoUrl": "https://demo-gymdesk.benzprojects.site",
+    "image": "/projects/gymdesk360-panel.png",
+    "featured": true,
+    "imageAlt": "Panel del administrador de GymDesk360 con socios activos, vencidos, ventas e ingresos del mes, y la lista de socios cuyo plan vence esta semana."
+  },
+  {
     "slug": "portafolio",
     "title": "Portafolio personal",
     "summary": "Este sitio: Angular, Express y PostgreSQL en contenedores Docker, publicado en un servidor propio mediante Cloudflare Tunnel.",
