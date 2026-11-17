@@ -5,19 +5,27 @@ import cors from 'cors';
 import projectsRouter from './routes/projects.js';
 import contactRouter from './routes/contact.js';
 import githubRouter from './routes/github.js';
+import { rateLimit } from './rateLimit.js';
 
 // db: objeto con las funciones de acceso a datos (ver db/index.js).
-export function createApp({ db }) {
+// contactLimit: se puede cambiar en los tests.
+export function createApp({ db, contactLimit = { max: 5, windowMs: 10 * 60 * 1000 } }) {
   const app = express();
+  app.disable('x-powered-by');
 
   app.use(cors({ origin: process.env.CORS_ORIGIN ?? 'http://localhost:4200' }));
-  app.use(express.json());
+  app.use(express.json({ limit: '20kb' }));
 
   app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', uptime: process.uptime() });
   });
 
   app.use('/api/projects', projectsRouter(db));
+  // Máximo 5 mensajes de contacto por IP cada 10 minutos
+  app.post(
+    '/api/contact',
+    rateLimit({ ...contactLimit, message: 'Enviaste varios mensajes seguidos. Intenta de nuevo en unos minutos.' }),
+  );
   app.use('/api/contact', contactRouter(db));
   app.use('/api/github', githubRouter);
 

@@ -12,10 +12,12 @@ export default function contactRouter(db) {
     const { name, email, message } = req.body ?? {};
     const errors = [];
 
-    if (!name?.trim()) errors.push('El nombre es obligatorio');
-    if (!EMAIL_RE.test(email ?? '')) errors.push('El email no es válido');
-    if (!message?.trim() || message.trim().length < 10)
+    if (typeof name !== 'string' || !name.trim()) errors.push('El nombre es obligatorio');
+    else if (name.length > 100) errors.push('El nombre es demasiado largo');
+    if (typeof email !== 'string' || email.length > 254 || !EMAIL_RE.test(email)) errors.push('El email no es válido');
+    if (typeof message !== 'string' || message.trim().length < 10)
       errors.push('El mensaje debe tener al menos 10 caracteres');
+    else if (message.length > 5000) errors.push('El mensaje no puede superar los 5000 caracteres');
 
     if (errors.length) return res.status(400).json({ errors });
 
