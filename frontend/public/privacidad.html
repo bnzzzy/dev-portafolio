@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Política de privacidad · Automatizaciones internas</title>
+  <meta name="description" content="Política de privacidad de la aplicación de automatizaciones internas de O Rayos.com SpA que usa servicios de Google.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0f1115">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+  <style>
+    :root {
+      --surface: #0f1115;
+      --surface-low: #14171c;
+      --surface-high: #20252c;
+      --on-surface: #e6e7ea;
+      --on-surface-variant: #a3a9b4;
+      --primary: #3dd6c0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--on-surface);
+      font: 400 15px/24px "IBM Plex Sans", system-ui, sans-serif;
+    }
+    main { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    h1 { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.5rem; text-wrap: balance; }
+    h2 { font-size: 18px; line-height: 26px; font-weight: 600; margin: 2rem 0 0.5rem; text-wrap: balance; }
+    p, li { color: var(--on-surface-variant); text-wrap: pretty; }
+    ul { padding-left: 1.25rem; }
+    li { margin: 0.25rem 0; }
+    strong { color: var(--on-surface); font-weight: 600; }
+    a { color: var(--primary); }
+    a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 0.25rem; }
+    .meta { font: 500 13px/20px "IBM Plex Mono", monospace; color: var(--on-surface-variant); }
+    .box { background: var(--surface-low); border: 1px solid var(--surface-high); border-radius: 0.75rem; padding: 1rem 1.25rem; margin-top: 1.5rem; }
+    .box p { margin: 0; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--surface-high); }
+    @media (min-width: 768px) {
+      body { font-size: 16px; line-height: 26px; }
+      main { padding: 4rem 2rem 5rem; }
+      h1 { font-size: 44px; line-height: 52px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Política de privacidad</h1>
+    <p class="meta">Automatizaciones internas · Última actualización: 17 de noviembre de 2026</p>
+
+    <div class="box">
+      <p>Esta aplicación es de <strong>uso interno</strong> de O Rayos.com SpA (tiendas VGamers, Vstore y VTechStore). No es un servicio para el público: solo la usan cuentas de la propia empresa para automatizar tareas administrativas.</p>
+    </div>
+
+    <h2>Qué hace la aplicación</h2>
+    <p>Es una instancia de n8n, una herramienta de automatización, alojada en un servidor administrado por la empresa. Se conecta a Google con la autorización de la cuenta de la empresa para:</p>
+    <ul>
+      <li><strong>Google Drive:</strong> guardar y leer archivos de trabajo, como facturas de proveedores, planillas de gastos e informes financieros.</li>
+      <li><strong>Google Sheets:</strong> leer y actualizar planillas internas, como registros de compras y asistencia.</li>
+      <li><strong>Gmail:</strong> enviar informes automáticos a correos de la propia empresa.</li>
+    </ul>
+
+    <h2>Qué datos de Google se usan</h2>
+    <p>La aplicación solo accede a los archivos, planillas y correos que la empresa crea o designa para estas automatizaciones. No lee otros contenidos de la cuenta y no accede a datos de usuarios externos.</p>
+
+    <h2>Cómo se usan y se protegen</h2>
+    <ul>
+      <li>Los datos se usan <strong>solo</strong> para ejecutar las automatizaciones internas descritas arriba.</li>
+      <li>No se venden, no se comparten con terceros y no se usan para publicidad.</li>
+      <li>No se usan para entrenar modelos de inteligencia artificial.</li>
+      <li>Se procesan en el servidor de la empresa y en la propia cuenta de Google. Las credenciales de acceso se guardan cifradas y el acceso al servidor está restringido.</li>
+    </ul>
+    <p>El uso de la información recibida de las API de Google cumple la <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Política de datos del usuario de los servicios de las API de Google</a>, incluidos los requisitos de uso limitado.</p>
+
+    <h2>Cómo revocar el acceso</h2>
+    <p>El acceso se puede retirar en cualquier momento desde <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. Al revocarlo, las automatizaciones dejan de acceder a la cuenta.</p>
+
+    <h2>Contacto</h2>
+    <p>Para consultas sobre esta política o sobre los datos que usa la aplicación, escribe a <a href="mailto:automatizacionvgamers@gmail.com">automatizacionvgamers@gmail.com</a>.</p>
+
+    <footer>
+      <p class="meta"><a href="/">benzprojects.site</a></p>
+    </footer>
+  </main>
+</body>
+</html>
